@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKSWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="AccountTypeID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="AccountPermission">
+    <Key>
+      <PropertyRef Name="AccPerID" />
+    </Key>
+    <Property Name="AccPerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="ModuleID" Type="int" />
+    <Property Name="Permission" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="AccountTypeID" />
+    </Key>
+    <Property Name="AccountTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountTypeName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CheckinDate" Type="datetime" />
+    <Property Name="CheckoutDate" Type="datetime" />
+    <Property Name="Deposit" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Discount" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="BillStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="BillDetailID" />
+    </Key>
+    <Property Name="BillDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="TotalSerivcesPrices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Compensation" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="ServicesID" Type="int" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="BillID" Type="int" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookDate" Type="datetime" />
+    <Property Name="CheckinDate" Type="datetime" />
+    <Property Name="CheckoutDate" Type="datetime" />
+    <Property Name="Deposit" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="BookingType" Type="nvarchar" MaxLength="250" />
+    <Property Name="BookingStatus" Type="nvarchar" MaxLength="250" />
+    <Property Name="BookingNotes" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BookingRoom">
+    <Key>
+      <PropertyRef Name="BookingRoomID" />
+    </Key>
+    <Property Name="BookingRoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingID" Type="int" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="IsBooking" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="BookingServices">
+    <Key>
+      <PropertyRef Name="BookingServicesID" />
+    </Key>
+    <Property Name="BookingServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingID" Type="int" />
+    <Property Name="ServicesID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="IsBooking" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="BirthDay" Type="datetime" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Passport" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="EquipmentID" />
+    </Key>
+    <Property Name="EquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipmentName" Type="nvarchar" MaxLength="250" />
+    <Property Name="EquipPrices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="DateBuy" Type="datetime" />
+    <Property Name="EquipStatus" Type="tinyint" Nullable="false" />
+    <Property Name="EquipmentTypeID" Type="int" Nullable="false" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="EquipmentType">
+    <Key>
+      <PropertyRef Name="EquipmentTypeID" />
+    </Key>
+    <Property Name="EquipmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipmentTypeName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EquipRequest">
+    <Key>
+      <PropertyRef Name="EquipRequestID" />
+    </Key>
+    <Property Name="EquipRequestID" Type="int" Nullable="false" />
+    <Property Name="RequestID" Type="int" />
+    <Property Name="EquipID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="MaintenanceHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="DateMaintenance" Type="datetime" />
+    <Property Name="DateFinished" Type="datetime" />
+    <Property Name="MaintenancePrices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="EquipmentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModuleList">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ModuleIcon" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Promotion">
+    <Key>
+      <PropertyRef Name="PromotionID" />
+    </Key>
+    <Property Name="PromotionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PromotionName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PercentDiscount" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="PromotionContent" Type="nvarchar(max)" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequesterName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Prices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="RequestDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="RequestTypeID" Type="int" Nullable="false" />
+    <Property Name="EquipmentID" Type="int" Nullable="false" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="RequestStatus" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="RequestTypeID" />
+    </Key>
+    <Property Name="RequestTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestTypeName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomName" Type="nvarchar" MaxLength="250" />
+    <Property Name="RoomStatus" Type="nvarchar" MaxLength="100" />
+    <Property Name="RoomNotes" Type="nvarchar" MaxLength="250" />
+    <Property Name="RoomDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="MinQuantity" Type="int" />
+    <Property Name="MaxQuantity" Type="int" />
+    <Property Name="RoomTypeID" Type="int" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="RoomRequest">
+    <Key>
+      <PropertyRef Name="RoomRequestID" />
+    </Key>
+    <Property Name="RoomRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="RequestID" Type="int" />
+  </EntityType>
+  <EntityType Name="RoomServices">
+    <Key>
+      <PropertyRef Name="RoomServicesID" />
+    </Key>
+    <Property Name="RoomServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="ServicesID" Type="int" />
+  </EntityType>
+  <EntityType Name="RoomType">
+    <Key>
+      <PropertyRef Name="RoomTypeID" />
+    </Key>
+    <Property Name="RoomTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomTypeName" Type="nvarchar" MaxLength="250" />
+    <Property Name="RoomTypePrices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="RoomTypeDescription" Type="nvarchar(max)" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+    <Property Name="IsPay" Type="tinyint" />
+    <Property Name="IsShowHomePage" Type="tinyint" />
+    <Property Name="IsShow" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServicesID" />
+    </Key>
+    <Property Name="ServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServicesName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ServicesDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="ServicesContent" Type="nvarchar(max)" />
+    <Property Name="ServicesPrices" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="100" />
+    <Property Name="ServicesDetail" Type="nvarchar" MaxLength="250" />
+    <Property Name="ServicesTypeID" Type="int" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+    <Property Name="IsAvailable" Type="tinyint" />
+    <Property Name="IsPay" Type="tinyint" />
+    <Property Name="IsShowHomePage" Type="tinyint" />
+    <Property Name="IsShow" Type="tinyint" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ServicesType">
+    <Key>
+      <PropertyRef Name="ServicesTypeID" />
+    </Key>
+    <Property Name="ServicesTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServicesTypeName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" />
+    <Property Name="ModifyUserID" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModify" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Account__Image__15502E78">
+    <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="AccountTypeID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AccountPe__Accou__6EF57B66">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="AccountPermission">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AccountPe__Modul__6FE99F9F">
+    <End Role="ModuleList" Type="Self.ModuleList" Multiplicity="0..1" />
+    <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleList">
+        <PropertyRef Name="ModuleID" />
+      </Principal>
+      <Dependent Role="AccountPermission">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__DateModify__5070F446">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__BillI__5535A963">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="BillID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__RoomI__5441852A">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillDetai__Servi__534D60F1">
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServicesID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ServicesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__Custome__4CA06362">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__DateMod__4BAC3F29">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingRo__IsBoo__59063A47">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
+    <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingRoom">
+        <PropertyRef Name="BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingRo__RoomI__59FA5E80">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="BookingRoom">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingSe__IsBoo__5DCAEF64">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
+    <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingServices">
+        <PropertyRef Name="BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingSe__Servi__5EBF139D">
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServicesID" />
+      </Principal>
+      <Dependent Role="BookingServices">
+        <PropertyRef Name="ServicesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Image__36B12243">
+    <End Role="EquipmentType" Type="Self.EquipmentType" Multiplicity="1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentType">
+        <PropertyRef Name="EquipmentTypeID" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="EquipmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__RoomI__37A5467C">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EquipRequ__Equip__6A30C649">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+    <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentID" />
+      </Principal>
+      <Dependent Role="EquipRequest">
+        <PropertyRef Name="EquipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EquipRequ__Quant__693CA210">
+    <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+    <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="EquipRequest">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Maintenan__Equip__4222D4EF">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="MaintenanceHistory" Type="Self.MaintenanceHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentID" />
+      </Principal>
+      <Dependent Role="MaintenanceHistory">
+        <PropertyRef Name="EquipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Promotion__DateM__1920BF5C">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__DateMod__45F365D3">
+    <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestType">
+        <PropertyRef Name="RequestTypeID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__Equipme__47DBAE45">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="EquipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__RoomID__46E78A0C">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__Image__31EC6D26">
+    <End Role="RoomType" Type="Self.RoomType" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="RoomTypeID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomReque__Reque__656C112C">
+    <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+    <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="RoomRequest">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomReque__RoomI__66603565">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="RoomRequest">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomServi__RoomI__619B8048">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="RoomServices">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoomServi__Servi__628FA481">
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServicesID" />
+      </Principal>
+      <Dependent Role="RoomServices">
+        <PropertyRef Name="ServicesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Services__Image__3F466844">
+    <End Role="ServicesType" Type="Self.ServicesType" Multiplicity="1" />
+    <End Role="Services" Type="Self.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServicesType">
+        <PropertyRef Name="ServicesTypeID" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="ServicesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Find_AvailableRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPerson" Type="int" Mode="In" />
+    <Parameter Name="CheckinDate" Type="datetime" Mode="In" />
+    <Parameter Name="CheckoutDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Find_AvailableServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ServicesID" Type="int" Mode="In" />
+    <Parameter Name="DateBook" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Get_Module" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_dumpparam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SUName" Type="varchar" Mode="In" />
+    <Parameter Name="DumpValue" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Store_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="QLKSWEBModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountPermission" EntityType="Self.AccountPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountType" EntityType="Self.AccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingRoom" EntityType="Self.BookingRoom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingServices" EntityType="Self.BookingServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EquipRequest" EntityType="Self.EquipRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaintenanceHistory" EntityType="Self.MaintenanceHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleList" EntityType="Self.ModuleList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomRequest" EntityType="Self.RoomRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomServices" EntityType="Self.RoomServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicesType" EntityType="Self.ServicesType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__Image__15502E78" Association="Self.FK__Account__Image__15502E78">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AccountPe__Accou__6EF57B66" Association="Self.FK__AccountPe__Accou__6EF57B66">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountPermission" EntitySet="AccountPermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AccountPe__Modul__6FE99F9F" Association="Self.FK__AccountPe__Modul__6FE99F9F">
+      <End Role="ModuleList" EntitySet="ModuleList" />
+      <End Role="AccountPermission" EntitySet="AccountPermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__DateModify__5070F446" Association="Self.FK__Bill__DateModify__5070F446">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__BillI__5535A963" Association="Self.FK__BillDetai__BillI__5535A963">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="BillDetail" EntitySet="BillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__RoomI__5441852A" Association="Self.FK__BillDetai__RoomI__5441852A">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="BillDetail" EntitySet="BillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillDetai__Servi__534D60F1" Association="Self.FK__BillDetai__Servi__534D60F1">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="BillDetail" EntitySet="BillDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__Custome__4CA06362" Association="Self.FK__Booking__Custome__4CA06362">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__DateMod__4BAC3F29" Association="Self.FK__Booking__DateMod__4BAC3F29">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingRo__IsBoo__59063A47" Association="Self.FK__BookingRo__IsBoo__59063A47">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="BookingRoom" EntitySet="BookingRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingRo__RoomI__59FA5E80" Association="Self.FK__BookingRo__RoomI__59FA5E80">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="BookingRoom" EntitySet="BookingRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingSe__IsBoo__5DCAEF64" Association="Self.FK__BookingSe__IsBoo__5DCAEF64">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="BookingServices" EntitySet="BookingServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingSe__Servi__5EBF139D" Association="Self.FK__BookingSe__Servi__5EBF139D">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="BookingServices" EntitySet="BookingServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Image__36B12243" Association="Self.FK__Equipment__Image__36B12243">
+      <End Role="EquipmentType" EntitySet="EquipmentType" />
+      <End Role="Equipment" EntitySet="Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__RoomI__37A5467C" Association="Self.FK__Equipment__RoomI__37A5467C">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Equipment" EntitySet="Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EquipRequ__Equip__6A30C649" Association="Self.FK__EquipRequ__Equip__6A30C649">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="EquipRequest" EntitySet="EquipRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EquipRequ__Quant__693CA210" Association="Self.FK__EquipRequ__Quant__693CA210">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="EquipRequest" EntitySet="EquipRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Maintenan__Equip__4222D4EF" Association="Self.FK__Maintenan__Equip__4222D4EF">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="MaintenanceHistory" EntitySet="MaintenanceHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Promotion__DateM__1920BF5C" Association="Self.FK__Promotion__DateM__1920BF5C">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Promotion" EntitySet="Promotion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__DateMod__45F365D3" Association="Self.FK__Request__DateMod__45F365D3">
+      <End Role="RequestType" EntitySet="RequestType" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__Equipme__47DBAE45" Association="Self.FK__Request__Equipme__47DBAE45">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__RoomID__46E78A0C" Association="Self.FK__Request__RoomID__46E78A0C">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__Image__31EC6D26" Association="Self.FK__Room__Image__31EC6D26">
+      <End Role="RoomType" EntitySet="RoomType" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomReque__Reque__656C112C" Association="Self.FK__RoomReque__Reque__656C112C">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="RoomRequest" EntitySet="RoomRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomReque__RoomI__66603565" Association="Self.FK__RoomReque__RoomI__66603565">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomRequest" EntitySet="RoomRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomServi__RoomI__619B8048" Association="Self.FK__RoomServi__RoomI__619B8048">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomServices" EntitySet="RoomServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoomServi__Servi__628FA481" Association="Self.FK__RoomServi__Servi__628FA481">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="RoomServices" EntitySet="RoomServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Services__Image__3F466844" Association="Self.FK__Services__Image__3F466844">
+      <End Role="ServicesType" EntitySet="ServicesType" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

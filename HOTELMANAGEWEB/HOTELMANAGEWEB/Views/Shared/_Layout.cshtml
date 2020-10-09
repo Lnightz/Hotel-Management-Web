@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cozy - Best Hotel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Assets/css/animate.css">
+
+    <link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Assets/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/Assets/css/aos.css">
+
+    <link rel="stylesheet" href="~/Assets/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/Assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Assets/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/Assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/Assets/css/icomoon.css">
+    <link rel="stylesheet" href="~/Assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Cozy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="@Url.Action("Room","Home")" class="nav-link">Room</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Blog","Home")" class="nav-link">Blog</a></li>
+                    @*<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="@Url.Action("Room","Home")" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="@Url.Action("","Home")">Rooms</a>
+                            <a class="dropdown-item" href="@Url.Action("","Home")">Superior Room Twin</a>
+                            <a class="dropdown-item" href="@Url.Action("","Home")">Premier Suite</a>
+                            <a class="dropdown-item" href="@Url.Action("","Home")">Family Room</a>
+                        </div>
+                    </li>*@
+                    <li class="nav-item"><a href="@Url.Action("DiningBar","Home")" class="nav-link">Dining &amp; Bar</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Amenities","Home")" class="nav-link">Amenities</a></li>
+                    @*<li class="nav-item"><a href="@Url.Action("Reservation","Home")" class="nav-link">Booking</a></li>*@
+                    <li class="nav-item"><a href="@Url.Action("About","Home")" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Contact","Home")" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    @RenderBody()
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Cozy</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Contact Information</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a></li>
+                            <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
+                            <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
+                            <li><a href="#" class="py-2 d-block">email@email.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Newsletter</h2>
+                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group">
+                                <span class="icon icon-paper-plane"></span>
+                                <input type="text" class="form-control" placeholder="Subscribe">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Assets/js/popper.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery.easing.1.3.js"></script>
+    <script src="~/Assets/js/jquery.waypoints.min.js"></script>
+    <script src="~/Assets/js/jquery.stellar.min.js"></script>
+    <script src="~/Assets/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Assets/js/aos.js"></script>
+    <script src="~/Assets/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Assets/js/bootstrap-datepicker.js"></script>
+    <script src="~/Assets/js/jquery.timepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/Assets/js/google-map.js"></script>
+    <script src="~/Assets/js/main.js"></script>
+</body>
+</html>
