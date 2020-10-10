@@ -110,8 +110,6 @@
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DateModify" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Equipment">
     <Key>
       <PropertyRef Name="EquipmentID" />
@@ -643,10 +641,6 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
   </Function>
   <Function Name="Get_Module" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_dumpparam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="SUName" Type="varchar" Mode="In" />
-    <Parameter Name="DumpValue" Type="int" Mode="In" />
   </Function>
   <Function Name="Store_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />

@@ -21,11 +21,11 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Account account)
+        public ActionResult Login(LoginModel account)
         {
-            //var accountdetails = db.Store_Login(account.UserName, account.Password).FirstOrDefault();
+            var accountdetails = db.Store_Login(account.UserName, account.Password).FirstOrDefault();
 
-            var accountdetails = db.Account.Where(x => x.UserName == account.UserName & x.Password == account.Password).FirstOrDefault();
+            //var accountdetails = db.Account.Where(x => x.UserName == account.UserName & x.Password == account.Password).FirstOrDefault();
 
 
             //AccountServcies accountServcies = accountdetails;

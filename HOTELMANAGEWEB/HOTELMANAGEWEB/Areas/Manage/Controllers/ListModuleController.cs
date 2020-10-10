@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HOTELMANAGEWEB.DAL;
+using HOTELMANAGEWEB.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,13 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
     public class ListModuleController : Controller
     {
+        QLKSWEBEntities db = new QLKSWEBEntities();
         // GET: Manage/ListModule
         public ActionResult Index()
         {
-            return View();
+            var infor = db.Get_Module(User.Identity.Name).ToList();
+
+            return View(infor);
         }
     }
 }

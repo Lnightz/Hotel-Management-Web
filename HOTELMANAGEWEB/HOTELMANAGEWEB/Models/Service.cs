@@ -12,36 +12,40 @@ namespace HOTELMANAGEWEB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipment
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Equipment()
+        public Service()
         {
-            this.EquipRequests = new HashSet<EquipRequest>();
-            this.MaintenanceHistories = new HashSet<MaintenanceHistory>();
-            this.Requests = new HashSet<Request>();
+            this.BillDetails = new HashSet<BillDetail>();
+            this.BookingServices = new HashSet<BookingService>();
+            this.RoomServices = new HashSet<RoomService>();
         }
     
-        public int EquipmentID { get; set; }
-        public string EquipmentName { get; set; }
-        public Nullable<decimal> EquipPrices { get; set; }
-        public Nullable<System.DateTime> DateBuy { get; set; }
-        public byte EquipStatus { get; set; }
-        public int EquipmentTypeID { get; set; }
-        public int RoomID { get; set; }
+        public int ServicesID { get; set; }
+        public string ServicesName { get; set; }
+        public string ServicesDescription { get; set; }
+        public string ServicesContent { get; set; }
+        public Nullable<decimal> ServicesPrices { get; set; }
+        public string Unit { get; set; }
+        public string ServicesDetail { get; set; }
+        public int ServicesTypeID { get; set; }
         public Nullable<int> CreatedUserID { get; set; }
         public Nullable<int> ModifyUserID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModify { get; set; }
+        public Nullable<byte> IsAvailable { get; set; }
+        public Nullable<byte> IsPay { get; set; }
+        public Nullable<byte> IsShowHomePage { get; set; }
+        public Nullable<byte> IsShow { get; set; }
         public string Image { get; set; }
     
-        public virtual EquipmentType EquipmentType { get; set; }
-        public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipRequest> EquipRequests { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MaintenanceHistory> MaintenanceHistories { get; set; }
+        public virtual ICollection<BookingService> BookingServices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<RoomService> RoomServices { get; set; }
+        public virtual ServicesType ServicesType { get; set; }
     }
 }

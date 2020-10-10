@@ -15,9 +15,9 @@ CREATE PROCEDURE Store_Login
 AS
 BEGIN
 
-SELECT AccountID, UserName, AccountTypeID
+SELECT *
 FROM dbo.Account 
-WHERE UserName = @UserName AND Password = @Password
+WHERE UserName = @UserName AND Password = @Password AND Disabled = 0
 
 END
 

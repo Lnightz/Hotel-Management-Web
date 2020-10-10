@@ -137,6 +137,7 @@
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\AccountServcies.cs" />
+    <Compile Include="DAL\LoginModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,7 +162,7 @@
     <Compile Include="Models\BookingRoom.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookingServices.cs">
+    <Compile Include="Models\BookingService.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
@@ -215,13 +216,13 @@
     <Compile Include="Models\RoomRequest.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoomServices.cs">
+    <Compile Include="Models\RoomService.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoomType.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Services.cs">
+    <Compile Include="Models\Service.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicesType.cs">

@@ -24,12 +24,12 @@ WHERE		T1.UserName = @UserName AND T2.AccountTypeName = 'Admin'
 
 IF (@IsAdmin = 1)
 	BEGIN
-		SELECT	ModuleName, ModuleIcon
+		SELECT	ModuleID ,ModuleName, ModuleIcon
 		FROM	dbo.ModuleList
 	END
 ELSE
 	BEGIN
-		SELECT		T3.ModuleName, T3.ModuleIcon
+		SELECT		T1.ModuleID, T3.ModuleName AS ModuleName , T3.ModuleIcon AS ModuleIcon
 		FROM		dbo.AccountPermission T1 WITH (NOLOCK)
 		INNER JOIN	dbo.Account T2 WITH (NOLOCK)
 			ON		T2.AccountID = T1.AccountID
