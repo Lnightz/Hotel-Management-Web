@@ -1,20 +1,9 @@
-﻿@*@{
-    if (User.Identity.IsAuthenticated)
+﻿@{
+    if (!User.Identity.IsAuthenticated)
     {
-        if (User.IsInRole("Admin"))
-        {
-
-        }
-        else
-        {
-            Response.Redirect("~/Home/Index");
-        }
+        Response.Redirect("~/Manage/Account/Login");
     }
-    else
-    {
-        Response.Redirect("~/Home/Index");
-    }
-}*@
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +25,10 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="~/AdminAssets/dist/css/thmh.css">
+
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="sidebar-mini sidebar-collapse">
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -47,7 +38,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="@Url.Action("Index","Home",new { area = "" })" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index","ListModule")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">@ViewBag.Title</a>
@@ -66,11 +57,25 @@
             </form>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
+                <li class="user-panel mt-1 pb-1 mb-1 d-flex" style="overflow:visible;">
+                    <div class="image">
+                        <img src="~/AdminAssets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="">
+                        <ul class="" style="list-style-type:none; margin-left:-50px">
+                            <li class="nav-item dropdown hover-effect">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @User.Identity.Name
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item hover-effect" href="#">Thay đổi mật khẩu</a>
+                                    <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account", new { area = "Manage" } )">Đăng xuất</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -80,212 +85,21 @@
             <a href="" class="brand-link">
                 <img src="~/AdminAssets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">THMH</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/AdminAssets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">@User.Identity.Name</a>
-                    </div>
-                </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Lớp học
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Classes", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lớp</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","LevelStudents", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Trình độ lớp</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Genders", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Giới tính</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","RangeTimes", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Thời gian học</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","PartOfDays", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Buổi học</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","RangeAges", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Giới hạn tuổi</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Huấn luyện viên
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Coaches", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Huấn luyện viên</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","LevelCoaches", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Trình độ huấn luyện viên</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Tin Tức
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","News", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tin Tức</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","NewsCategory", new { area = "Admin" })" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Thể loại tin tức</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a href="@Url.Action("Index","Stadiums", new { area = "Admin" })" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Sân vận động
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Bill","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Danh sách hóa đơn
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("AllUserAccount","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Danh sách tài khoản
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Archive","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Thành tựu
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("CoachMoment","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    HLV thân thiện
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("HomePageContent","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Nội dung trang chủ
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("HomeSlide","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Slide Trang chủ
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("EditFooter","General", new { area = "Admin" , id = 1})" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Footer
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("EditAbout","General", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    About Us
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Touraments", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Giải đấu
-                                    @*<span class="right badge badge-danger">New</span>*@
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","DiscountCodes", new { area = "Admin" })" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Mã giảm giá
-                                    @*<span class="right badge badge-danger">New</span>*@
                                 </p>
                             </a>
                         </li>
@@ -364,26 +178,26 @@
     <script src="~/AdminAssets/dist/js/demo.js"></script>
     <!-- page script -->
     @*<script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                });
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
             });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
 
-        $(function () {
-            //Add text editor
-            $('#compose-textarea').summernote()
-        })
-    </script>*@
+            $(function () {
+                //Add text editor
+                $('#compose-textarea').summernote()
+            })
+        </script>*@
 </body>
 </html>

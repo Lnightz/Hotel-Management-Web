@@ -1,6 +1,14 @@
 ﻿@model IEnumerable<HOTELMANAGEWEB.Models.ModuleList>
+@{ #line 2 "E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\Areas\Manage\Views\ListModule\Index.cshtml"
+                /**/
+
+                if (!User.Identity.IsAuthenticated)
+                {
+                    Response.Redirect("~/Manage/Account/Login");
+                }
+}
 @{ ViewBag.Title = "Index";
-                Layout = null; }
+    Layout = null; }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +39,7 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
         <div class="container">
             <a href="../../index3.html" class="navbar-brand">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">THMH</span>
             </a>
 
             <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,9 +51,9 @@
                     @*<li class="nav-item">
                             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                         </li>*@
-                    <li class="nav-item">
-                        <a href="index3.html" class="nav-link">Home</a>
-                    </li>
+                    @*<li class="nav-item">
+                            <a href="index3.html" class="nav-link">Home</a>
+                        </li>*@
                 </ul>
                 <!-- SEARCH FORM -->
                 <form class="form-inline ml-0 ml-md-3">
@@ -58,6 +66,20 @@
                         </div>
                     </div>
                 </form>
+                <ul class="navbar-nav ml-auto user-panel mt-1 pb-1 mb-1 d-flex" style="overflow:visible">
+                    <div class="image">
+                        <img src="~/AdminAssets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <li class="nav-item dropdown hover-effect">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            @User.Identity.Name
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item hover-effect" href="#">Thay đổi mật khẩu</a>
+                            <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account", new { area = "Manage" } )">Đăng xuất</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <!-- Right navbar links -->
 
@@ -75,8 +97,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">@ViewBag.Title</li>
+                            @*<li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">@ViewBag.Title</li>*@
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -86,15 +108,14 @@
             <div class="container">
                 <div class="row">
                     @{ foreach (var module in Model)
-                                    {
-                                        <div class="col-lg-3 col-md-4 col-sm-6">
-                                            <div class="module-list">
-                                                <a href="" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
-                                                <p class="module-list-caption">@module.ModuleName</p>
-                                            </div>
-                                        </div>
-                                    } }
-
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="module-list">
+                                    <a href="@Url.Action("Module", new { id = module.ModuleID})" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
+                                    <p class="module-list-caption">@module.ModuleName</p>
+                                </div>
+                            </div>
+                        } }
                 </div>
             </div>
         </div>

@@ -18,5 +18,11 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
             return View(infor);
         }
+
+        public ActionResult Module(int? id)
+        {
+            string actionName = string.Format("Manage-{0}", id);
+            return RedirectToAction(actionName, "Manage");
+        }
     }
 }

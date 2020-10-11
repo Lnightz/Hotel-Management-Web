@@ -1,0 +1,101 @@
+﻿@using HOTELMANAGEWEB.BLL;
+@using HOTELMANAGEWEB.Models;
+@{
+
+    ViewBag.Title = "Quản lý phòng";
+    Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
+
+    var maxFloor = int.Parse(ViewBag.maxFloor);
+
+}
+
+<section class="content-header roboto-fonts">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 d-flex">
+                <h1 class="">Quản lý phòng</h1>
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Create","Classes")" class="btn btn-primary ml-3">
+                            <span>
+                                <i class="fas fa-plus"></i>
+                            </span> Thêm Phòng
+                        </a>
+                    }
+                }
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group float-right">
+                    <button type="button" class="btn btn-default">Loại phòng</button>
+                    <button type="button" class="btn btn-default dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                        <span class="sr-only">Toggle Dropdown</span>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu" style="text-align:right">
+                            @{
+                                var roomTypeList = ManageRoomBLL.Instance.GetRoomTypesList();
+                                foreach (var roomTypes in roomTypeList)
+                                {
+                                    <a class="dropdown-item" href="#">@roomTypes.RoomTypeName</a>
+                                }
+                            }
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <!-- Default box -->
+    @{
+        for (int i = 1; i <= maxFloor; i += 1)
+        {
+            var roomlistbyfloor = ManageRoomBLL.Instance.GetRoomListByFloor(i);
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title roboto-fonts">Lầu @i</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            @{
+                                foreach (var rooms in roomlistbyfloor)
+                                {
+                                    var status = rooms.RoomStatus;
+                                    switch (status)
+                                    {
+                                        case "OPEN": status = "background-color:blue"; break;
+                                        case "Booking": status = "background-color:yellow"; break;
+                                        case "Rented": status = "background-color:red"; break;
+                                        case "Maintenance": status = "background-color:purple"; break;
+                                    }
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                        
+                                        <button class="hotel-box" style="@Html.Raw(status)" data-toggle="modal" data-target="#modal-xl-@rooms.RoomID">
+                                            <p class="hotel-box-name">@rooms.RoomName</p>
+                                        </button>
+                                    </div>
+                                    @Html.Partial("RoomModal",rooms.RoomID)
+                                }
+                                }
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        }
+    }
+
+    <!-- /.card -->
+</section>
+

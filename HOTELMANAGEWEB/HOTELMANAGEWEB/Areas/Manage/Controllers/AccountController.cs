@@ -13,38 +13,6 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
     {
         QLKSWEBEntities db = new QLKSWEBEntities();
 
-        // GET: Manage/Account
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel account)
-        {
-            var accountdetails = db.Store_Login(account.UserName, account.Password).FirstOrDefault();
-
-            //var accountdetails = db.Account.Where(x => x.UserName == account.UserName & x.Password == account.Password).FirstOrDefault();
-
-
-            //AccountServcies accountServcies = accountdetails;
-
-            if (accountdetails != null)
-            {
-
-                Authencicate(accountdetails);
-
-                return RedirectToAction("Index", "ListModule", new { area = "Manage" });
-            }
-
-            else
-
-            {
-                ViewBag.Message = "Sai tên tài khoản hoặc mật khẩu. Vui lòng nhập lại";
-                return View();
-            }
-        }
 
         public void Authencicate(Account user)
         {
@@ -64,5 +32,42 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
             HttpContext.Response.Cookies.Add(authCookie);
         }
+
+        // GET: Manage/Account
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginModel account)
+        {
+            var accountdetails = db.Store_Login(account.UserName, account.Password).FirstOrDefault();
+
+            if (accountdetails != null)
+            {
+
+                Authencicate(accountdetails);
+
+                return RedirectToAction("Index", "ListModule", new { area = "Manage" });
+            }
+
+            else
+
+            {
+                ViewBag.Message = "Sai tên tài khoản hoặc mật khẩu. Vui lòng nhập lại";
+                return View();
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        
     }
 }
