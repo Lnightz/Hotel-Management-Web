@@ -135,9 +135,11 @@
     <Compile Include="Areas\Manage\Controllers\ManageController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\AccountServcies.cs" />
+    <Compile Include="DAL\AvailableRoomModel.cs" />
     <Compile Include="DAL\LoginModel.cs" />
     <Compile Include="DAL\RoomDetails.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,7 +236,6 @@
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\HtmlUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminAssets\dist\css\adminlte.css" />

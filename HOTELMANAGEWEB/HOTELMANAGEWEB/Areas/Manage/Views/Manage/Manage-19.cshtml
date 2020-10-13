@@ -72,17 +72,18 @@
                                 foreach (var rooms in roomlistbyfloor)
                                 {
                                     var status = rooms.RoomStatus;
+                                    var color = "";
                                     switch (status)
                                     {
                                         case "OPEN": status = "background-color:blue"; break;
-                                        case "Booking": status = "background-color:yellow"; break;
-                                        case "Rented": status = "background-color:red"; break;
-                                        case "Maintenance": status = "background-color:purple"; break;
+                                        case "BOOKING": status = "background-color:yellow"; color = "color:black"; break;
+                                        case "RENTED": status = "background-color:red"; break;
+                                        case "MAINTENANCE": status = "background-color:purple"; break;
                                     }
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                         
                                         <button class="hotel-box" style="@Html.Raw(status)" data-toggle="modal" data-target="#modal-xl-@rooms.RoomID">
-                                            <p class="hotel-box-name">@rooms.RoomName</p>
+                                            <p class="hotel-box-name" style="@Html.Raw(color)">@rooms.RoomName</p>
                                         </button>
                                     </div>
                                     @Html.Partial("RoomModal",rooms.RoomID)
