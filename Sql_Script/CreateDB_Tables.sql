@@ -104,7 +104,8 @@ CREATE TABLE RoomType
 	DateModify DATETIME,
 	IsPay TINYINT DEFAULT 0,
 	IsShowHomePage TINYINT DEFAULT 0, -- 0 không show, 1: show
-	IsShow TINYINT DEFAULT 0 -- 0: không show, 1: show
+	IsShow TINYINT DEFAULT 0, -- 0: không show, 1: show
+	RoomTypeImage NVARCHAR(1000)
 )
 
 CREATE TABLE Room

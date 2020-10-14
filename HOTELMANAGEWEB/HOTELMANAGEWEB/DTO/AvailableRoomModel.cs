@@ -12,5 +12,7 @@ namespace HOTELMANAGEWEB.DAL
         public string RoomTypeDescription { get; set; }
 
         public decimal RoomTypePrices { get; set; }
+
+        public string RoomTypeImage { get; set; }
     }
 }

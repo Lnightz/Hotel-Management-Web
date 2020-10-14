@@ -138,10 +138,10 @@
     <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\AvailableRoomModel.cs" />
-    <Compile Include="DAL\CheckAvailableRooms.cs" />
-    <Compile Include="DAL\LoginModel.cs" />
-    <Compile Include="DAL\RoomDetails.cs" />
+    <Compile Include="DTO\AvailableRoomModel.cs" />
+    <Compile Include="DTO\CheckAvailableRooms.cs" />
+    <Compile Include="DTO\LoginModel.cs" />
+    <Compile Include="DTO\RoomDetails.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -489,6 +489,7 @@
     <Content Include="Assets\css\bootstrap\bootstrap-reboot.css" />
     <Content Include="Assets\css\css\bootstrap-reboot.css" />
     <Content Include="Assets\css\css\mixins\_text-hide.css" />
+    <Content Include="Assets\css\style -roomava.css" />
     <Content Include="Assets\css\flaticon.css" />
     <Content Include="Assets\css\icomoon.css" />
     <Content Include="Assets\css\ionicons.min.css" />
@@ -590,6 +591,7 @@
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\owl.carousel.min.js" />
     <Content Include="Assets\js\popper.min.js" />
+    <Content Include="Assets\images\room-details.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -807,6 +809,7 @@
     <Content Include="Views\Home\DiningBar.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\CheckAvailableRooms.cshtml" />
+    <Content Include="Views\Home\RoomDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

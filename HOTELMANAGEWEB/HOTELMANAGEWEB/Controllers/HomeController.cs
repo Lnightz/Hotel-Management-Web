@@ -64,6 +64,11 @@ namespace HOTELMANAGEWEB.Controllers
             return View();
         }
 
+        public ActionResult RoomDetails()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CheckAvailableRooms(CheckAvailableRooms model)

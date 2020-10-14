@@ -16,25 +16,25 @@ CREATE PROCEDURE Find_AvailableRoom
 AS
 BEGIN
 
-CREATE TABLE #AvailableRoom1 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL(19,4),RoomTypeDescription NVARCHAR(max))
-CREATE TABLE #AvailableRoom2 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL(19,4),RoomTypeDescription NVARCHAR(max))
+CREATE TABLE #AvailableRoom1 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL(19,4),RoomTypeDescription NVARCHAR(max), RoomTypeImage NVARCHAR(max))
+CREATE TABLE #AvailableRoom2 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL(19,4),RoomTypeDescription NVARCHAR(max), RoomTypeImage NVARCHAR(max))
 
 	IF (SELECT COUNT(*) FROM dbo.Room WHERE RoomStatus = 'OPEN') >= 1
 	BEGIN
 		INSERT INTO #AvailableRoom1 
-		SELECT		T1.RoomTypeName , T1.RoomTypePrices, T1.RoomTypeDescription
+		SELECT		T1.RoomTypeName , T1.RoomTypePrices, T1.RoomTypeDescription, T1.RoomTypeImage
 		FROM		dbo.RoomType T1 WITH (NOLOCK)
 		INNER JOIN	dbo.Room T2 WITH (NOLOCK)
 			ON		T2.RoomTypeID = T1.RoomTypeID
 		WHERE		T1.Disabled = 0 
 			AND		@NumPerson BETWEEN T2.MinQuantity AND T2.MaxQuantity
-		GROUP BY	T1.RoomTypeName, T1.RoomTypePrices, T1.RoomTypeDescription
+		GROUP BY	T1.RoomTypeName, T1.RoomTypePrices, T1.RoomTypeDescription, T1.RoomTypeImage
 	END
 	
 	IF (SELECT COUNT(*) FROM dbo.Room WHERE RoomStatus = 'BOOKING') > = 1
 	BEGIN
 		INSERT INTO	#AvailableRoom2
-		SELECT		T4.RoomTypeName , T4.RoomTypePrices, T4.RoomTypeDescription
+		SELECT		T4.RoomTypeName , T4.RoomTypePrices, T4.RoomTypeDescription, T4.RoomTypeImage
 		FROM		dbo.BookingRoom T1 WITH (NOLOCK)
 		INNER JOIN	dbo.Booking T2 WITH (NOLOCK)
 			ON		T1.BookingID = T2.BookingID
@@ -47,14 +47,14 @@ CREATE TABLE #AvailableRoom2 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL
 			OR		@CheckoutDate < T2.CheckoutDate	
 			AND		T4.Disabled = 0
 			AND		@NumPerson BETWEEN T3.MinQuantity AND T3.MaxQuantity
-		GROUP BY	T4.RoomTypeName , T4.RoomTypePrices, T4.RoomTypeDescription
+		GROUP BY	T4.RoomTypeName , T4.RoomTypePrices, T4.RoomTypeDescription, T4.RoomTypeImage
 	END
 
 
 	SELECT * FROM #AvailableRoom1
 	UNION ALL
 	SELECT * FROM #AvailableRoom2
-	GROUP BY	RoomTypeName,RoomTypePrices,RoomTypeDescription
+	GROUP BY	RoomTypeName,RoomTypePrices,RoomTypeDescription, RoomTypeImage
 
 	DROP TABLE #AvailableRoom1
 	DROP TABLE #AvailableRoom2
