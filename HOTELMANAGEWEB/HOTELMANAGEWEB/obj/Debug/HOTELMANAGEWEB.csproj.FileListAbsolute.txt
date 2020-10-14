@@ -153,8 +153,8 @@ E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.WebPages.Ra
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\Newtonsoft.Json.xml
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\Antlr3.Runtime.pdb
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.csprojAssemblyReference.cache
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.csproj.CoreCompileInputs.cache
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.csproj.CopyComplete
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.pdb
+E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.csprojAssemblyReference.cache

@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
+
 <section class="home-slider owl-carousel">
     <div class="slider-item" style="background-image: url('../../Assets/images/bg_1.jpg');">
         <div class="overlay"></div>
@@ -45,34 +47,56 @@
         <div class="row justify-content-end ftco-animate">
             <div class="col-lg-4 col-md-5 reservation p-md-5">
                 <div class="block-17">
+                    @using (Html.BeginForm("CheckAvailableRooms", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken();
                     <form action="" method="post" class="d-block">
                         <div class="fields d-block">
 
                             <div class="book-date one-third">
                                 <label for="check-in">Check in:</label>
-                                <input type="text" id="checkin_date" class="form-control" placeholder="M/D/YYYY">
+                                <input type="date" id="" class="form-control" placeholder="M/D/YYYY" name="CheckinDate" data-date-format="yyyy/mm/dd">
                             </div>
 
                             <div class="book-date one-third">
                                 <label for="check-out">Check out:</label>
-                                <input type="text" id="checkout_date" class="form-control" placeholder="M/D/YYYY">
+                                <input type="date" id="" class="form-control" placeholder="M/D/YYYY" name="CheckoutDate" value="">
                             </div>
 
                             <div class="one-third">
                                 <label for="Guest">Guest:</label>
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
+                                    <select name="NumberPerson" id="" class="form-control">
                                         <option value="">1</option>
                                         <option value="">2</option>
                                         <option value="">3</option>
-                                        <option value="">4+</option>
+                                        <option value="">4</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+                        @{
+                            if (ViewBag.Message == "COMPAREDATE")
+                            {
+                                <p class="text-danger text-capitalize">ngày check-out không được nhỏ hơn ngày check-in</p>
+                            }
+                            else if (ViewBag.Message == "ALLNULL")
+                            {
+                                <p class="text-danger text-capitalize">Bạn chưa chọn ngày check-in và check-out</p>
+                            }
+                            else if (ViewBag.Message == "CHECKINNULL")
+                            {
+                                <p class="text-danger text-capitalize">Bạn chưa chọn ngày check-in</p>
+                            }
+                            else if (ViewBag.Message == "CHECKOUTNULL")
+                            {
+                                <p class="text-danger text-capitalize">Bạn chưa chọn ngày check-out</p>
+                            }
+                        }
                         <input type="submit" class="search-submit btn btn-primary" value="Check Availability">
                     </form>
+                    }
                 </div>
             </div>
         </div>
@@ -935,3 +959,5 @@
         </div>
     </div>
 </section>
+
+

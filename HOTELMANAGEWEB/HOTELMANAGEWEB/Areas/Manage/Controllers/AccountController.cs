@@ -1,4 +1,5 @@
-﻿using HOTELMANAGEWEB.DAL;
+﻿using HOTELMANAGEWEB.BLL;
+using HOTELMANAGEWEB.DAL;
 using HOTELMANAGEWEB.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,6 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
     public class AccountController : Controller
     {
-        QLKSWEBEntities db = new QLKSWEBEntities();
-
-
         public void Authencicate(Account user)
         {
             ///Setup lưu cookies người dùng
@@ -43,7 +41,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel account)
         {
-            var accountdetails = db.Store_Login(account.UserName, account.Password).FirstOrDefault();
+            var accountdetails = AccountBLL.Instance.GetAccountLogin(account);
 
             if (accountdetails != null)
             {

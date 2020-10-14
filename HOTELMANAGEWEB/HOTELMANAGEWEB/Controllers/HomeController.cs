@@ -1,4 +1,5 @@
 ﻿using HOTELMANAGEWEB.BLL;
+using HOTELMANAGEWEB.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,37 @@ namespace HOTELMANAGEWEB.Controllers
             return View();
         }
 
-        public ActionResult CheckAvailable(int? PersonNumber, DateTime? CheckinDate, DateTime? CheckoutDate)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckAvailableRooms(CheckAvailableRooms model)
         {
-            var availablerooms = HomeBLL.Instance.AvailableRooms(PersonNumber, CheckinDate, CheckoutDate);
+            
+            var availablerooms = HomeBLL.Instance.AvailableRooms(model);
+            if(model.CheckDateNull != 1)
+            {
+                if (model.CheckDateNull == -1)
+                {
+                    ViewBag.Message = "CHECKINNULL";
+                    return View("Index");
+                }
+                else if (model.CheckDateNull == -2)
+                {
+                    ViewBag.Message = "CHECKOUTNULL";
+                    return View("Index");
+                }
+                else if (model.CheckDateNull == -3)
+                {
+                    ViewBag.Message = "ALLNULL";
+                    return View("Index");
+                }
+            }
+
+            if(model.CompareDate == -1)
+            {
+                ViewBag.Message = "COMPAREDATE";
+                return View("Index");
+            }
+
             if (availablerooms == null)
             {
                 ViewBag.Message = "FAIL"; 
@@ -73,6 +102,7 @@ namespace HOTELMANAGEWEB.Controllers
             }
             else
             {
+                ViewBag.AvailableRoomList = availablerooms;
                 return View();
             }
         }

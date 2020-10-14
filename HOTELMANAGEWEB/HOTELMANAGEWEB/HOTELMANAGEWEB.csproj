@@ -138,8 +138,8 @@
     <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\AccountServcies.cs" />
     <Compile Include="DAL\AvailableRoomModel.cs" />
+    <Compile Include="DAL\CheckAvailableRooms.cs" />
     <Compile Include="DAL\LoginModel.cs" />
     <Compile Include="DAL\RoomDetails.cs" />
     <Compile Include="Global.asax.cs">
@@ -806,6 +806,7 @@
     <Content Include="Views\Home\BlogDetail.cshtml" />
     <Content Include="Views\Home\DiningBar.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
+    <Content Include="Views\Home\CheckAvailableRooms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

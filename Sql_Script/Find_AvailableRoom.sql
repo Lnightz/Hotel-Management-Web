@@ -28,8 +28,9 @@ CREATE TABLE #AvailableRoom2 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL
 			ON		T2.RoomTypeID = T1.RoomTypeID
 		WHERE		T1.Disabled = 0 
 			AND		@NumPerson BETWEEN T2.MinQuantity AND T2.MaxQuantity
+		GROUP BY	T1.RoomTypeName, T1.RoomTypePrices, T1.RoomTypeDescription
 	END
-
+	
 	IF (SELECT COUNT(*) FROM dbo.Room WHERE RoomStatus = 'BOOKING') > = 1
 	BEGIN
 		INSERT INTO	#AvailableRoom2
@@ -45,6 +46,8 @@ CREATE TABLE #AvailableRoom2 (RoomTypeName NVARCHAR(250), RoomTypePrices DECIMAL
 			AND		@CheckinDate > T2.CheckoutDate
 			OR		@CheckoutDate < T2.CheckoutDate	
 			AND		T4.Disabled = 0
+			AND		@NumPerson BETWEEN T3.MinQuantity AND T3.MaxQuantity
+		GROUP BY	T4.RoomTypeName , T4.RoomTypePrices, T4.RoomTypeDescription
 	END
 
 
