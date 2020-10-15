@@ -56,6 +56,7 @@
         <AssociationConnector Association="QLKSWEBModel.FK__RoomServi__RoomI__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__RoomServi__Servi__628FA481" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Services__Image__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Booking__RoomTyp__4D94879B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

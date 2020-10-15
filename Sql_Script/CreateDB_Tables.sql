@@ -53,7 +53,11 @@ CREATE TABLE Customer
 	CreatedUserID INT,
 	ModifyUserID INT,
 	DateCreated DATETIME DEFAULT GETDATE(),
-	DateModify DATETIME
+	DateModify DATETIME,
+	CardType NVARCHAR(250),
+	CardNo NVARCHAR(50),
+	NameOnCard NVARCHAR(250),
+	ExpirationDate DATETIME
 )
 
 
@@ -164,7 +168,8 @@ CREATE TABLE Services
 	IsPay TINYINT DEFAULT 0, -- 0: không pay, 1: pay
 	IsShowHomePage TINYINT DEFAULT 0, -- 0 không show, 1: show
 	IsShow TINYINT DEFAULT 0, -- 0: không show, 1: show
-	Image NVARCHAR(250)
+	Image NVARCHAR(250),
+	IsBookWithRoom TINYINT -- 0: không book với room, 1: book cùng với room
 
 FOREIGN KEY (ServicesTypeID) REFERENCES dbo.ServicesType(ServicesTypeID)
 )
@@ -205,6 +210,7 @@ FOREIGN KEY (EquipmentID) REFERENCES dbo.Equipment (EquipmentID)
 CREATE TABLE Booking 
 (
 	BookingID INT PRIMARY KEY IDENTITY (1,1),
+	RoomTypeID INT,
 	BookDate DATETIME,
 	CheckinDate DATETIME,
 	CheckoutDate DATETIME,
@@ -218,7 +224,8 @@ CREATE TABLE Booking
 	DateCreated DATETIME DEFAULT GETDATE(),
 	DateModify DATETIME
 FOREIGN KEY (CreatedUserID) REFERENCES dbo.Account (AccountID),
-FOREIGN KEY (CustomerID) REFERENCES dbo.Customer (CustomerID)
+FOREIGN KEY (CustomerID) REFERENCES dbo.Customer (CustomerID),
+FOREIGN KEY (RoomTypeID) REFERENCES dbo.RoomType (RoomTypeID)
 )
 
 CREATE TABLE Bill

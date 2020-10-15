@@ -31,6 +31,10 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<int> ModifyUserID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModify { get; set; }
+        public string CardType { get; set; }
+        public string CardNo { get; set; }
+        public string NameOnCard { get; set; }
+        public Nullable<System.DateTime> ExpirationDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }

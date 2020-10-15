@@ -39,6 +39,7 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<byte> IsShowHomePage { get; set; }
         public Nullable<byte> IsShow { get; set; }
         public string Image { get; set; }
+        public Nullable<byte> IsBookWithRoom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using HOTELMANAGEWEB.Models;
-using HOTELMANAGEWEB.DAL;
+using HOTELMANAGEWEB.DTO;
 using System.Data.SqlClient;
 
 namespace HOTELMANAGEWEB.BLL
@@ -32,6 +32,17 @@ namespace HOTELMANAGEWEB.BLL
                     ,new SqlParameter("@CheckoutDate", checkoutDate))
                     .ToList();
                 return availableRooms;
+            }
+        }
+
+        public List<Service> BookServWithRoom()
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db
+                    .Services
+                    .Where(x => x.IsAvailable == 0 && x.IsBookWithRoom == 1)
+                    .ToList();
             }
         }
 

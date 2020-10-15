@@ -66,6 +66,7 @@
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="QLKSWEBModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
           <ScalarProperty Name="BookingID" ColumnName="BookingID" />
           <ScalarProperty Name="BookDate" ColumnName="BookDate" />
           <ScalarProperty Name="CheckinDate" ColumnName="CheckinDate" />
@@ -267,6 +268,7 @@
     <EntitySetMapping Name="RoomTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.RoomType">
         <MappingFragment StoreEntitySet="RoomType">
+          <ScalarProperty Name="RoomTypeImage" ColumnName="RoomTypeImage" />
           <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
           <ScalarProperty Name="RoomTypeName" ColumnName="RoomTypeName" />
           <ScalarProperty Name="RoomTypePrices" ColumnName="RoomTypePrices" />
@@ -285,6 +287,7 @@
     <EntitySetMapping Name="Services">
       <EntityTypeMapping TypeName="QLKSWEBModel.Service">
         <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
           <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
           <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
           <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
@@ -318,9 +321,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="Find_AvailableRoom" FunctionName="QLKSWEBModel.Store.Find_AvailableRoom" />
-    <FunctionImportMapping FunctionImportName="Find_AvailableServices" FunctionName="QLKSWEBModel.Store.Find_AvailableServices" />
-    <FunctionImportMapping FunctionImportName="Get_Module" FunctionName="QLKSWEBModel.Store.Get_Module" />
-    <FunctionImportMapping FunctionImportName="Store_Login" FunctionName="QLKSWEBModel.Store.Store_Login" />
   </EntityContainerMapping>
 </Mapping>

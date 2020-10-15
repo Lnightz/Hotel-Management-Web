@@ -139,6 +139,7 @@
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DTO\AvailableRoomModel.cs" />
+    <Compile Include="DTO\BookRoomWithServModel.cs" />
     <Compile Include="DTO\CheckAvailableRooms.cs" />
     <Compile Include="DTO\LoginModel.cs" />
     <Compile Include="DTO\RoomDetails.cs" />
@@ -810,6 +811,8 @@
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\CheckAvailableRooms.cshtml" />
     <Content Include="Views\Home\RoomDetails.cshtml" />
+    <Content Include="Views\Home\BookingServWithRoom.cshtml" />
+    <Content Include="Views\Home\ConfirmInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

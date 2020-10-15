@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Globalization
 @{ ViewBag.Title = "Đặt phòng";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var availableroom = (List<HOTELMANAGEWEB.DAL.AvailableRoomModel>)ViewBag.AvailableRoomList; }
@@ -22,41 +22,46 @@
     </div>
 </section>
 
-
-@{ foreach (var item in availableroom)
-    {
-<h1>@item.RoomTypeName</h1>
-                <h2>@item.RoomTypeDescription</h2>
-                                <h3>@item.RoomTypePrices</h3> } }
-
-
 <section class="ftco-section room-section bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 ftco-animate">
-                <div class="room-wrap">
-                    <a href="#" class="room-img" style="background-image: url(../../Assets/images/room-1.jpg);"></a>
-                    <div class="text p-4">
-                        <div class="d-flex mb-1">
-                            <div class="one-third">
-                                <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span></p>
-                                <h3><a href="#">Luxury Room</a></h3>
-                            </div>
-                            <div class="one-forth text-center">
-                                <p class="price">$99 <br><span>/night</span></p>
+            @{
+                foreach (var item in availableroom)
+                {
+                    <div class="col-md-4 ftco-animate">
+                        <div class="room-wrap">
+                            <a href="#" class="room-img" style="background-image: url(../../Assets/images/room-1.jpg);"></a>
+                            <div class="text p-4">
+                                <div class="d-flex mb-1">
+                                    <div class="one-third">
+                                        <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span></p>
+                                        <h3><a href="#">@item.RoomTypeName</a></h3>
+                                    </div>
+                                    <div class="one-forth text-center">
+                                        <p class="price">@item.RoomTypePrices.ToString("C0", CultureInfo.CurrentCulture) <br><span>/night</span></p>
+                                    </div>
+                                </div>
+                                <p class="features">
+                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Perfect for traveling couples</span>
+                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Breakfast included</span>
+                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Two double beds</span>
+                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Baby sitting facilities</span>
+                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Free wifi</span>
+                                </p>
+                                @{
+                                    using (Html.BeginForm("BookingServWithRoom", "Home", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input value="@item.RoomTypeID" type="hidden" name="RoomTypeID" />
+                                        <p><button type="submit" class="btn btn-primary">Reserve a room</button></p>
+                                    }
+                                }
                             </div>
                         </div>
-                        <p class="features">
-                            <span class="d-block mb-2"><i class="icon-check mr-2"></i> Perfect for traveling couples</span>
-                            <span class="d-block mb-2"><i class="icon-check mr-2"></i> Breakfast included</span>
-                            <span class="d-block mb-2"><i class="icon-check mr-2"></i> Two double beds</span>
-                            <span class="d-block mb-2"><i class="icon-check mr-2"></i> Baby sitting facilities</span>
-                            <span class="d-block mb-2"><i class="icon-check mr-2"></i> Free wifi</span>
-                        </p>
-                        <p><a href="#" class="btn btn-primary">Reserve a room</a></p>
                     </div>
-                </div>
-            </div>
+                }
+            }
+
         </div>
     </div>
 </section>

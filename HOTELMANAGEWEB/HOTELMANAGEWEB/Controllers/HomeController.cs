@@ -1,5 +1,5 @@
 ﻿using HOTELMANAGEWEB.BLL;
-using HOTELMANAGEWEB.DAL;
+using HOTELMANAGEWEB.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,5 +111,26 @@ namespace HOTELMANAGEWEB.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookingServWithRoom(int RoomTypeID)
+        {
+            ViewBag.ListServ = HomeBLL.Instance.BookServWithRoom();
+            ViewBag.RoomTypeID = RoomTypeID;
+            return View();
+        }
+
+        public ActionResult ConfirmInfo(BookRoomWithServModel model, int RoomTypeID)
+        {
+            ViewBag.RoomTypeID = RoomTypeID;
+            return View();
+        }
+
+        public ActionResult BookingRoom()
+        {
+
+            return View();
+        }
+
     }
 }

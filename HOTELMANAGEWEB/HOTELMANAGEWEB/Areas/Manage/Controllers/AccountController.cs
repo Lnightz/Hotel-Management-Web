@@ -54,7 +54,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             else
 
             {
-                ViewBag.Message = "Sai tên tài khoản hoặc mật khẩu. Vui lòng nhập lại";
+                ViewBag.Message = "Không tìm thấy tài khoản trong hệ thống";
                 return View();
             }
         }

@@ -10786,9 +10786,9 @@ h1, h2, h3, h4, h5,
             width: calc(100% - 80px);
         }
 
-        .room-wrap .text .one-forth {
+        /*.room-wrap .text .one-forth {
             width: 80px;
-        }
+        }*/
 
         .room-wrap .text .star-rate {
             font-size: 12px;
@@ -11013,7 +11013,7 @@ h1, h2, h3, h4, h5,
             }
 
         .dish-menu .menus .text .one-forth {
-            width: 80px;
+            /*width: 80px;*/
             text-align: right;
         }
 
@@ -12870,3 +12870,13 @@ textarea.form-control {
         .room-details-item .rd-text p.f-para {
             margin-bottom: 22px;
         }
+
+
+.bookservice-checkbox {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    font-size: 16px;
+    border: 2px #666 solid;
+}

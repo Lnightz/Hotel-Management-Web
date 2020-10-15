@@ -91,6 +91,8 @@
     <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__Custome__4CA06362" FromRole="Booking" ToRole="Customer" />
     <NavigationProperty Name="BookingRooms" Relationship="Self.FK__BookingRo__IsBoo__59063A47" FromRole="Booking" ToRole="BookingRoom" />
     <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__IsBoo__5DCAEF64" FromRole="Booking" ToRole="BookingServices" />
+    <Property Name="RoomTypeID" Type="Int32" />
+    <NavigationProperty Name="RoomType" Relationship="QLKSWEBModel.FK__Booking__RoomTyp__4D94879B" FromRole="Booking" ToRole="RoomType" />
   </EntityType>
   <EntityType Name="BookingRoom">
     <Key>
@@ -310,6 +312,8 @@
     <Property Name="IsShowHomePage" Type="Byte" />
     <Property Name="IsShow" Type="Byte" />
     <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__Image__31EC6D26" FromRole="RoomType" ToRole="Room" />
+    <Property Name="RoomTypeImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookings" Relationship="QLKSWEBModel.FK__Booking__RoomTyp__4D94879B" FromRole="RoomType" ToRole="Booking" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -336,6 +340,7 @@
     <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__Servi__5EBF139D" FromRole="Services" ToRole="BookingServices" />
     <NavigationProperty Name="RoomServices" Relationship="Self.FK__RoomServi__Servi__628FA481" FromRole="Services" ToRole="RoomServices" />
     <NavigationProperty Name="ServicesType" Relationship="Self.FK__Services__Image__3F466844" FromRole="Services" ToRole="ServicesType" />
+    <Property Name="IsBookWithRoom" Type="Byte" />
   </EntityType>
   <EntityType Name="ServicesType">
     <Key>
@@ -838,6 +843,10 @@
       <Parameter Name="UserName" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
     </FunctionImport>
+    <AssociationSet Name="FK__Booking__RoomTyp__4D94879B" Association="QLKSWEBModel.FK__Booking__RoomTyp__4D94879B">
+      <End Role="RoomType" EntitySet="RoomTypes" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="Get_Module_Result">
     <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="250" />
@@ -848,4 +857,16 @@
     <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
     <Property Type="Int32" Name="AccountTypeID" Nullable="false" />
   </ComplexType>
+  <Association Name="FK__Booking__RoomTyp__4D94879B">
+    <End Type="QLKSWEBModel.RoomType" Role="RoomType" Multiplicity="0..1" />
+    <End Type="QLKSWEBModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="RoomTypeID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="RoomTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

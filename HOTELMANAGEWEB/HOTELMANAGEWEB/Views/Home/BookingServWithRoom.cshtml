@@ -1,0 +1,79 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "BookingServWithRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var listServ = (List<HOTELMANAGEWEB.Models.Service>)ViewBag.ListServ;
+
+}
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('../../Assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-end">
+                <div class="col-md-10 col-sm-12 ftco-animate mb-4">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Booking</span></p>
+                    <h1 class="mb-3">Booking Services</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="ftco-section bg-light pt-5">
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <h2>Our &amp; Services</h2>
+            </div>
+        </div>
+        @{
+            using (Html.BeginForm("ConfirmInfo", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken();
+                <div class="row">
+                    <div class="col-md-12">
+                        @{
+                            foreach (var servs in listServ)
+                            {
+                                <div class="col-lg-8 dish-menu">
+                                    <div class="menus d-flex ftco-animate">
+                                        <div class="menu-img" style="background-image: url(../../Assets/images/dish-3.jpg);"></div>
+                                        <div class="text d-flex">
+                                            <div class="one-half">
+                                                <h3>@servs.ServicesName</h3>
+                                                <p>@servs.ServicesDetail </p>
+                                            </div>
+                                            <div class="one-forth">
+                                                @{
+                                                    string prices = servs
+                                                        .ServicesPrices.HasValue ?
+                                                        servs.ServicesPrices.Value
+                                                        .ToString("C0", CultureInfo.CurrentCulture) : string.Empty;
+                                                }
+                                                <span class="price">@prices</span><span> /@servs.Unit</span>
+                                                <div class="justify-content-center">
+                                                    <input type="checkbox" class="bookservice-checkbox" value="@servs.ServicesID" name="ServicesID">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <input name="RoomTypeID" type="hidden" value="@ViewBag.RoomTypeID" />
+                            <p><button type="submit" class="btn btn-primary">Book</button></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</section>

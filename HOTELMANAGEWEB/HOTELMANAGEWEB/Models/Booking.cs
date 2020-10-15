@@ -34,6 +34,7 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<int> ModifyUserID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModify { get; set; }
+        public Nullable<int> RoomTypeID { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Customer Customer { get; set; }
@@ -41,5 +42,6 @@ namespace HOTELMANAGEWEB.Models
         public virtual ICollection<BookingRoom> BookingRooms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingService> BookingServices { get; set; }
+        public virtual RoomType RoomType { get; set; }
     }
 }

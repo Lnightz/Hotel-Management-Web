@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HOTELMANAGEWEB.DAL
+namespace HOTELMANAGEWEB.DTO
 {
     public class CheckAvailableRooms
     {
