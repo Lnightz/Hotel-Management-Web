@@ -8,7 +8,7 @@ namespace HOTELMANAGEWEB.DTO
 {
     public class BookRoomWithServModel
     {
-        public Service service { get; set; }
+        public Services service { get; set; }
 
         public BookRoomWithServModel(BookRoomWithServModel book)
         {

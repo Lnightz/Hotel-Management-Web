@@ -17,10 +17,10 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
-            this.AccountPermissions = new HashSet<AccountPermission>();
-            this.Bills = new HashSet<Bill>();
-            this.Bookings = new HashSet<Booking>();
-            this.Promotions = new HashSet<Promotion>();
+            this.AccountPermission = new HashSet<AccountPermission>();
+            this.Bill = new HashSet<Bill>();
+            this.Booking = new HashSet<Booking>();
+            this.Promotion = new HashSet<Promotion>();
         }
     
         public int AccountID { get; set; }
@@ -32,12 +32,12 @@ namespace HOTELMANAGEWEB.Models
     
         public virtual AccountType AccountType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AccountPermission> AccountPermissions { get; set; }
+        public virtual ICollection<AccountPermission> AccountPermission { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual ICollection<Bill> Bill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Promotion> Promotions { get; set; }
+        public virtual ICollection<Promotion> Promotion { get; set; }
     }
 }

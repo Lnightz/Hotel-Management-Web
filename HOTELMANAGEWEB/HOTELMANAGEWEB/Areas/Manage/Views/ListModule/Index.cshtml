@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<HOTELMANAGEWEB.Models.ModuleList>
-@{ #line 2 "E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\Areas\Manage\Views\ListModule\Index.cshtml"
-                /**/
+@{
 
-                if (!User.Identity.IsAuthenticated)
-                {
-                    Response.Redirect("~/Manage/Account/Login");
-                }
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~/Manage/Account/Login");
+    }
 }
 @{ ViewBag.Title = "Index";
     Layout = null; }

@@ -35,7 +35,7 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
-        public List<Service> BookServWithRoom()
+        public List<Services> BookServWithRoom()
         {
             using (var db = new QLKSWEBEntities())
             {

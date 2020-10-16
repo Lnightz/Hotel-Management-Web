@@ -24,6 +24,6 @@ namespace HOTELMANAGEWEB.Models
     
         public virtual Bill Bill { get; set; }
         public virtual Room Room { get; set; }
-        public virtual Service Service { get; set; }
+        public virtual Services Services { get; set; }
     }
 }

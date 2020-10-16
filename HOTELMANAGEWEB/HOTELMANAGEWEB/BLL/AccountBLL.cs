@@ -1,7 +1,8 @@
-﻿using HOTELMANAGEWEB.DAL;
+﻿using HOTELMANAGEWEB.DTO;
 using HOTELMANAGEWEB.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -17,13 +18,26 @@ namespace HOTELMANAGEWEB.BLL
             private set => instance = value;
         }
 
+        private AccountBLL() { }
+
         public Account GetAccountLogin(LoginModel model)
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Store_Login(model.UserName, model.Password).FirstOrDefault();
+                var temp1 = db.AccountType.ToList();
+                //var temp2 = db.AccountPermission.ToList();
+                //var temp3 = db.Bill.ToList();
+                //var temp4 = db.Booking.ToList();
+                //var temp5 = db.Promotion.ToList();
+                return db.Set<Account>()
+                    .SqlQuery("EXEC Store_Login @UserName, @Password"
+                    ,new SqlParameter("@UserName", model.UserName)
+                    ,new SqlParameter("@Password",model.Password))
+                    .FirstOrDefault();
             }
 
         } 
+
+        
     }
 }

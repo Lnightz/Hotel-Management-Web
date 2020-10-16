@@ -17,12 +17,12 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Room()
         {
-            this.BillDetails = new HashSet<BillDetail>();
-            this.BookingRooms = new HashSet<BookingRoom>();
-            this.Equipments = new HashSet<Equipment>();
-            this.Requests = new HashSet<Request>();
-            this.RoomRequests = new HashSet<RoomRequest>();
-            this.RoomServices = new HashSet<RoomService>();
+            this.BillDetail = new HashSet<BillDetail>();
+            this.BookingRoom = new HashSet<BookingRoom>();
+            this.Equipment = new HashSet<Equipment>();
+            this.Request = new HashSet<Request>();
+            this.RoomRequest = new HashSet<RoomRequest>();
+            this.RoomServices = new HashSet<RoomServices>();
         }
     
         public int RoomID { get; set; }
@@ -40,17 +40,17 @@ namespace HOTELMANAGEWEB.Models
         public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetails { get; set; }
+        public virtual ICollection<BillDetail> BillDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingRoom> BookingRooms { get; set; }
+        public virtual ICollection<BookingRoom> BookingRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<Equipment> Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomRequest> RoomRequests { get; set; }
+        public virtual ICollection<RoomRequest> RoomRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomService> RoomServices { get; set; }
+        public virtual ICollection<RoomServices> RoomServices { get; set; }
     }
 }

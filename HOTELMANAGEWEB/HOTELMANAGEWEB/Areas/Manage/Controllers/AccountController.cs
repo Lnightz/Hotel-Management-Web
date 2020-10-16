@@ -1,5 +1,5 @@
 ﻿using HOTELMANAGEWEB.BLL;
-using HOTELMANAGEWEB.DAL;
+using HOTELMANAGEWEB.DTO;
 using HOTELMANAGEWEB.Models;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,9 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel account)
         {
-            var accountdetails = AccountBLL.Instance.GetAccountLogin(account);
+            Account accountdetails = AccountBLL.Instance.GetAccountLogin(account);
+
+            //var accountdetails = AccountBLL.Instance.GetAccountLogin(account);
 
             if (accountdetails != null)
             {

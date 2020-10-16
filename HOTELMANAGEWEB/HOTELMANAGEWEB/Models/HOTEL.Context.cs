@@ -27,29 +27,29 @@ namespace HOTELMANAGEWEB.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<AccountPermission> AccountPermissions { get; set; }
-        public virtual DbSet<AccountType> AccountTypes { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<BillDetail> BillDetails { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
-        public virtual DbSet<BookingRoom> BookingRooms { get; set; }
-        public virtual DbSet<BookingService> BookingServices { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<EquipmentType> EquipmentTypes { get; set; }
-        public virtual DbSet<EquipRequest> EquipRequests { get; set; }
-        public virtual DbSet<MaintenanceHistory> MaintenanceHistories { get; set; }
-        public virtual DbSet<ModuleList> ModuleLists { get; set; }
-        public virtual DbSet<Promotion> Promotions { get; set; }
-        public virtual DbSet<Request> Requests { get; set; }
-        public virtual DbSet<RequestType> RequestTypes { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
-        public virtual DbSet<RoomRequest> RoomRequests { get; set; }
-        public virtual DbSet<RoomService> RoomServices { get; set; }
-        public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<Service> Services { get; set; }
-        public virtual DbSet<ServicesType> ServicesTypes { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<AccountPermission> AccountPermission { get; set; }
+        public virtual DbSet<AccountType> AccountType { get; set; }
+        public virtual DbSet<Bill> Bill { get; set; }
+        public virtual DbSet<BillDetail> BillDetail { get; set; }
+        public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<BookingRoom> BookingRoom { get; set; }
+        public virtual DbSet<BookingServices> BookingServices { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Equipment> Equipment { get; set; }
+        public virtual DbSet<EquipmentType> EquipmentType { get; set; }
+        public virtual DbSet<EquipRequest> EquipRequest { get; set; }
+        public virtual DbSet<MaintenanceHistory> MaintenanceHistory { get; set; }
+        public virtual DbSet<ModuleList> ModuleList { get; set; }
+        public virtual DbSet<Promotion> Promotion { get; set; }
+        public virtual DbSet<Request> Request { get; set; }
+        public virtual DbSet<RequestType> RequestType { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
+        public virtual DbSet<RoomRequest> RoomRequest { get; set; }
+        public virtual DbSet<RoomServices> RoomServices { get; set; }
+        public virtual DbSet<RoomType> RoomType { get; set; }
+        public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<ServicesType> ServicesType { get; set; }
     
         public virtual int Find_AvailableRoom(Nullable<int> numPerson, Nullable<System.DateTime> checkinDate, Nullable<System.DateTime> checkoutDate)
         {
@@ -81,25 +81,16 @@ namespace HOTELMANAGEWEB.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Find_AvailableServices", servicesIDParameter, dateBookParameter);
         }
     
-        public virtual ObjectResult<ModuleList> Get_Module(string userName)
+        public virtual ObjectResult<Get_Module_Result> Get_Module(string userName)
         {
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleList>("Get_Module", userNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_Module_Result>("Get_Module", userNameParameter);
         }
     
-        public virtual ObjectResult<ModuleList> Get_Module(string userName, MergeOption mergeOption)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleList>("Get_Module", mergeOption, userNameParameter);
-        }
-    
-        public virtual ObjectResult<Account> Store_Login(string userName, string password)
+        public virtual ObjectResult<Store_Login_Result> Store_Login(string userName, string password)
         {
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
@@ -109,20 +100,7 @@ namespace HOTELMANAGEWEB.Models
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Account>("Store_Login", userNameParameter, passwordParameter);
-        }
-    
-        public virtual ObjectResult<Account> Store_Login(string userName, string password, MergeOption mergeOption)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("Password", password) :
-                new ObjectParameter("Password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Account>("Store_Login", mergeOption, userNameParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Store_Login_Result>("Store_Login", userNameParameter, passwordParameter);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bill()
         {
-            this.BillDetails = new HashSet<BillDetail>();
+            this.BillDetail = new HashSet<BillDetail>();
         }
     
         public int BillID { get; set; }
@@ -35,6 +35,6 @@ namespace HOTELMANAGEWEB.Models
     
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetails { get; set; }
+        public virtual ICollection<BillDetail> BillDetail { get; set; }
     }
 }

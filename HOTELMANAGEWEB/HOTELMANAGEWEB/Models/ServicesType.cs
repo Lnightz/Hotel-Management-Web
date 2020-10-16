@@ -17,7 +17,7 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServicesType()
         {
-            this.Services = new HashSet<Service>();
+            this.Services = new HashSet<Services>();
         }
     
         public int ServicesTypeID { get; set; }
@@ -29,6 +29,6 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<System.DateTime> DateModify { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service> Services { get; set; }
+        public virtual ICollection<Services> Services { get; set; }
     }
 }

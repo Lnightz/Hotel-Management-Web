@@ -13,6 +13,7 @@ namespace HOTELMANAGEWEB.Models
     
     public partial class Get_Module_Result
     {
+        public int ModuleID { get; set; }
         public string ModuleName { get; set; }
         public string ModuleIcon { get; set; }
     }
