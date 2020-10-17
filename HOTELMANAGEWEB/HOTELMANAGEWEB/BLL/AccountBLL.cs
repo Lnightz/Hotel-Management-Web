@@ -24,7 +24,7 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                var temp1 = db.AccountType.ToList();
+                var temp1 = db.AccountTypes.ToList();
                 //var temp2 = db.AccountPermission.ToList();
                 //var temp3 = db.Bill.ToList();
                 //var temp4 = db.Booking.ToList();

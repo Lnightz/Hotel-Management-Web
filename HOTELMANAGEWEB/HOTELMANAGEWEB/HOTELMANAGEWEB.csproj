@@ -146,6 +146,7 @@
     <Compile Include="DTO\CheckAvailableRooms.cs" />
     <Compile Include="DTO\LoginModel.cs" />
     <Compile Include="DTO\RoomDetails.cs" />
+    <Compile Include="DTO\ServicesModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,7 +171,7 @@
     <Compile Include="Models\BookingRoom.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookingServices.cs">
+    <Compile Include="Models\BookingService.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
@@ -224,13 +225,13 @@
     <Compile Include="Models\RoomRequest.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoomServices.cs">
+    <Compile Include="Models\RoomService.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoomType.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Services.cs">
+    <Compile Include="Models\Service.cs">
       <DependentUpon>HOTEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicesType.cs">
@@ -774,6 +775,11 @@
     <Content Include="Areas\Manage\Views\Account\Login.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-19.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\RoomModal.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-27.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\AddEditServModal.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-35.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-31.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-51.cshtml" />
     <EntityDeploy Include="Models\HOTEL.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HOTEL.Designer.cs</LastGenOutput>
@@ -781,11 +787,6 @@
     <Content Include="Models\HOTEL.edmx.diagram">
       <DependentUpon>HOTEL.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Manage\Views\Manage\Manage-27.cshtml" />
-    <Content Include="Areas\Manage\Views\Manage\AddEditServModal.cshtml" />
-    <Content Include="Areas\Manage\Views\Manage\Manage-35.cshtml" />
-    <Content Include="Areas\Manage\Views\Manage\Manage-31.cshtml" />
-    <Content Include="Areas\Manage\Views\Manage\Manage-51.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -821,6 +822,7 @@
     <Content Include="Views\Home\RoomDetails.cshtml" />
     <Content Include="Views\Home\BookingServWithRoom.cshtml" />
     <Content Include="Views\Home\ConfirmInfo.cshtml" />
+    <Content Include="Views\Home\EditorTemplates\BookingServWithRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

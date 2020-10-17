@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ebf94783e85842e9a6b4d48208c935ee" Name="Diagram1" ZoomLevel="99">
-        <EntityTypeShape EntityType="QLKSWEBModel.Account" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.AccountPermission" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.AccountType" Width="1.5" PointX="1.5" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="b848e19e590b4cf5bee2460227248382" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="QLKSWEBModel.Account" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.AccountPermission" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.AccountType" Width="1.5" PointX="1.5" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.Bill" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.BillDetail" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Booking" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.BookingRoom" Width="1.5" PointX="8.25" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.BookingServices" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Customer" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Equipment" Width="1.5" PointX="8.25" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.EquipmentType" Width="1.5" PointX="6" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Booking" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.BookingRoom" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.BookingService" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Customer" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Equipment" Width="1.5" PointX="8.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.EquipmentType" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.EquipRequest" Width="1.5" PointX="10.5" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.MaintenanceHistory" Width="1.5" PointX="10.5" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.ModuleList" Width="1.5" PointX="0.75" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Promotion" Width="1.5" PointX="3" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Request" Width="1.5" PointX="13.5" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.RequestType" Width="1.5" PointX="11.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Room" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.RoomRequest" Width="1.5" PointX="15.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.RoomServices" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.RoomType" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Services" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.ServicesType" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.MaintenanceHistory" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.ModuleList" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Promotion" Width="1.5" PointX="3" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Request" Width="1.5" PointX="13.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.RequestType" Width="1.5" PointX="11.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Room" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.RoomRequest" Width="1.5" PointX="15.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.RoomService" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.RoomType" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Service" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKSWEBModel.ServicesType" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="QLKSWEBModel.FK__Account__Image__15502E78" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__AccountPe__Accou__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Bill__DateModify__5165187F" ManuallyRouted="false" />

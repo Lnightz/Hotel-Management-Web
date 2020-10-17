@@ -54,7 +54,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddServ(Services model)
+        public ActionResult AddServ(Service model)
         {
             var result = ManageBLL.Instance.AddServs(model);
             if (result == 1)
@@ -71,7 +71,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditServ(Services model)
+        public ActionResult EditServ(Service model)
         {
             return View();
         }

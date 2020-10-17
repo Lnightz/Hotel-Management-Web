@@ -29,11 +29,11 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
-        public List<Services> GetServices()
+        public List<Service> GetServices()
         {
             using (var db = new QLKSWEBEntities())
             {
-                var temp1 = db.ServicesType.ToList();
+                var temp1 = db.ServicesTypes.ToList();
                 return db.Services
                     .OrderBy(x => x.ServicesTypeID).ToList();
             }
@@ -43,13 +43,13 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.ServicesType
+                return db.ServicesTypes
                     .Where(x => x.Disabled == 0)
                     .ToList();
             }
         }
 
-        public Services GetServicesbyID (int? ID)
+        public Service GetServicesbyID (int? ID)
         {
             using (var db = new QLKSWEBEntities())
             {
@@ -58,11 +58,11 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
-        public int AddServs(Services model)
+        public int AddServs(Service model)
         {
             using (var db = new QLKSWEBEntities())
             {
-                Services services = new Services
+                Service services = new Service
                 {
                     ServicesName = model.ServicesName,
                     ServicesPrices = model.ServicesPrices,
@@ -87,11 +87,11 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
-        public int UpdateServ(Services model)
+        public int UpdateServ(Service model)
         {
             using (var db = new QLKSWEBEntities())
             {
-                Services serv = ManageBLL.Instance.GetServicesbyID(model.ServicesID);
+                Service serv = ManageBLL.Instance.GetServicesbyID(model.ServicesID);
                 serv.ServicesName = model.ServicesName;
                 serv.ServicesPrices = model.ServicesPrices;
                 serv.ServicesTypeID = model.ServicesTypeID;
@@ -117,7 +117,7 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.ServicesType
+                return db.ServicesTypes
                     .OrderBy(x => x.ServicesTypeName).ToList();
             }
         }
@@ -126,7 +126,7 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Account.FirstOrDefault(x => x.UserName == UserName);
+                return db.Accounts.FirstOrDefault(x => x.UserName == UserName);
             }
         }
 

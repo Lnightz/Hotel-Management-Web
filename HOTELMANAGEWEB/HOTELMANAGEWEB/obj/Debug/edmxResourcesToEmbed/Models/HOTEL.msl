@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLKSWEBModelStoreContainer" CdmEntityContainer="QLKSWEBEntities">
-    <EntitySetMapping Name="Account">
+    <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="QLKSWEBModel.Account">
         <MappingFragment StoreEntitySet="Account">
           <ScalarProperty Name="AccountID" ColumnName="AccountID" />
@@ -13,7 +13,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AccountPermission">
+    <EntitySetMapping Name="AccountPermissions">
       <EntityTypeMapping TypeName="QLKSWEBModel.AccountPermission">
         <MappingFragment StoreEntitySet="AccountPermission">
           <ScalarProperty Name="AccPerID" ColumnName="AccPerID" />
@@ -23,7 +23,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AccountType">
+    <EntitySetMapping Name="AccountTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.AccountType">
         <MappingFragment StoreEntitySet="AccountType">
           <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
@@ -32,7 +32,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Bill">
+    <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="QLKSWEBModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
           <ScalarProperty Name="BillID" ColumnName="BillID" />
@@ -50,7 +50,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BillDetail">
+    <EntitySetMapping Name="BillDetails">
       <EntityTypeMapping TypeName="QLKSWEBModel.BillDetail">
         <MappingFragment StoreEntitySet="BillDetail">
           <ScalarProperty Name="BillDetailID" ColumnName="BillDetailID" />
@@ -63,7 +63,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Booking">
+    <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="QLKSWEBModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
           <ScalarProperty Name="BookingID" ColumnName="BookingID" />
@@ -83,7 +83,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BookingRoom">
+    <EntitySetMapping Name="BookingRooms">
       <EntityTypeMapping TypeName="QLKSWEBModel.BookingRoom">
         <MappingFragment StoreEntitySet="BookingRoom">
           <ScalarProperty Name="BookingRoomID" ColumnName="BookingRoomID" />
@@ -94,7 +94,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BookingServices">
-      <EntityTypeMapping TypeName="QLKSWEBModel.BookingServices">
+      <EntityTypeMapping TypeName="QLKSWEBModel.BookingService">
         <MappingFragment StoreEntitySet="BookingServices">
           <ScalarProperty Name="BookingServicesID" ColumnName="BookingServicesID" />
           <ScalarProperty Name="BookingID" ColumnName="BookingID" />
@@ -104,7 +104,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Customer">
+    <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="QLKSWEBModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -125,7 +125,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Equipment">
+    <EntitySetMapping Name="Equipments">
       <EntityTypeMapping TypeName="QLKSWEBModel.Equipment">
         <MappingFragment StoreEntitySet="Equipment">
           <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
@@ -143,7 +143,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EquipmentType">
+    <EntitySetMapping Name="EquipmentTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.EquipmentType">
         <MappingFragment StoreEntitySet="EquipmentType">
           <ScalarProperty Name="EquipmentTypeID" ColumnName="EquipmentTypeID" />
@@ -156,7 +156,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EquipRequest">
+    <EntitySetMapping Name="EquipRequests">
       <EntityTypeMapping TypeName="QLKSWEBModel.EquipRequest">
         <MappingFragment StoreEntitySet="EquipRequest">
           <ScalarProperty Name="EquipRequestID" ColumnName="EquipRequestID" />
@@ -166,7 +166,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MaintenanceHistory">
+    <EntitySetMapping Name="MaintenanceHistories">
       <EntityTypeMapping TypeName="QLKSWEBModel.MaintenanceHistory">
         <MappingFragment StoreEntitySet="MaintenanceHistory">
           <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
@@ -178,7 +178,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ModuleList">
+    <EntitySetMapping Name="ModuleLists">
       <EntityTypeMapping TypeName="QLKSWEBModel.ModuleList">
         <MappingFragment StoreEntitySet="ModuleList">
           <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
@@ -187,7 +187,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Promotion">
+    <EntitySetMapping Name="Promotions">
       <EntityTypeMapping TypeName="QLKSWEBModel.Promotion">
         <MappingFragment StoreEntitySet="Promotion">
           <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
@@ -201,7 +201,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Request">
+    <EntitySetMapping Name="Requests">
       <EntityTypeMapping TypeName="QLKSWEBModel.Request">
         <MappingFragment StoreEntitySet="Request">
           <ScalarProperty Name="RequestID" ColumnName="RequestID" />
@@ -219,7 +219,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RequestType">
+    <EntitySetMapping Name="RequestTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.RequestType">
         <MappingFragment StoreEntitySet="RequestType">
           <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
@@ -232,7 +232,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Room">
+    <EntitySetMapping Name="Rooms">
       <EntityTypeMapping TypeName="QLKSWEBModel.Room">
         <MappingFragment StoreEntitySet="Room">
           <ScalarProperty Name="RoomID" ColumnName="RoomID" />
@@ -251,7 +251,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RoomRequest">
+    <EntitySetMapping Name="RoomRequests">
       <EntityTypeMapping TypeName="QLKSWEBModel.RoomRequest">
         <MappingFragment StoreEntitySet="RoomRequest">
           <ScalarProperty Name="RoomRequestID" ColumnName="RoomRequestID" />
@@ -261,7 +261,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RoomServices">
-      <EntityTypeMapping TypeName="QLKSWEBModel.RoomServices">
+      <EntityTypeMapping TypeName="QLKSWEBModel.RoomService">
         <MappingFragment StoreEntitySet="RoomServices">
           <ScalarProperty Name="RoomServicesID" ColumnName="RoomServicesID" />
           <ScalarProperty Name="RoomID" ColumnName="RoomID" />
@@ -269,7 +269,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RoomType">
+    <EntitySetMapping Name="RoomTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.RoomType">
         <MappingFragment StoreEntitySet="RoomType">
           <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
@@ -289,7 +289,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Services">
-      <EntityTypeMapping TypeName="QLKSWEBModel.Services">
+      <EntityTypeMapping TypeName="QLKSWEBModel.Service">
         <MappingFragment StoreEntitySet="Services">
           <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
           <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
@@ -309,10 +309,11 @@
           <ScalarProperty Name="IsShow" ColumnName="IsShow" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ServicesType">
+    <EntitySetMapping Name="ServicesTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.ServicesType">
         <MappingFragment StoreEntitySet="ServicesType">
           <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
@@ -325,28 +326,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="Find_AvailableRoom" FunctionName="QLKSWEBModel.Store.Find_AvailableRoom" />
-    <FunctionImportMapping FunctionImportName="Find_AvailableServices" FunctionName="QLKSWEBModel.Store.Find_AvailableServices" />
-    <FunctionImportMapping FunctionImportName="Get_Module" FunctionName="QLKSWEBModel.Store.Get_Module">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLKSWEBModel.Get_Module_Result">
-          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
-          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
-          <ScalarProperty Name="ModuleIcon" ColumnName="ModuleIcon" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Store_Login" FunctionName="QLKSWEBModel.Store.Store_Login">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLKSWEBModel.Store_Login_Result">
-          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Disabled" ColumnName="Disabled" />
-          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

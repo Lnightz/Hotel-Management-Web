@@ -12,15 +12,13 @@ namespace HOTELMANAGEWEB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BookingServices
+    public partial class RoomService
     {
-        public int BookingServicesID { get; set; }
-        public Nullable<int> BookingID { get; set; }
+        public int RoomServicesID { get; set; }
+        public Nullable<int> RoomID { get; set; }
         public Nullable<int> ServicesID { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<byte> IsBooking { get; set; }
     
-        public virtual Booking Booking { get; set; }
-        public virtual Services Services { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

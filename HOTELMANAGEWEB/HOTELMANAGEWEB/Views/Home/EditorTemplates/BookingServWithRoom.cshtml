@@ -1,0 +1,66 @@
+﻿@using System.Globalization;
+@model HOTELMANAGEWEB.DTO.ServicesModel
+@*@{
+        foreach (var item in listServ)
+        {
+            <div class="col-lg-8 dish-menu">
+                <div class="menus d-flex ftco-animate">
+                    <div class="menu-img" style="background-image: url(../../Assets/images/dish-3.jpg);"></div>
+                    <div class="text d-flex">
+                        <div class="one-half">
+                            <h3>@item.ServicesName</h3>
+                            <p>@item.ServicesDetail </p>
+                        </div>
+                        <div class="one-forth">
+                            @{
+                                string prices = @item
+                                    .ServicesPrices.HasValue ?
+                                    @item.ServicesPrices.Value
+                                    .ToString("C0", CultureInfo.CurrentCulture) : string.Empty;
+                            }
+                            <span class="price">@prices</span><span> /@item.Unit</span>
+                            <div class="justify-content-center">
+                                <input type="hidden" name="ServicesID" value="@item.ServicesID" />
+                                <input type="checkbox" class="bookservice-checkbox" name="IsSelected">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }*@
+
+@{
+    for ( int i = 0; i< Model.Services.Count(); i++)
+    {
+        <div class="col-lg-8 dish-menu">
+            <div class="menus d-flex ftco-animate">
+                <div class="menu-img" style="background-image: url(../../Assets/images/dish-3.jpg);"></div>
+                <div class="text d-flex">
+                    <div class="one-half">
+                        <h3>@Model.Services[i].ServicesName</h3>
+                        <p>@Model.Services[i].ServicesDetail </p>
+                    </div>
+                    <div class="one-forth">
+                        @{
+                            string prices = @Model.Services[i]
+                                .ServicesPrices.HasValue ?
+                                Model.Services[i].ServicesPrices.Value
+                                .ToString("C0", CultureInfo.CurrentCulture) : string.Empty;
+                        }
+                        <span class="price">@prices</span><span> /@Model.Services[i].Unit</span>
+                        <div class="justify-content-center">
+                            @*<input type="hidden" name="ServicesID" value="@Model.Services[i].ServicesID" />*@
+                            @*<input type="checkbox" class="bookservice-checkbox" name="IsSelected" checked="@Model.Services[i].IsSelected">*@
+                            @Html.HiddenFor(model => model.Services[i].ServicesID)
+                            @Html.HiddenFor(model =>model.Services[i].ServicesName)
+                            @Html.HiddenFor(model => model.Services[i].ServicesPrices)
+                            @Html.HiddenFor(model => model.Services[i].Unit)
+                            @Html.CheckBoxFor(model => model.Services[i].IsSelected , new { @class = "bookservice-checkbox" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

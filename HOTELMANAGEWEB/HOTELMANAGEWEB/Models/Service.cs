@@ -12,14 +12,14 @@ namespace HOTELMANAGEWEB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Services
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Services()
+        public Service()
         {
-            this.BillDetail = new HashSet<BillDetail>();
-            this.BookingServices = new HashSet<BookingServices>();
-            this.RoomServices = new HashSet<RoomServices>();
+            this.BillDetails = new HashSet<BillDetail>();
+            this.BookingServices = new HashSet<BookingService>();
+            this.RoomServices = new HashSet<RoomService>();
         }
     
         public int ServicesID { get; set; }
@@ -40,13 +40,14 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<byte> IsShow { get; set; }
         public string Image { get; set; }
         public Nullable<byte> IsBookWithRoom { get; set; }
+        public bool IsSelected { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetail { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingServices> BookingServices { get; set; }
+        public virtual ICollection<BookingService> BookingServices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomServices> RoomServices { get; set; }
+        public virtual ICollection<RoomService> RoomServices { get; set; }
         public virtual ServicesType ServicesType { get; set; }
     }
 }

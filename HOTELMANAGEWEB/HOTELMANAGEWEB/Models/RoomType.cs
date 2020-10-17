@@ -17,8 +17,8 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RoomType()
         {
-            this.Booking = new HashSet<Booking>();
-            this.Room = new HashSet<Room>();
+            this.Bookings = new HashSet<Booking>();
+            this.Rooms = new HashSet<Room>();
         }
     
         public int RoomTypeID { get; set; }
@@ -36,8 +36,8 @@ namespace HOTELMANAGEWEB.Models
         public string RoomTypeImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Room { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

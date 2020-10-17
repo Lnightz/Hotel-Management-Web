@@ -8,12 +8,14 @@ namespace HOTELMANAGEWEB.DTO
 {
     public class BookRoomWithServModel
     {
-        public Services service { get; set; }
+        public int ServicesID { get; set; }
 
-        public BookRoomWithServModel(BookRoomWithServModel book)
-        {
-            service = book.service;
-        }
+        public int IsSelected { get; set; }
 
+    }
+
+    public class ListServWithRoom
+    {
+        List<BookRoomWithServModel> listservwithroom { get; set; }
     }
 }

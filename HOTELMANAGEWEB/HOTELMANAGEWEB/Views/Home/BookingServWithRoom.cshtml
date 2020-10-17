@@ -1,10 +1,11 @@
-﻿@using System.Globalization
+﻿@*@model HOTELMANAGEWEB.DTO.ServicesListModel*@
+@using System.Globalization;
+
 @{
     ViewBag.Title = "BookingServWithRoom";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var listServ = (List<HOTELMANAGEWEB.Models.Services>)ViewBag.ListServ;
-
+    var listServ = (List<HOTELMANAGEWEB.Models.Service>)ViewBag.ListServ;
 }
 
 <section class="home-slider owl-carousel">
@@ -31,43 +32,15 @@
             </div>
         </div>
         @{
-            using (Html.BeginForm("ConfirmInfo", "Home", FormMethod.Post))
+            using (Html.BeginForm("ConfirmInfo", "Home" , FormMethod.Post))
             {
                 @Html.AntiForgeryToken();
                 <div class="row">
                     <div class="col-md-12">
-                        @{
-                            foreach (var servs in listServ)
-                            {
-                                <div class="col-lg-8 dish-menu">
-                                    <div class="menus d-flex ftco-animate">
-                                        <div class="menu-img" style="background-image: url(../../Assets/images/dish-3.jpg);"></div>
-                                        <div class="text d-flex">
-                                            <div class="one-half">
-                                                <h3>@servs.ServicesName</h3>
-                                                <p>@servs.ServicesDetail </p>
-                                            </div>
-                                            <div class="one-forth">
-                                                @{
-                                                    string prices = servs
-                                                        .ServicesPrices.HasValue ?
-                                                        servs.ServicesPrices.Value
-                                                        .ToString("C0", CultureInfo.CurrentCulture) : string.Empty;
-                                                }
-                                                <span class="price">@prices</span><span> /@servs.Unit</span>
-                                                <div class="justify-content-center">
-                                                    <input type="checkbox" class="bookservice-checkbox" value="@servs.ServicesID" name="ServicesID">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
+                        @Html.EditorForModel("BookingServWithRoom")
                     </div>
                     <div class="col-md-12">
                         <div class="float-right">
-                            <input name="RoomTypeID" type="hidden" value="@ViewBag.RoomTypeID" />
                             <p><button type="submit" class="btn btn-primary">Book</button></p>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ModuleList()
         {
-            this.AccountPermission = new HashSet<AccountPermission>();
+            this.AccountPermissions = new HashSet<AccountPermission>();
         }
     
         public int ModuleID { get; set; }
@@ -25,6 +25,6 @@ namespace HOTELMANAGEWEB.Models
         public string ModuleIcon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AccountPermission> AccountPermission { get; set; }
+        public virtual ICollection<AccountPermission> AccountPermissions { get; set; }
     }
 }

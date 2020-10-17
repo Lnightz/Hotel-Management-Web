@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLKSWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLKSWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -120,8 +120,6 @@
           <Property Name="NameOnCard" Type="nvarchar" MaxLength="250" />
           <Property Name="ExpirationDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentID" />
@@ -295,6 +293,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="IsShow" Type="tinyint" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="IsBookWithRoom" Type="tinyint" />
+          <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ServicesType">
           <Key>
@@ -320,7 +319,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AccountPe__Accou__6FE99F9F">
+        <Association Name="FK__AccountPe__Accou__70DDC3D8">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -332,7 +331,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AccountPe__Modul__70DDC3D8">
+        <Association Name="FK__AccountPe__Modul__71D1E811">
           <End Role="ModuleList" Type="Self.ModuleList" Multiplicity="0..1" />
           <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
           <ReferentialConstraint>
@@ -344,7 +343,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__DateModify__5165187F">
+        <Association Name="FK__Bill__DateModify__52593CB8">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -356,7 +355,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__BillI__5629CD9C">
+        <Association Name="FK__BillDetai__BillI__571DF1D5">
           <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -368,7 +367,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__RoomI__5535A963">
+        <Association Name="FK__BillDetai__RoomI__5629CD9C">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -380,7 +379,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillDetai__Servi__5441852A">
+        <Association Name="FK__BillDetai__Servi__5535A963">
           <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -392,7 +391,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__Custome__4CA06362">
+        <Association Name="FK__Booking__Custome__4D94879B">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -404,7 +403,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__DateMod__4BAC3F29">
+        <Association Name="FK__Booking__DateMod__4CA06362">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -416,7 +415,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__RoomTyp__4D94879B">
+        <Association Name="FK__Booking__RoomTyp__4E88ABD4">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -428,7 +427,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookingRo__IsBoo__59FA5E80">
+        <Association Name="FK__BookingRo__IsBoo__5AEE82B9">
           <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
           <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
           <ReferentialConstraint>
@@ -440,7 +439,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookingRo__RoomI__5AEE82B9">
+        <Association Name="FK__BookingRo__RoomI__5BE2A6F2">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
           <ReferentialConstraint>
@@ -452,7 +451,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookingSe__IsBoo__5EBF139D">
+        <Association Name="FK__BookingSe__IsBoo__5FB337D6">
           <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
           <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -464,7 +463,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BookingSe__Servi__5FB337D6">
+        <Association Name="FK__BookingSe__Servi__60A75C0F">
           <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
           <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -500,7 +499,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EquipRequ__Equip__6B24EA82">
+        <Association Name="FK__EquipRequ__Equip__6C190EBB">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
           <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -512,7 +511,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EquipRequ__Quant__6A30C649">
+        <Association Name="FK__EquipRequ__Quant__6B24EA82">
           <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
           <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -524,7 +523,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Maintenan__Equip__4222D4EF">
+        <Association Name="FK__Maintenan__Equip__4316F928">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
           <End Role="MaintenanceHistory" Type="Self.MaintenanceHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -548,7 +547,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__DateMod__45F365D3">
+        <Association Name="FK__Request__DateMod__46E78A0C">
           <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -560,7 +559,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__Equipme__47DBAE45">
+        <Association Name="FK__Request__Equipme__48CFD27E">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -572,7 +571,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Request__RoomID__46E78A0C">
+        <Association Name="FK__Request__RoomID__47DBAE45">
           <End Role="Room" Type="Self.Room" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
@@ -596,7 +595,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomReque__Reque__66603565">
+        <Association Name="FK__RoomReque__Reque__6754599E">
           <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
           <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -608,7 +607,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomReque__RoomI__6754599E">
+        <Association Name="FK__RoomReque__RoomI__68487DD7">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -620,7 +619,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomServi__RoomI__628FA481">
+        <Association Name="FK__RoomServi__RoomI__6383C8BA">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -632,7 +631,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomServi__Servi__6383C8BA">
+        <Association Name="FK__RoomServi__Servi__6477ECF3">
           <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
           <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -644,7 +643,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Services__IsBook__3F466844">
+        <Association Name="FK__Services__IsSele__403A8C7D">
           <End Role="ServicesType" Type="Self.ServicesType" Multiplicity="1" />
           <End Role="Services" Type="Self.Services" Multiplicity="*" />
           <ReferentialConstraint>
@@ -656,22 +655,6 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Find_AvailableRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="NumPerson" Type="int" Mode="In" />
-          <Parameter Name="CheckinDate" Type="datetime" Mode="In" />
-          <Parameter Name="CheckoutDate" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Find_AvailableServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ServicesID" Type="int" Mode="In" />
-          <Parameter Name="DateBook" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Get_Module" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Store_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Password" Type="nvarchar" Mode="In" />
-        </Function>
         <EntityContainer Name="QLKSWEBModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountPermission" EntityType="Self.AccountPermission" Schema="dbo" store:Type="Tables" />
@@ -700,55 +683,55 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             <End Role="AccountType" EntitySet="AccountType" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK__AccountPe__Accou__6FE99F9F" Association="Self.FK__AccountPe__Accou__6FE99F9F">
+          <AssociationSet Name="FK__AccountPe__Accou__70DDC3D8" Association="Self.FK__AccountPe__Accou__70DDC3D8">
             <End Role="Account" EntitySet="Account" />
             <End Role="AccountPermission" EntitySet="AccountPermission" />
           </AssociationSet>
-          <AssociationSet Name="FK__AccountPe__Modul__70DDC3D8" Association="Self.FK__AccountPe__Modul__70DDC3D8">
+          <AssociationSet Name="FK__AccountPe__Modul__71D1E811" Association="Self.FK__AccountPe__Modul__71D1E811">
             <End Role="ModuleList" EntitySet="ModuleList" />
             <End Role="AccountPermission" EntitySet="AccountPermission" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__DateModify__5165187F" Association="Self.FK__Bill__DateModify__5165187F">
+          <AssociationSet Name="FK__Bill__DateModify__52593CB8" Association="Self.FK__Bill__DateModify__52593CB8">
             <End Role="Account" EntitySet="Account" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__BillI__5629CD9C" Association="Self.FK__BillDetai__BillI__5629CD9C">
+          <AssociationSet Name="FK__BillDetai__BillI__571DF1D5" Association="Self.FK__BillDetai__BillI__571DF1D5">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__RoomI__5535A963" Association="Self.FK__BillDetai__RoomI__5535A963">
+          <AssociationSet Name="FK__BillDetai__RoomI__5629CD9C" Association="Self.FK__BillDetai__RoomI__5629CD9C">
             <End Role="Room" EntitySet="Room" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__Servi__5441852A" Association="Self.FK__BillDetai__Servi__5441852A">
+          <AssociationSet Name="FK__BillDetai__Servi__5535A963" Association="Self.FK__BillDetai__Servi__5535A963">
             <End Role="Services" EntitySet="Services" />
             <End Role="BillDetail" EntitySet="BillDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__Custome__4CA06362" Association="Self.FK__Booking__Custome__4CA06362">
+          <AssociationSet Name="FK__Booking__Custome__4D94879B" Association="Self.FK__Booking__Custome__4D94879B">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__DateMod__4BAC3F29" Association="Self.FK__Booking__DateMod__4BAC3F29">
+          <AssociationSet Name="FK__Booking__DateMod__4CA06362" Association="Self.FK__Booking__DateMod__4CA06362">
             <End Role="Account" EntitySet="Account" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__RoomTyp__4D94879B" Association="Self.FK__Booking__RoomTyp__4D94879B">
+          <AssociationSet Name="FK__Booking__RoomTyp__4E88ABD4" Association="Self.FK__Booking__RoomTyp__4E88ABD4">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookingRo__IsBoo__59FA5E80" Association="Self.FK__BookingRo__IsBoo__59FA5E80">
+          <AssociationSet Name="FK__BookingRo__IsBoo__5AEE82B9" Association="Self.FK__BookingRo__IsBoo__5AEE82B9">
             <End Role="Booking" EntitySet="Booking" />
             <End Role="BookingRoom" EntitySet="BookingRoom" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookingRo__RoomI__5AEE82B9" Association="Self.FK__BookingRo__RoomI__5AEE82B9">
+          <AssociationSet Name="FK__BookingRo__RoomI__5BE2A6F2" Association="Self.FK__BookingRo__RoomI__5BE2A6F2">
             <End Role="Room" EntitySet="Room" />
             <End Role="BookingRoom" EntitySet="BookingRoom" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookingSe__IsBoo__5EBF139D" Association="Self.FK__BookingSe__IsBoo__5EBF139D">
+          <AssociationSet Name="FK__BookingSe__IsBoo__5FB337D6" Association="Self.FK__BookingSe__IsBoo__5FB337D6">
             <End Role="Booking" EntitySet="Booking" />
             <End Role="BookingServices" EntitySet="BookingServices" />
           </AssociationSet>
-          <AssociationSet Name="FK__BookingSe__Servi__5FB337D6" Association="Self.FK__BookingSe__Servi__5FB337D6">
+          <AssociationSet Name="FK__BookingSe__Servi__60A75C0F" Association="Self.FK__BookingSe__Servi__60A75C0F">
             <End Role="Services" EntitySet="Services" />
             <End Role="BookingServices" EntitySet="BookingServices" />
           </AssociationSet>
@@ -760,15 +743,15 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             <End Role="Room" EntitySet="Room" />
             <End Role="Equipment" EntitySet="Equipment" />
           </AssociationSet>
-          <AssociationSet Name="FK__EquipRequ__Equip__6B24EA82" Association="Self.FK__EquipRequ__Equip__6B24EA82">
+          <AssociationSet Name="FK__EquipRequ__Equip__6C190EBB" Association="Self.FK__EquipRequ__Equip__6C190EBB">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="EquipRequest" EntitySet="EquipRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__EquipRequ__Quant__6A30C649" Association="Self.FK__EquipRequ__Quant__6A30C649">
+          <AssociationSet Name="FK__EquipRequ__Quant__6B24EA82" Association="Self.FK__EquipRequ__Quant__6B24EA82">
             <End Role="Request" EntitySet="Request" />
             <End Role="EquipRequest" EntitySet="EquipRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__Maintenan__Equip__4222D4EF" Association="Self.FK__Maintenan__Equip__4222D4EF">
+          <AssociationSet Name="FK__Maintenan__Equip__4316F928" Association="Self.FK__Maintenan__Equip__4316F928">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="MaintenanceHistory" EntitySet="MaintenanceHistory" />
           </AssociationSet>
@@ -776,15 +759,15 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             <End Role="Account" EntitySet="Account" />
             <End Role="Promotion" EntitySet="Promotion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__DateMod__45F365D3" Association="Self.FK__Request__DateMod__45F365D3">
+          <AssociationSet Name="FK__Request__DateMod__46E78A0C" Association="Self.FK__Request__DateMod__46E78A0C">
             <End Role="RequestType" EntitySet="RequestType" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__Equipme__47DBAE45" Association="Self.FK__Request__Equipme__47DBAE45">
+          <AssociationSet Name="FK__Request__Equipme__48CFD27E" Association="Self.FK__Request__Equipme__48CFD27E">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK__Request__RoomID__46E78A0C" Association="Self.FK__Request__RoomID__46E78A0C">
+          <AssociationSet Name="FK__Request__RoomID__47DBAE45" Association="Self.FK__Request__RoomID__47DBAE45">
             <End Role="Room" EntitySet="Room" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
@@ -792,29 +775,28 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomReque__Reque__66603565" Association="Self.FK__RoomReque__Reque__66603565">
+          <AssociationSet Name="FK__RoomReque__Reque__6754599E" Association="Self.FK__RoomReque__Reque__6754599E">
             <End Role="Request" EntitySet="Request" />
             <End Role="RoomRequest" EntitySet="RoomRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomReque__RoomI__6754599E" Association="Self.FK__RoomReque__RoomI__6754599E">
+          <AssociationSet Name="FK__RoomReque__RoomI__68487DD7" Association="Self.FK__RoomReque__RoomI__68487DD7">
             <End Role="Room" EntitySet="Room" />
             <End Role="RoomRequest" EntitySet="RoomRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomServi__RoomI__628FA481" Association="Self.FK__RoomServi__RoomI__628FA481">
+          <AssociationSet Name="FK__RoomServi__RoomI__6383C8BA" Association="Self.FK__RoomServi__RoomI__6383C8BA">
             <End Role="Room" EntitySet="Room" />
             <End Role="RoomServices" EntitySet="RoomServices" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomServi__Servi__6383C8BA" Association="Self.FK__RoomServi__Servi__6383C8BA">
+          <AssociationSet Name="FK__RoomServi__Servi__6477ECF3" Association="Self.FK__RoomServi__Servi__6477ECF3">
             <End Role="Services" EntitySet="Services" />
             <End Role="RoomServices" EntitySet="RoomServices" />
           </AssociationSet>
-          <AssociationSet Name="FK__Services__IsBook__3F466844" Association="Self.FK__Services__IsBook__3F466844">
+          <AssociationSet Name="FK__Services__IsSele__403A8C7D" Association="Self.FK__Services__IsSele__403A8C7D">
             <End Role="ServicesType" EntitySet="ServicesType" />
             <End Role="Services" EntitySet="Services" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLKSWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -829,10 +811,10 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AccountType" Relationship="Self.FK__Account__Image__15502E78" FromRole="Account" ToRole="AccountType" />
-          <NavigationProperty Name="AccountPermission" Relationship="Self.FK__AccountPe__Accou__6FE99F9F" FromRole="Account" ToRole="AccountPermission" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__DateModify__5165187F" FromRole="Account" ToRole="Bill" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__DateMod__4BAC3F29" FromRole="Account" ToRole="Booking" />
-          <NavigationProperty Name="Promotion" Relationship="Self.FK__Promotion__DateM__1920BF5C" FromRole="Account" ToRole="Promotion" />
+          <NavigationProperty Name="AccountPermissions" Relationship="Self.FK__AccountPe__Accou__6FE99F9F" FromRole="Account" ToRole="AccountPermission" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__DateModify__5165187F" FromRole="Account" ToRole="Bill" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__DateMod__4BAC3F29" FromRole="Account" ToRole="Booking" />
+          <NavigationProperty Name="Promotions" Relationship="Self.FK__Promotion__DateM__1920BF5C" FromRole="Account" ToRole="Promotion" />
         </EntityType>
         <EntityType Name="AccountPermission">
           <Key>
@@ -852,7 +834,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="AccountTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountTypeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Disabled" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Account__Image__15502E78" FromRole="AccountType" ToRole="Account" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Account__Image__15502E78" FromRole="AccountType" ToRole="Account" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -871,7 +853,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Account" Relationship="Self.FK__Bill__DateModify__5165187F" FromRole="Bill" ToRole="Account" />
-          <NavigationProperty Name="BillDetail" Relationship="Self.FK__BillDetai__BillI__5629CD9C" FromRole="Bill" ToRole="BillDetail" />
+          <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__BillI__5629CD9C" FromRole="Bill" ToRole="BillDetail" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -886,7 +868,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="BillID" Type="Int32" />
           <NavigationProperty Name="Bill" Relationship="Self.FK__BillDetai__BillI__5629CD9C" FromRole="BillDetail" ToRole="Bill" />
           <NavigationProperty Name="Room" Relationship="Self.FK__BillDetai__RoomI__5535A963" FromRole="BillDetail" ToRole="Room" />
-          <NavigationProperty Name="Services" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="BillDetail" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="BillDetail" ToRole="Services" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -909,7 +891,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <NavigationProperty Name="Account" Relationship="Self.FK__Booking__DateMod__4BAC3F29" FromRole="Booking" ToRole="Account" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__Custome__4CA06362" FromRole="Booking" ToRole="Customer" />
           <NavigationProperty Name="RoomType" Relationship="Self.FK__Booking__RoomTyp__4D94879B" FromRole="Booking" ToRole="RoomType" />
-          <NavigationProperty Name="BookingRoom" Relationship="Self.FK__BookingRo__IsBoo__59FA5E80" FromRole="Booking" ToRole="BookingRoom" />
+          <NavigationProperty Name="BookingRooms" Relationship="Self.FK__BookingRo__IsBoo__59FA5E80" FromRole="Booking" ToRole="BookingRoom" />
           <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__IsBoo__5EBF139D" FromRole="Booking" ToRole="BookingServices" />
         </EntityType>
         <EntityType Name="BookingRoom">
@@ -923,7 +905,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <NavigationProperty Name="Booking" Relationship="Self.FK__BookingRo__IsBoo__59FA5E80" FromRole="BookingRoom" ToRole="Booking" />
           <NavigationProperty Name="Room" Relationship="Self.FK__BookingRo__RoomI__5AEE82B9" FromRole="BookingRoom" ToRole="Room" />
         </EntityType>
-        <EntityType Name="BookingServices">
+        <EntityType Name="BookingService">
           <Key>
             <PropertyRef Name="BookingServicesID" />
           </Key>
@@ -933,7 +915,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="Quantity" Type="Int32" />
           <Property Name="IsBooking" Type="Byte" />
           <NavigationProperty Name="Booking" Relationship="Self.FK__BookingSe__IsBoo__5EBF139D" FromRole="BookingServices" ToRole="Booking" />
-          <NavigationProperty Name="Services" Relationship="Self.FK__BookingSe__Servi__5FB337D6" FromRole="BookingServices" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__BookingSe__Servi__5FB337D6" FromRole="BookingServices" ToRole="Services" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -954,7 +936,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="CardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NameOnCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__Custome__4CA06362" FromRole="Customer" ToRole="Booking" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__Custome__4CA06362" FromRole="Customer" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -974,9 +956,9 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EquipmentType" Relationship="Self.FK__Equipment__Image__36B12243" FromRole="Equipment" ToRole="EquipmentType" />
           <NavigationProperty Name="Room" Relationship="Self.FK__Equipment__RoomI__37A5467C" FromRole="Equipment" ToRole="Room" />
-          <NavigationProperty Name="EquipRequest" Relationship="Self.FK__EquipRequ__Equip__6B24EA82" FromRole="Equipment" ToRole="EquipRequest" />
-          <NavigationProperty Name="MaintenanceHistory" Relationship="Self.FK__Maintenan__Equip__4222D4EF" FromRole="Equipment" ToRole="MaintenanceHistory" />
-          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Equipme__47DBAE45" FromRole="Equipment" ToRole="Request" />
+          <NavigationProperty Name="EquipRequests" Relationship="Self.FK__EquipRequ__Equip__6B24EA82" FromRole="Equipment" ToRole="EquipRequest" />
+          <NavigationProperty Name="MaintenanceHistories" Relationship="Self.FK__Maintenan__Equip__4222D4EF" FromRole="Equipment" ToRole="MaintenanceHistory" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__Equipme__47DBAE45" FromRole="Equipment" ToRole="Request" />
         </EntityType>
         <EntityType Name="EquipmentType">
           <Key>
@@ -989,7 +971,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__Image__36B12243" FromRole="EquipmentType" ToRole="Equipment" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__Equipment__Image__36B12243" FromRole="EquipmentType" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="EquipRequest">
           <Key>
@@ -1021,7 +1003,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ModuleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ModuleIcon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AccountPermission" Relationship="Self.FK__AccountPe__Modul__70DDC3D8" FromRole="ModuleList" ToRole="AccountPermission" />
+          <NavigationProperty Name="AccountPermissions" Relationship="Self.FK__AccountPe__Modul__70DDC3D8" FromRole="ModuleList" ToRole="AccountPermission" />
         </EntityType>
         <EntityType Name="Promotion">
           <Key>
@@ -1054,10 +1036,10 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Equipment" Relationship="Self.FK__Request__Equipme__47DBAE45" FromRole="Request" ToRole="Equipment" />
-          <NavigationProperty Name="EquipRequest" Relationship="Self.FK__EquipRequ__Quant__6A30C649" FromRole="Request" ToRole="EquipRequest" />
+          <NavigationProperty Name="EquipRequests" Relationship="Self.FK__EquipRequ__Quant__6A30C649" FromRole="Request" ToRole="EquipRequest" />
           <NavigationProperty Name="RequestType" Relationship="Self.FK__Request__DateMod__45F365D3" FromRole="Request" ToRole="RequestType" />
           <NavigationProperty Name="Room" Relationship="Self.FK__Request__RoomID__46E78A0C" FromRole="Request" ToRole="Room" />
-          <NavigationProperty Name="RoomRequest" Relationship="Self.FK__RoomReque__Reque__66603565" FromRole="Request" ToRole="RoomRequest" />
+          <NavigationProperty Name="RoomRequests" Relationship="Self.FK__RoomReque__Reque__66603565" FromRole="Request" ToRole="RoomRequest" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
@@ -1070,7 +1052,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Request" Relationship="Self.FK__Request__DateMod__45F365D3" FromRole="RequestType" ToRole="Request" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__DateMod__45F365D3" FromRole="RequestType" ToRole="Request" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -1089,12 +1071,12 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BillDetail" Relationship="Self.FK__BillDetai__RoomI__5535A963" FromRole="Room" ToRole="BillDetail" />
-          <NavigationProperty Name="BookingRoom" Relationship="Self.FK__BookingRo__RoomI__5AEE82B9" FromRole="Room" ToRole="BookingRoom" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__RoomI__37A5467C" FromRole="Room" ToRole="Equipment" />
-          <NavigationProperty Name="Request" Relationship="Self.FK__Request__RoomID__46E78A0C" FromRole="Room" ToRole="Request" />
+          <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__RoomI__5535A963" FromRole="Room" ToRole="BillDetail" />
+          <NavigationProperty Name="BookingRooms" Relationship="Self.FK__BookingRo__RoomI__5AEE82B9" FromRole="Room" ToRole="BookingRoom" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__Equipment__RoomI__37A5467C" FromRole="Room" ToRole="Equipment" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__RoomID__46E78A0C" FromRole="Room" ToRole="Request" />
           <NavigationProperty Name="RoomType" Relationship="Self.FK__Room__Image__31EC6D26" FromRole="Room" ToRole="RoomType" />
-          <NavigationProperty Name="RoomRequest" Relationship="Self.FK__RoomReque__RoomI__6754599E" FromRole="Room" ToRole="RoomRequest" />
+          <NavigationProperty Name="RoomRequests" Relationship="Self.FK__RoomReque__RoomI__6754599E" FromRole="Room" ToRole="RoomRequest" />
           <NavigationProperty Name="RoomServices" Relationship="Self.FK__RoomServi__RoomI__628FA481" FromRole="Room" ToRole="RoomServices" />
         </EntityType>
         <EntityType Name="RoomRequest">
@@ -1107,7 +1089,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <NavigationProperty Name="Request" Relationship="Self.FK__RoomReque__Reque__66603565" FromRole="RoomRequest" ToRole="Request" />
           <NavigationProperty Name="Room" Relationship="Self.FK__RoomReque__RoomI__6754599E" FromRole="RoomRequest" ToRole="Room" />
         </EntityType>
-        <EntityType Name="RoomServices">
+        <EntityType Name="RoomService">
           <Key>
             <PropertyRef Name="RoomServicesID" />
           </Key>
@@ -1115,7 +1097,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="RoomID" Type="Int32" />
           <Property Name="ServicesID" Type="Int32" />
           <NavigationProperty Name="Room" Relationship="Self.FK__RoomServi__RoomI__628FA481" FromRole="RoomServices" ToRole="Room" />
-          <NavigationProperty Name="Services" Relationship="Self.FK__RoomServi__Servi__6383C8BA" FromRole="RoomServices" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__RoomServi__Servi__6383C8BA" FromRole="RoomServices" ToRole="Services" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -1134,10 +1116,10 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="IsShowHomePage" Type="Byte" />
           <Property Name="IsShow" Type="Byte" />
           <Property Name="RoomTypeImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__RoomTyp__4D94879B" FromRole="RoomType" ToRole="Booking" />
-          <NavigationProperty Name="Room" Relationship="Self.FK__Room__Image__31EC6D26" FromRole="RoomType" ToRole="Room" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__RoomTyp__4D94879B" FromRole="RoomType" ToRole="Booking" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__Image__31EC6D26" FromRole="RoomType" ToRole="Room" />
         </EntityType>
-        <EntityType Name="Services">
+        <EntityType Name="Service">
           <Key>
             <PropertyRef Name="ServicesID" />
           </Key>
@@ -1159,7 +1141,8 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           <Property Name="IsShow" Type="Byte" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IsBookWithRoom" Type="Byte" />
-          <NavigationProperty Name="BillDetail" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="Services" ToRole="BillDetail" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="Services" ToRole="BillDetail" />
           <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__Servi__5FB337D6" FromRole="Services" ToRole="BookingServices" />
           <NavigationProperty Name="RoomServices" Relationship="Self.FK__RoomServi__Servi__6383C8BA" FromRole="Services" ToRole="RoomServices" />
           <NavigationProperty Name="ServicesType" Relationship="Self.FK__Services__IsBook__3F466844" FromRole="Services" ToRole="ServicesType" />
@@ -1274,7 +1257,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BillDetai__Servi__5441852A">
-          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
@@ -1323,7 +1306,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
         </Association>
         <Association Name="FK__BookingSe__IsBoo__5EBF139D">
           <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
-          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <End Role="BookingServices" Type="Self.BookingService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Booking">
               <PropertyRef Name="BookingID" />
@@ -1346,8 +1329,8 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BookingSe__Servi__5FB337D6">
-          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
-          <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="BookingServices" Type="Self.BookingService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ServicesID" />
@@ -1491,7 +1474,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
         </Association>
         <Association Name="FK__RoomServi__RoomI__628FA481">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
-          <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
+          <End Role="RoomServices" Type="Self.RoomService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Room">
               <PropertyRef Name="RoomID" />
@@ -1502,8 +1485,8 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RoomServi__Servi__6383C8BA">
-          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
-          <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="RoomServices" Type="Self.RoomService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ServicesID" />
@@ -1515,7 +1498,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
         </Association>
         <Association Name="FK__Services__IsBook__3F466844">
           <End Role="ServicesType" Type="Self.ServicesType" Multiplicity="1" />
-          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <End Role="Services" Type="Self.Service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServicesType">
               <PropertyRef Name="ServicesTypeID" />
@@ -1526,135 +1509,135 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QLKSWEBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Account" EntityType="Self.Account" />
-          <EntitySet Name="AccountPermission" EntityType="Self.AccountPermission" />
-          <EntitySet Name="AccountType" EntityType="Self.AccountType" />
-          <EntitySet Name="Bill" EntityType="Self.Bill" />
-          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" />
-          <EntitySet Name="Booking" EntityType="Self.Booking" />
-          <EntitySet Name="BookingRoom" EntityType="Self.BookingRoom" />
-          <EntitySet Name="BookingServices" EntityType="Self.BookingServices" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" />
-          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
-          <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" />
-          <EntitySet Name="EquipRequest" EntityType="Self.EquipRequest" />
-          <EntitySet Name="MaintenanceHistory" EntityType="Self.MaintenanceHistory" />
-          <EntitySet Name="ModuleList" EntityType="Self.ModuleList" />
-          <EntitySet Name="Promotion" EntityType="Self.Promotion" />
-          <EntitySet Name="Request" EntityType="Self.Request" />
-          <EntitySet Name="RequestType" EntityType="Self.RequestType" />
-          <EntitySet Name="Room" EntityType="Self.Room" />
-          <EntitySet Name="RoomRequest" EntityType="Self.RoomRequest" />
-          <EntitySet Name="RoomServices" EntityType="Self.RoomServices" />
-          <EntitySet Name="RoomType" EntityType="Self.RoomType" />
-          <EntitySet Name="Services" EntityType="Self.Services" />
-          <EntitySet Name="ServicesType" EntityType="Self.ServicesType" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AccountPermissions" EntityType="Self.AccountPermission" />
+          <EntitySet Name="AccountTypes" EntityType="Self.AccountType" />
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="BookingRooms" EntityType="Self.BookingRoom" />
+          <EntitySet Name="BookingServices" EntityType="Self.BookingService" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentType" />
+          <EntitySet Name="EquipRequests" EntityType="Self.EquipRequest" />
+          <EntitySet Name="MaintenanceHistories" EntityType="Self.MaintenanceHistory" />
+          <EntitySet Name="ModuleLists" EntityType="Self.ModuleList" />
+          <EntitySet Name="Promotions" EntityType="Self.Promotion" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="RequestTypes" EntityType="Self.RequestType" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="RoomRequests" EntityType="Self.RoomRequest" />
+          <EntitySet Name="RoomServices" EntityType="Self.RoomService" />
+          <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="ServicesTypes" EntityType="Self.ServicesType" />
           <AssociationSet Name="FK__Account__Image__15502E78" Association="Self.FK__Account__Image__15502E78">
-            <End Role="AccountType" EntitySet="AccountType" />
-            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
           <AssociationSet Name="FK__AccountPe__Accou__6FE99F9F" Association="Self.FK__AccountPe__Accou__6FE99F9F">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="AccountPermission" EntitySet="AccountPermission" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountPermission" EntitySet="AccountPermissions" />
           </AssociationSet>
           <AssociationSet Name="FK__Bill__DateModify__5165187F" Association="Self.FK__Bill__DateModify__5165187F">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Bill" EntitySet="Bill" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK__Booking__DateMod__4BAC3F29" Association="Self.FK__Booking__DateMod__4BAC3F29">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
           <AssociationSet Name="FK__Promotion__DateM__1920BF5C" Association="Self.FK__Promotion__DateM__1920BF5C">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Promotion" EntitySet="Promotion" />
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
           <AssociationSet Name="FK__AccountPe__Modul__70DDC3D8" Association="Self.FK__AccountPe__Modul__70DDC3D8">
-            <End Role="ModuleList" EntitySet="ModuleList" />
-            <End Role="AccountPermission" EntitySet="AccountPermission" />
+            <End Role="ModuleList" EntitySet="ModuleLists" />
+            <End Role="AccountPermission" EntitySet="AccountPermissions" />
           </AssociationSet>
           <AssociationSet Name="FK__BillDetai__BillI__5629CD9C" Association="Self.FK__BillDetai__BillI__5629CD9C">
-            <End Role="Bill" EntitySet="Bill" />
-            <End Role="BillDetail" EntitySet="BillDetail" />
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__BillDetai__RoomI__5535A963" Association="Self.FK__BillDetai__RoomI__5535A963">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="BillDetail" EntitySet="BillDetail" />
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__BillDetai__Servi__5441852A" Association="Self.FK__BillDetai__Servi__5441852A">
             <End Role="Services" EntitySet="Services" />
-            <End Role="BillDetail" EntitySet="BillDetail" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Booking__Custome__4CA06362" Association="Self.FK__Booking__Custome__4CA06362">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
           <AssociationSet Name="FK__Booking__RoomTyp__4D94879B" Association="Self.FK__Booking__RoomTyp__4D94879B">
-            <End Role="RoomType" EntitySet="RoomType" />
-            <End Role="Booking" EntitySet="Booking" />
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
           <AssociationSet Name="FK__BookingRo__IsBoo__59FA5E80" Association="Self.FK__BookingRo__IsBoo__59FA5E80">
-            <End Role="Booking" EntitySet="Booking" />
-            <End Role="BookingRoom" EntitySet="BookingRoom" />
+            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="BookingRoom" EntitySet="BookingRooms" />
           </AssociationSet>
           <AssociationSet Name="FK__BookingSe__IsBoo__5EBF139D" Association="Self.FK__BookingSe__IsBoo__5EBF139D">
-            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Booking" EntitySet="Bookings" />
             <End Role="BookingServices" EntitySet="BookingServices" />
           </AssociationSet>
           <AssociationSet Name="FK__BookingRo__RoomI__5AEE82B9" Association="Self.FK__BookingRo__RoomI__5AEE82B9">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="BookingRoom" EntitySet="BookingRoom" />
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="BookingRoom" EntitySet="BookingRooms" />
           </AssociationSet>
           <AssociationSet Name="FK__BookingSe__Servi__5FB337D6" Association="Self.FK__BookingSe__Servi__5FB337D6">
             <End Role="Services" EntitySet="Services" />
             <End Role="BookingServices" EntitySet="BookingServices" />
           </AssociationSet>
           <AssociationSet Name="FK__Equipment__Image__36B12243" Association="Self.FK__Equipment__Image__36B12243">
-            <End Role="EquipmentType" EntitySet="EquipmentType" />
-            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipmentType" EntitySet="EquipmentTypes" />
+            <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
           <AssociationSet Name="FK__Equipment__RoomI__37A5467C" Association="Self.FK__Equipment__RoomI__37A5467C">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
           <AssociationSet Name="FK__EquipRequ__Equip__6B24EA82" Association="Self.FK__EquipRequ__Equip__6B24EA82">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="EquipRequest" EntitySet="EquipRequest" />
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="EquipRequest" EntitySet="EquipRequests" />
           </AssociationSet>
           <AssociationSet Name="FK__Maintenan__Equip__4222D4EF" Association="Self.FK__Maintenan__Equip__4222D4EF">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="MaintenanceHistory" EntitySet="MaintenanceHistory" />
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="MaintenanceHistory" EntitySet="MaintenanceHistories" />
           </AssociationSet>
           <AssociationSet Name="FK__Request__Equipme__47DBAE45" Association="Self.FK__Request__Equipme__47DBAE45">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Request" EntitySet="Request" />
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK__EquipRequ__Quant__6A30C649" Association="Self.FK__EquipRequ__Quant__6A30C649">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="EquipRequest" EntitySet="EquipRequest" />
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="EquipRequest" EntitySet="EquipRequests" />
           </AssociationSet>
           <AssociationSet Name="FK__Request__DateMod__45F365D3" Association="Self.FK__Request__DateMod__45F365D3">
-            <End Role="RequestType" EntitySet="RequestType" />
-            <End Role="Request" EntitySet="Request" />
+            <End Role="RequestType" EntitySet="RequestTypes" />
+            <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK__Request__RoomID__46E78A0C" Association="Self.FK__Request__RoomID__46E78A0C">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="Request" EntitySet="Request" />
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomReque__Reque__66603565" Association="Self.FK__RoomReque__Reque__66603565">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="RoomRequest" EntitySet="RoomRequest" />
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="RoomRequest" EntitySet="RoomRequests" />
           </AssociationSet>
           <AssociationSet Name="FK__Room__Image__31EC6D26" Association="Self.FK__Room__Image__31EC6D26">
-            <End Role="RoomType" EntitySet="RoomType" />
-            <End Role="Room" EntitySet="Room" />
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="Room" EntitySet="Rooms" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomReque__RoomI__6754599E" Association="Self.FK__RoomReque__RoomI__6754599E">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="RoomRequest" EntitySet="RoomRequest" />
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="RoomRequest" EntitySet="RoomRequests" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomServi__RoomI__628FA481" Association="Self.FK__RoomServi__RoomI__628FA481">
-            <End Role="Room" EntitySet="Room" />
+            <End Role="Room" EntitySet="Rooms" />
             <End Role="RoomServices" EntitySet="RoomServices" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomServi__Servi__6383C8BA" Association="Self.FK__RoomServi__Servi__6383C8BA">
@@ -1662,7 +1645,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             <End Role="RoomServices" EntitySet="RoomServices" />
           </AssociationSet>
           <AssociationSet Name="FK__Services__IsBook__3F466844" Association="Self.FK__Services__IsBook__3F466844">
-            <End Role="ServicesType" EntitySet="ServicesType" />
+            <End Role="ServicesType" EntitySet="ServicesTypes" />
             <End Role="Services" EntitySet="Services" />
           </AssociationSet>
           <FunctionImport Name="Find_AvailableRoom">
@@ -1701,7 +1684,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QLKSWEBModelStoreContainer" CdmEntityContainer="QLKSWEBEntities">
-          <EntitySetMapping Name="Account">
+          <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="QLKSWEBModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
@@ -1713,7 +1696,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountPermission">
+          <EntitySetMapping Name="AccountPermissions">
             <EntityTypeMapping TypeName="QLKSWEBModel.AccountPermission">
               <MappingFragment StoreEntitySet="AccountPermission">
                 <ScalarProperty Name="AccPerID" ColumnName="AccPerID" />
@@ -1723,7 +1706,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountType">
+          <EntitySetMapping Name="AccountTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.AccountType">
               <MappingFragment StoreEntitySet="AccountType">
                 <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
@@ -1732,7 +1715,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Bill">
+          <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="QLKSWEBModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
@@ -1750,7 +1733,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BillDetail">
+          <EntitySetMapping Name="BillDetails">
             <EntityTypeMapping TypeName="QLKSWEBModel.BillDetail">
               <MappingFragment StoreEntitySet="BillDetail">
                 <ScalarProperty Name="BillDetailID" ColumnName="BillDetailID" />
@@ -1763,7 +1746,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Booking">
+          <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="QLKSWEBModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
@@ -1783,7 +1766,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BookingRoom">
+          <EntitySetMapping Name="BookingRooms">
             <EntityTypeMapping TypeName="QLKSWEBModel.BookingRoom">
               <MappingFragment StoreEntitySet="BookingRoom">
                 <ScalarProperty Name="BookingRoomID" ColumnName="BookingRoomID" />
@@ -1794,7 +1777,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookingServices">
-            <EntityTypeMapping TypeName="QLKSWEBModel.BookingServices">
+            <EntityTypeMapping TypeName="QLKSWEBModel.BookingService">
               <MappingFragment StoreEntitySet="BookingServices">
                 <ScalarProperty Name="BookingServicesID" ColumnName="BookingServicesID" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
@@ -1804,7 +1787,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customer">
+          <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="QLKSWEBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -1825,7 +1808,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Equipment">
+          <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="QLKSWEBModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
@@ -1843,7 +1826,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EquipmentType">
+          <EntitySetMapping Name="EquipmentTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.EquipmentType">
               <MappingFragment StoreEntitySet="EquipmentType">
                 <ScalarProperty Name="EquipmentTypeID" ColumnName="EquipmentTypeID" />
@@ -1856,7 +1839,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EquipRequest">
+          <EntitySetMapping Name="EquipRequests">
             <EntityTypeMapping TypeName="QLKSWEBModel.EquipRequest">
               <MappingFragment StoreEntitySet="EquipRequest">
                 <ScalarProperty Name="EquipRequestID" ColumnName="EquipRequestID" />
@@ -1866,7 +1849,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaintenanceHistory">
+          <EntitySetMapping Name="MaintenanceHistories">
             <EntityTypeMapping TypeName="QLKSWEBModel.MaintenanceHistory">
               <MappingFragment StoreEntitySet="MaintenanceHistory">
                 <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
@@ -1878,7 +1861,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ModuleList">
+          <EntitySetMapping Name="ModuleLists">
             <EntityTypeMapping TypeName="QLKSWEBModel.ModuleList">
               <MappingFragment StoreEntitySet="ModuleList">
                 <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
@@ -1887,7 +1870,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Promotion">
+          <EntitySetMapping Name="Promotions">
             <EntityTypeMapping TypeName="QLKSWEBModel.Promotion">
               <MappingFragment StoreEntitySet="Promotion">
                 <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
@@ -1901,7 +1884,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Request">
+          <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="QLKSWEBModel.Request">
               <MappingFragment StoreEntitySet="Request">
                 <ScalarProperty Name="RequestID" ColumnName="RequestID" />
@@ -1919,7 +1902,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RequestType">
+          <EntitySetMapping Name="RequestTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.RequestType">
               <MappingFragment StoreEntitySet="RequestType">
                 <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
@@ -1932,7 +1915,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Room">
+          <EntitySetMapping Name="Rooms">
             <EntityTypeMapping TypeName="QLKSWEBModel.Room">
               <MappingFragment StoreEntitySet="Room">
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
@@ -1951,7 +1934,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RoomRequest">
+          <EntitySetMapping Name="RoomRequests">
             <EntityTypeMapping TypeName="QLKSWEBModel.RoomRequest">
               <MappingFragment StoreEntitySet="RoomRequest">
                 <ScalarProperty Name="RoomRequestID" ColumnName="RoomRequestID" />
@@ -1961,7 +1944,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomServices">
-            <EntityTypeMapping TypeName="QLKSWEBModel.RoomServices">
+            <EntityTypeMapping TypeName="QLKSWEBModel.RoomService">
               <MappingFragment StoreEntitySet="RoomServices">
                 <ScalarProperty Name="RoomServicesID" ColumnName="RoomServicesID" />
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
@@ -1969,7 +1952,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RoomType">
+          <EntitySetMapping Name="RoomTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.RoomType">
               <MappingFragment StoreEntitySet="RoomType">
                 <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
@@ -1989,7 +1972,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="QLKSWEBModel.Services">
+            <EntityTypeMapping TypeName="QLKSWEBModel.Service">
               <MappingFragment StoreEntitySet="Services">
                 <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
                 <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
@@ -2009,10 +1992,11 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
                 <ScalarProperty Name="IsShow" ColumnName="IsShow" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ServicesType">
+          <EntitySetMapping Name="ServicesTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.ServicesType">
               <MappingFragment StoreEntitySet="ServicesType">
                 <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
@@ -2025,30 +2009,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Find_AvailableRoom" FunctionName="QLKSWEBModel.Store.Find_AvailableRoom" />
-          <FunctionImportMapping FunctionImportName="Find_AvailableServices" FunctionName="QLKSWEBModel.Store.Find_AvailableServices" />
-          <FunctionImportMapping FunctionImportName="Get_Module" FunctionName="QLKSWEBModel.Store.Get_Module">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLKSWEBModel.Get_Module_Result">
-                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
-                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
-                <ScalarProperty Name="ModuleIcon" ColumnName="ModuleIcon" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Store_Login" FunctionName="QLKSWEBModel.Store.Store_Login">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLKSWEBModel.Store_Login_Result">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
-                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -2062,7 +2023,7 @@ warning 6002: The table/view 'QLKSWEB.dbo.D91T9150' does not have a primary key 
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

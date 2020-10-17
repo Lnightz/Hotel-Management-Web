@@ -17,8 +17,8 @@ namespace HOTELMANAGEWEB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Request()
         {
-            this.EquipRequest = new HashSet<EquipRequest>();
-            this.RoomRequest = new HashSet<RoomRequest>();
+            this.EquipRequests = new HashSet<EquipRequest>();
+            this.RoomRequests = new HashSet<RoomRequest>();
         }
     
         public int RequestID { get; set; }
@@ -36,10 +36,10 @@ namespace HOTELMANAGEWEB.Models
     
         public virtual Equipment Equipment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipRequest> EquipRequest { get; set; }
+        public virtual ICollection<EquipRequest> EquipRequests { get; set; }
         public virtual RequestType RequestType { get; set; }
         public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomRequest> RoomRequest { get; set; }
+        public virtual ICollection<RoomRequest> RoomRequests { get; set; }
     }
 }

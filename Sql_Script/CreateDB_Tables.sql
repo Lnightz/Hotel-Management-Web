@@ -169,7 +169,8 @@ CREATE TABLE Services
 	IsShowHomePage TINYINT DEFAULT 0, -- 0 không show, 1: show
 	IsShow TINYINT DEFAULT 0, -- 0: không show, 1: show
 	Image NVARCHAR(250),
-	IsBookWithRoom TINYINT -- 0: không book với room, 1: book cùng với room
+	IsBookWithRoom TINYINT, -- 0: không book với room, 1: book cùng với room
+	IsSelected BIT NOT NULL DEFAULT 0	
 
 FOREIGN KEY (ServicesTypeID) REFERENCES dbo.ServicesType(ServicesTypeID)
 )

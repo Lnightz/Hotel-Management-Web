@@ -31,7 +31,7 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                var roomlist = db.Room.SqlQuery("SELECT * FROM dbo.Room WHERE SUBSTRING((RoomName),1,1) = @floor ", new SqlParameter("@floor",floor)).ToList();
+                var roomlist = db.Rooms.SqlQuery("SELECT * FROM dbo.Room WHERE SUBSTRING((RoomName),1,1) = @floor ", new SqlParameter("@floor",floor)).ToList();
                 return roomlist;
             }
         }
@@ -40,12 +40,21 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.RoomType
+                return db.RoomTypes
                     .Where(x=>x.Disabled == 0)
                     .ToList();
             }
         }
 
+        public RoomType GetRoomTypeByID (int id)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db.RoomTypes
+                    .Where(x => x.RoomTypeID == id)
+                    .FirstOrDefault();
+            }
+        }
 
     }
 }
