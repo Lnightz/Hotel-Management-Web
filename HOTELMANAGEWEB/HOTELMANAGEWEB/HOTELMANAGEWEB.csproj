@@ -135,11 +135,13 @@
     <Compile Include="Areas\Manage\Controllers\ManageController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\BookingRoomBLL.cs" />
     <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="BLL\ManageBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DTO\AvailableRoomModel.cs" />
+    <Compile Include="DTO\BookingRoomModel.cs" />
     <Compile Include="DTO\BookRoomWithServModel.cs" />
     <Compile Include="DTO\CheckAvailableRooms.cs" />
     <Compile Include="DTO\LoginModel.cs" />
@@ -781,6 +783,9 @@
     </Content>
     <Content Include="Areas\Manage\Views\Manage\Manage-27.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\AddEditServModal.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-35.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-31.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-51.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

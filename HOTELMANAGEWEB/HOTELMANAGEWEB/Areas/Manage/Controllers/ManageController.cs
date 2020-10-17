@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HOTELMANAGEWEB.BLL;
 using HOTELMANAGEWEB.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
@@ -92,5 +93,47 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             }
         }
 
+        [ActionName("Manage-35")]
+        public ActionResult ManageBookingRoom()
+        {
+            ViewBag.ListBookingRoom = BookingRoomBLL.Instance.GetListBooking();
+            return View();
+        }
+
+        public PartialViewResult AddEditBookingRoom()
+        {
+            return PartialView();
+        }
+
+
+        public ActionResult ManageInvoice()
+        {
+            return View();
+        }
+        [ActionName("Manage-31")]
+        public ActionResult ManageAccount()
+        {
+            return View();
+        }
+        [ActionName("Manage-51")]
+        public ActionResult ManageCategory()
+        {
+            return View();
+        }
+
+        public ActionResult ManageNews()
+        {
+            return View();
+        }
+
+        public ActionResult ManageEquip()
+        {
+            return View();
+        }
+
+        public ActionResult ManageRequest()
+        {
+            return View();
+        }
     }
 }
