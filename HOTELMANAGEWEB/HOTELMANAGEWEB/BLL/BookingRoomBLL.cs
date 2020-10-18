@@ -24,14 +24,6 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                //return db
-                //    .BookingRooms
-                //    .Include(x => x.Booking)
-                //    .Include(x => x.Booking.Customer)
-                //    .Include(x => x.Room)
-                //    .Include(x => x.Room.RoomType)
-                //    .ToList();
-
                 return db
                     .Booking
                     .Include(x => x.Customer)
@@ -39,33 +31,20 @@ namespace HOTELMANAGEWEB.BLL
                     .ToList();
             }
         }
-
-        public BookingRoom GetBookingbyID(int? id)
+        public Booking GetBookingbyID(int? id)
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db
-                    .BookingRooms
-                    .Include(x => x.Booking)
-                    .FirstOrDefault(x => x.BookingID == id);
+                var bookinginfo = db
+                                    .Booking
+                                    .FirstOrDefault(x => x.BookingID == id);
+
+                bookinginfo.BookingRooms = db.BookingRooms
+                    .Where(x => x.BookingID == bookinginfo.BookingID)
+                    .ToList();
+                return bookinginfo;
             }
         }
-
-        //public BookRoomWithServModel AddServToVoucher(BookRoomWithServModel model)
-        //{
-        //    using (var db = new QLKSWEBEntities())
-        //    {
-        //        var serv = Session["AddServ"];
-        //        if (serv == null)
-        //        {
-        //            List<BookRoomWithServModel> listserv = new List<BookRoomWithServModel>
-        //        {
-        //            new BookRoomWithServModel (db.Services.Find(model.service.ServicesID))
-        //        }
-        //        }
-        //    }
-        //}
-
 
         public int CheckCustomerInfo(string passport)
         {

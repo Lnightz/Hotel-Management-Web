@@ -146,6 +146,10 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             ViewBag.BookingID = id;
             var account = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
             ViewBag.UserID = account.AccountID;
+            if (id >0)
+            {
+                ViewBag.BookingInfo = BookingRoomBLL.Instance.GetBookingbyID(id);
+            }
             return PartialView();
         }
 

@@ -140,7 +140,11 @@
                                     {
                                         Html.RenderAction("ChoseRoomForBooking", "Manage", new { id = item.BookingID, roomtypeid = item.RoomTypeID });
                                     }
-                                    Html.RenderAction("AddEditBooking", "Manage", new { id = item.BookingID });
+                                    else
+                                    {
+                                        Html.RenderAction("AddEditBooking", "Manage", new { id = item.BookingID });
+                                    }
+
                                 }
                             </tbody>
                             <tfoot>
