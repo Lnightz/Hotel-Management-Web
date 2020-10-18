@@ -176,6 +176,37 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             return PartialView();
         }
 
+        public ActionResult RentRoom(int billid, int roomid)
+        {
+            var bookinginfo = BookingRoomBLL.Instance.GetBookingbyID(billid);
+
+            using (var db = new QLKSWEBEntities())
+            {
+                Bill bill = new Bill()
+                {
+                    CheckinDate = DateTime.Now,
+                    BillStatus = "OPEN",
+                };
+                db.Bills.Add(bill);
+                if (db.SaveChanges() > 0)
+                {
+                    foreach (var item in bookinginfo.BookingServices)
+                    {
+                        BillDetail billDetail = new BillDetail()
+                        {
+                            BillID = bill.BillID,
+                            ServicesID = item.ServicesID,
+                            RoomID  = roomid,
+                        };
+                        db.BillDetails.Add(billDetail);
+                        db.SaveChanges();
+                    }
+                }
+            }
+
+            return View();
+        }
+
         public ActionResult ManageInvoice()
         {
             return View();

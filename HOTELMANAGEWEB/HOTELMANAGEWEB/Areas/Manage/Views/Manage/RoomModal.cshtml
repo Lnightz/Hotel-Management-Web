@@ -149,11 +149,16 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-lg-end">
+                @{ 
+                    if (roominfo.RoomStatus == "BOOKING")
+                    {
+                        <a href="@Url.Action("RentRoom","Manage", new { billid = bookinfo.BookingID , roomid = roominfo.RoomID })" class="btn btn-primary">Nhận phòng</a>
+                    }
+                }
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đổi phòng</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Thêm dịch vụ</button>
                 <button type="button" class="btn btn-primary">Thanh toán</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         <!-- /.modal-content -->
