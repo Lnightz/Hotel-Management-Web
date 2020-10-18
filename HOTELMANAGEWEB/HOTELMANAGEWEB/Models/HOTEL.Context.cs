@@ -32,7 +32,7 @@ namespace HOTELMANAGEWEB.Models
         public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<BookingRoom> BookingRooms { get; set; }
         public virtual DbSet<BookingService> BookingServices { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }

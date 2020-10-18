@@ -14,6 +14,7 @@ namespace HOTELMANAGEWEB.Controllers
     {
         public ActionResult Index()
         {
+            Session.Clear();
             ViewBag.IndexActive = "active";
             return View();
         }
@@ -150,14 +151,12 @@ namespace HOTELMANAGEWEB.Controllers
             {
                 var roomtypeID = TempData["RoomTypeID"];
 
+                Session["RoomTypeID"] = roomtypeID;
+
                 ViewBag.BookingInfo = TempData["BookingInfor"];
 
+                Session["BookingInfo"] = ViewBag.BookingInfo;
                 ViewBag.RoomType = ManageRoomBLL.Instance.GetRoomTypeByID((int)roomtypeID);
-            }
-
-            if (TempData["BookingResult"] != null)
-            {
-                ViewBag.BookingResult = TempData["BookingResult"].ToString();
             }
 
             return View();
@@ -188,7 +187,7 @@ namespace HOTELMANAGEWEB.Controllers
                     if (db.SaveChanges() < 0)
                     {
                         TempData["BookingResult"] = "FAIL";
-                        return RedirectToAction("ConfirmInfo");
+                        return View();
                     }
                 }
             }
@@ -209,14 +208,14 @@ namespace HOTELMANAGEWEB.Controllers
                     if (db.SaveChanges() < 0)
                     {
                         TempData["BookingResult"] = "FAIL";
-                        return RedirectToAction("ConfirmInfo");
+                        return View();
                     }
                 }
             }
 
-            var roomtypeid = TempData["RoomTypeID"];
+            var roomtypeid = Session["RoomTypeID"];
 
-            var bookinfo = (CheckAvailableRooms)TempData["BookingInfor"];
+            var bookinfo = (CheckAvailableRooms)Session["BookingInfo"];
 
             var listServ = (List<Service>)Session["AddServ"];
 
@@ -235,7 +234,7 @@ namespace HOTELMANAGEWEB.Controllers
                     CustomerID = cusinfo.CustomerID,
                     DateCreated = DateTime.Now,
                 };
-                db.Bookings.Add(booking);
+                db.Booking.Add(booking);
                 if (db.SaveChanges() > 0)
                 {
                     foreach (var item in listServ)
@@ -249,22 +248,22 @@ namespace HOTELMANAGEWEB.Controllers
                         if (db.SaveChanges() < 0)
                         {
                             TempData["BookingResult"] = "FAIL";
-                            return RedirectToAction("ConfirmInfo");
+                            return View();
                         }
                     }
+                    Session.Clear();
                     TempData["BookingResult"] = "SUCCESS";
-                    return RedirectToAction("ConfirmInfo");
+                    return View();
                 }
                 TempData["BookingResult"] = "FAIL";
-                return RedirectToAction("ConfirmInfo");
+                return View();
             }
         }
 
         public ActionResult CancelBooking()
         {
-            Session.Remove("AddServ");
-            TempData.Remove("RoomTypeID");
-            TempData.Remove("BookingInfor");
+            Session.Clear();
+            TempData.Clear();
             return RedirectToAction("Index");
         }
     }

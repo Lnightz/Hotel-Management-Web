@@ -1,0 +1,16 @@
+﻿@model IEnumerable<HOTELMANAGEWEB.Models.ModuleList>
+
+@{
+    foreach (var item in Model)
+    {
+        <li class="nav-item">
+            <a href="@Url.Action("Module", "ListModule", new { id = item.ModuleID})" class="nav-link">
+                @Html.Raw(item.ModuleIcon)
+                <p>
+                    @item.ModuleName
+                </p>
+            </a>
+        </li>
+    }
+}
+

@@ -20,16 +20,22 @@ namespace HOTELMANAGEWEB.BLL
         }
 
         private BookingRoomBLL() { }
-        public List<BookingRoom> GetListBooking()
+        public List<Booking> GetListBooking()
         {
             using (var db = new QLKSWEBEntities())
             {
+                //return db
+                //    .BookingRooms
+                //    .Include(x => x.Booking)
+                //    .Include(x => x.Booking.Customer)
+                //    .Include(x => x.Room)
+                //    .Include(x => x.Room.RoomType)
+                //    .ToList();
+
                 return db
-                    .BookingRooms
-                    .Include(x => x.Booking)
-                    .Include(x => x.Booking.Customer)
-                    .Include(x => x.Room)
-                    .Include(x => x.Room.RoomType)
+                    .Booking
+                    .Include(x => x.Customer)
+                    .Include(x => x.RoomType)
                     .ToList();
             }
         }
@@ -92,6 +98,18 @@ namespace HOTELMANAGEWEB.BLL
                 return db
                         .Services
                         .FirstOrDefault(x => x.ServicesID == id);
+            }
+        }
+
+        public List<Room> GetRoomOpenWithTypeID(int? id)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db
+                    .Rooms
+                    .Include(x => x.RoomType)
+                    .Where(x => x.RoomStatus == "OPEN" && x.RoomTypeID == id)
+                    .ToList();
             }
         }
     }

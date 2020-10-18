@@ -56,5 +56,12 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
+        public Room GetRoomByID (int id)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db.Rooms.FirstOrDefault(x => x.RoomID == id);
+            }
+        }
     }
 }

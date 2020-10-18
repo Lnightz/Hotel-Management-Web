@@ -787,6 +787,9 @@
     <Content Include="Models\HOTEL.edmx.diagram">
       <DependentUpon>HOTEL.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Manage\Views\Manage\ChoseRoomForBooking.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\AddEditBooking.cshtml" />
+    <Content Include="Areas\Manage\Views\ListModule\ListModule.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -823,6 +826,7 @@
     <Content Include="Views\Home\BookingServWithRoom.cshtml" />
     <Content Include="Views\Home\ConfirmInfo.cshtml" />
     <Content Include="Views\Home\EditorTemplates\BookingServWithRoom.cshtml" />
+    <Content Include="Views\Home\BookingRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

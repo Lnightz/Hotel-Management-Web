@@ -3,46 +3,10 @@
     ViewBag.Title = "Danh sách phiếu đặt phòng";
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
 
-    var listbookingroom = (List<HOTELMANAGEWEB.Models.BookingRoom>)ViewBag.ListBookingRoom;
+    var listbookingroom = (List<HOTELMANAGEWEB.Models.Booking>)ViewBag.ListBookingRoom;
 
 }
 
-@{ if (ViewBag.Message != null)
-    {
-        if (ViewBag.Message == "SAVE")
-        {
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                Success alert preview. This alert is dismissable.
-            </div> }
-        else if (ViewBag.Message == "DELETED")
-        {
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                Success alert preview. This alert is dismissable.
-            </div> }
-        else if (ViewBag.Message == "DELETEFAIL")
-        {
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
-                entire
-                soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            </div> }
-        else if (ViewBag.Message == "SAVEFAIL")
-        {
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
-                entire
-                soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            </div> }
-
-    } }
 
 <section class="content-header roboto-fonts">
     <div class="container-fluid">
@@ -56,7 +20,7 @@
                                 <i class="fas fa-plus"></i>
                             </span> Thêm đặt phòng
                         </button>
-                        Html.RenderAction("AddEditServModal", "Manage", new { id = -1 });
+                        Html.RenderAction("AddEditBooking", "Manage", new { id = -1 });
                     }
                 }
             </div>
@@ -64,6 +28,30 @@
     </div><!-- /.container-fluid -->
 </section>
 
+
+@{
+    if (ViewBag.Message != null)
+    {
+        if (ViewBag.Message == "BOOKSUCCES")
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                Success alert preview. This alert is dismissable.
+            </div>
+        }
+        else if (ViewBag.Message == "BOOKFAIL")
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
+                entire
+                soul, like these sweet mornings of spring which I enjoy with my whole heart.
+            </div>
+        }
+    }
+}
 
 <section class="content">
     <!-- Default box -->
@@ -97,11 +85,19 @@
                                 @foreach (var item in listbookingroom)
                                 {
                                     <tr>
-                                        <td>@item.Booking.Customer.CustomerName</td>
-                                        <td>@item.Room.RoomType.RoomTypeName</td>
-                                        <td>@item.Booking.CheckinDate - @item.Booking.CheckoutDate</td>
-                                        <td>@item.Booking.BookingStatus</td>
+                                        <td>@item.Customer.CustomerName</td>
+                                        <td>@item.RoomType.RoomTypeName</td>
+                                        <td>@Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@item.BookingStatus</td>
                                         <td class="text-center">
+                                            @{
+                                                if (item.BookingStatus == "OPEN")
+                                                {
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-xl-choseroom-@item.BookingID">
+                                                        <i class="fas fa-door-open"></i> Chọn phòng
+                                                    </button>
+                                                }
+                                            }
                                             @*<a class="btn btn-warning btn-sm" href="@Url.Action("AddEditServModal", "Manage", new { id = item.ServicesID })">
                                                     <i class="fas fa-pencil-alt"></i> Chi tiết
                                                 </a>*@
@@ -140,7 +136,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    Html.RenderAction("AddEditServModal", "Manage", new { id = item.BookingID });
+                                    if (item.BookingStatus == "OPEN")
+                                    {
+                                        Html.RenderAction("ChoseRoomForBooking", "Manage", new { id = item.BookingID, roomtypeid = item.RoomTypeID });
+                                    }
+                                    Html.RenderAction("AddEditBooking", "Manage", new { id = item.BookingID });
                                 }
                             </tbody>
                             <tfoot>

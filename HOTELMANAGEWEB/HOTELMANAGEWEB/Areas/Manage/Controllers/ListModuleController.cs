@@ -25,5 +25,10 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             string actionName = string.Format("Manage-{0}", id);
             return RedirectToAction(actionName, "Manage");
         }
+
+        public PartialViewResult ListModule()
+        {
+            return PartialView(ManageBLL.Instance.GetModules(User.Identity.Name));
+        }
     }
 }

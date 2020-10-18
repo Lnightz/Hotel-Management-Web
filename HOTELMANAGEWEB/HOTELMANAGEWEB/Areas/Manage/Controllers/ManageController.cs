@@ -20,7 +20,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         public ActionResult ManageRoom()
         {
             ViewBag.maxFloor = ManageRoomBLL.Instance.GetMaxFloor();
-            
+
             return View();
         }
         [ChildActionOnly]
@@ -32,7 +32,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ActionName("Manage-27")]
         public ActionResult ManageServices()
         {
-            if ( TempData["DataResult"] != null)
+            if (TempData["DataResult"] != null)
             {
                 ViewBag.Message = TempData["DataResult"].ToString();
             }
@@ -78,7 +78,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteServ (int id)
+        public ActionResult DeleteServ(int id)
         {
             var result = ManageBLL.Instance.DeleteServ(id);
             if (result == 1)
@@ -96,15 +96,58 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ActionName("Manage-35")]
         public ActionResult ManageBookingRoom()
         {
+            if (TempData["ChoseRoomStatus"] != null)
+            {
+                ViewBag.Message = TempData["ChoseRoomStatus"].ToString();
+            }
             ViewBag.ListBookingRoom = BookingRoomBLL.Instance.GetListBooking();
             return View();
         }
-
-        public PartialViewResult AddEditBookingRoom()
+        [ChildActionOnly]
+        public PartialViewResult ChoseRoomForBooking(int id, int roomtypeid)
         {
+            ViewBag.ListRoomOpen = BookingRoomBLL.Instance.GetRoomOpenWithTypeID(roomtypeid);
+            ViewBag.BookingID = id;
+            Session["BookingID"] = id;
             return PartialView();
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookRoomChose(Room room)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                Room choseroom = ManageRoomBLL.Instance.GetRoomByID(room.RoomID);
+                choseroom.RoomStatus = "BOOKING";
+                if (db.SaveChanges() < 0)
+                {
+                    TempData["ChoseRoomStatus"] = "BOOKFAIL";
+                    return RedirectToAction("Manage-35");
+                }
+                BookingRoom booking = new BookingRoom()
+                {
+                    RoomID = room.RoomID,
+                    BookingID = (int)Session["BookingID"],
+                    IsBooking = 1
+                };
+                db.BookingRooms.Add(booking);
+                if (db.SaveChanges() < 0)
+                {
+                    TempData["ChoseRoomStatus"] = "BOOKFAIL";
+                    return RedirectToAction("Manage-35");
+                }
+                TempData["ChoseRoomStatus"] = "BOOKSUCCES";
+                return RedirectToAction("Manage-35");
+            }
+        }
+        public PartialViewResult AddEditBooking(int id)
+        {
+            ViewBag.ListRoomOpen = BookingRoomBLL.Instance.GetRoomOpenWithTypeID(null);
+            ViewBag.BookingID = id;
+            var account = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+            ViewBag.UserID = account.AccountID;
+            return PartialView();
+        }
 
         public ActionResult ManageInvoice()
         {

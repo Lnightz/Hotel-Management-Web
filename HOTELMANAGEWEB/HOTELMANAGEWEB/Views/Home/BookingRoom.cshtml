@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "BookingRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('../../Assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-end">
+                <div class="col-md-10 col-sm-12 ftco-animate mb-4">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="~/Views/Home/Index.cshtml">Home</a></span> <span>Booking</span></p>
+                    <h1 class="mb-3">Booking</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@{
+    if (TempData["BookingResult"].ToString() == "SUCCESS")
+    {
+        <div class="container m-4 p-4">
+            <div class="row justify-content-center">
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                    Success alert preview. This alert is dismissable.
+                </div>
+            </div>
+        </div>
+    }
+    else if (TempData["BookingResult"].ToString() == "FAIL")
+    {
+        <div class="container m-4 p-4">
+            <div class="row justify-content-center">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                    Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
+                    entire
+                    soul, like these sweet mornings of spring which I enjoy with my whole heart.
+                </div>
+            </div>
+        </div>
+    }
+}
