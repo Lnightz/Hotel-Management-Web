@@ -78,7 +78,7 @@ D:\GitHub\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANA
 D:\GitHub\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.dll
 D:\GitHub\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.pdb
 D:\GitHub\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\obj\Debug\HOTELMANAGEWEB.csprojAssemblyReference.cache
-E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\EntityFramework.xml
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\HOTELMANAGEWEB.dll.config
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\HOTELMANAGEWEB.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\HOTELMANAGEWEB.pdb
@@ -93,6 +93,7 @@ E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeA
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeAnalysis.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.CSharp.Core.targets
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
@@ -141,7 +142,6 @@ E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.WebPages.De
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.WebPages.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.WebPages.Razor.dll
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\WebGrease.dll
-E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\EntityFramework.xml
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\EntityFramework.SqlServer.xml
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.Helpers.xml
 E:\Hotel-Management-Web\HOTELMANAGEWEB\HOTELMANAGEWEB\bin\System.Web.Mvc.xml

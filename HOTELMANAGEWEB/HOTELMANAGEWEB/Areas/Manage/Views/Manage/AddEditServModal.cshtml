@@ -35,7 +35,7 @@
                                                     @{
                                                         foreach (var item in listservtype)
                                                         {
-                                                            <option value="@item.ServicesTypeID">@item.ServicesTypeName</option>
+                                                            <option value="@item.ServicesTypeID" selected="">@item.ServicesTypeName</option>
                                                         }
                                                     }
                                                 </select>
@@ -126,7 +126,8 @@
                                             @{
                                                 foreach (var item in listservtype)
                                                 {
-                                                    <option value="@item.ServicesTypeID">@item.ServicesTypeName</option>
+                                                    var selected = item.ServicesTypeID == serv.ServicesTypeID ? "selected" : "";
+                                                    <option value="@item.ServicesTypeID" selected="@selected">@item.ServicesTypeName</option>
                                                 }
                                             }
                                         </select>

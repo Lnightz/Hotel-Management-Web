@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HOTELMANAGEWEB.BLL;
 using HOTELMANAGEWEB.Models;
 using Microsoft.Ajax.Utilities;
+using System.Data.Entity;
 
 namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
@@ -24,9 +25,19 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             return View();
         }
         [ChildActionOnly]
-        public ActionResult RoomModal(int id)
+        public PartialViewResult RoomModal(int id)
         {
-            ViewBag.RoomID = id;
+            var roominfo = ManageRoomBLL.Instance.GetRoomByID(id);
+            ViewBag.Roominfo = roominfo;
+
+            if (roominfo.RoomStatus == "BOOKING" || roominfo.RoomStatus == "RENTED")
+            {
+                var bookingid = ManageRoomBLL.Instance.GetBookingbyRoomID(id);
+                var bookinfo = BookingRoomBLL.Instance.GetBookingbyID(bookingid.BookingID);
+
+                ViewBag.BookingInfo = bookinfo;
+
+            }
             return PartialView("");
         }
         [ActionName("Manage-27")]
@@ -117,26 +128,33 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         {
             using (var db = new QLKSWEBEntities())
             {
+                int bookingid = (int)Session["BookingID"];
                 Room choseroom = ManageRoomBLL.Instance.GetRoomByID(room.RoomID);
                 choseroom.RoomStatus = "BOOKING";
-                if (db.SaveChanges() < 0)
+                db.Entry(choseroom).State = EntityState.Modified;
+                if (db.SaveChanges() > 0)
                 {
-                    TempData["ChoseRoomStatus"] = "BOOKFAIL";
-                    return RedirectToAction("Manage-35");
+                    Booking bookingvoucher = BookingRoomBLL.Instance.GetBookingbyID(bookingid);
+                    bookingvoucher.BookingStatus = "BOOKING";
+                    db.Entry(bookingvoucher).State = EntityState.Modified;
+                    if (db.SaveChanges() > 0)
+                    {
+                        BookingRoom booking = new BookingRoom()
+                        {
+                            RoomID = room.RoomID,
+                            BookingID = bookingid,
+                            IsBooking = 1
+                        };
+                        db.BookingRooms.Add(booking);
+                        if (db.SaveChanges() > 0)
+                        {
+                            TempData["ChoseRoomStatus"] = "BOOKSUCCES";
+                            return RedirectToAction("Manage-35");
+                        }
+                    }
                 }
-                BookingRoom booking = new BookingRoom()
-                {
-                    RoomID = room.RoomID,
-                    BookingID = (int)Session["BookingID"],
-                    IsBooking = 1
-                };
-                db.BookingRooms.Add(booking);
-                if (db.SaveChanges() < 0)
-                {
-                    TempData["ChoseRoomStatus"] = "BOOKFAIL";
-                    return RedirectToAction("Manage-35");
-                }
-                TempData["ChoseRoomStatus"] = "BOOKSUCCES";
+                
+                TempData["ChoseRoomStatus"] = "BOOKFAIL";
                 return RedirectToAction("Manage-35");
             }
         }
@@ -146,10 +164,15 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             ViewBag.BookingID = id;
             var account = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
             ViewBag.UserID = account.AccountID;
-            if (id >0)
-            {
-                ViewBag.BookingInfo = BookingRoomBLL.Instance.GetBookingbyID(id);
-            }
+            ViewBag.BookingInfo = BookingRoomBLL.Instance.GetBookingbyID(id);
+            return PartialView();
+        }
+
+        public PartialViewResult AddBooking()
+        {
+            ViewBag.ListRoomOpen = BookingRoomBLL.Instance.GetRoomOpenWithTypeID(null);
+            var account = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+            ViewBag.UserID = account.AccountID;
             return PartialView();
         }
 

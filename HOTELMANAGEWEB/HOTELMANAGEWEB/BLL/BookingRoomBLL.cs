@@ -37,11 +37,22 @@ namespace HOTELMANAGEWEB.BLL
             {
                 var bookinginfo = db
                                     .Booking
+                                    .Include(x => x.BookingRooms)
+                                    .Include(x=>x.BookingServices)
+                                    .Include(x=> x.RoomType)
+                                    .Include(x=> x.Customer)
                                     .FirstOrDefault(x => x.BookingID == id);
 
-                bookinginfo.BookingRooms = db.BookingRooms
+                bookinginfo.BookingRooms = db.BookingRooms.Include(x => x.Room)
                     .Where(x => x.BookingID == bookinginfo.BookingID)
                     .ToList();
+
+                bookinginfo.BookingServices = db.BookingServices
+                                            .Include(x => x.Service)
+                                            .Include(x=>x.Service.ServicesType)
+                                            .Where(x => x.BookingID == bookinginfo.BookingID)
+                                            .ToList();
+
                 return bookinginfo;
             }
         }

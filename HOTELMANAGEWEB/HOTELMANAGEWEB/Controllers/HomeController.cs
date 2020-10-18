@@ -3,6 +3,7 @@ using HOTELMANAGEWEB.DTO;
 using HOTELMANAGEWEB.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -205,6 +206,7 @@ namespace HOTELMANAGEWEB.Controllers
                     oldcus.CardNo = customer.CardNo;
                     oldcus.NameOnCard = customer.NameOnCard;
                     oldcus.ExpirationDate = customer.ExpirationDate;
+                    db.Entry(oldcus).State = EntityState.Modified;
                     if (db.SaveChanges() < 0)
                     {
                         TempData["BookingResult"] = "FAIL";

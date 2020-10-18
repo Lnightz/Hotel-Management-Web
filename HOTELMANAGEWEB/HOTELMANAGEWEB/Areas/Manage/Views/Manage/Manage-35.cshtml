@@ -20,7 +20,7 @@
                                 <i class="fas fa-plus"></i>
                             </span> Thêm đặt phòng
                         </button>
-                        Html.RenderAction("AddEditBooking", "Manage", new { id = -1 });
+                        Html.RenderAction("AddBooking", "Manage");
                     }
                 }
             </div>
@@ -87,7 +87,7 @@
                                     <tr>
                                         <td>@item.Customer.CustomerName</td>
                                         <td>@item.RoomType.RoomTypeName</td>
-                                        <td>@Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @Convert.ToDateTime(item.CheckoutDate).ToString("dd/MM/yyyy")</td>
                                         <td>@item.BookingStatus</td>
                                         <td class="text-center">
                                             @{
@@ -136,15 +136,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    if (item.BookingStatus == "OPEN")
-                                    {
-                                        Html.RenderAction("ChoseRoomForBooking", "Manage", new { id = item.BookingID, roomtypeid = item.RoomTypeID });
-                                    }
-                                    else
-                                    {
-                                        Html.RenderAction("AddEditBooking", "Manage", new { id = item.BookingID });
-                                    }
-
                                 }
                             </tbody>
                             <tfoot>
@@ -166,5 +157,15 @@
     </div>
     <!-- /.card -->
 </section>
+@foreach (var item in listbookingroom)
+{
+    Html.RenderAction("AddEditBooking", "Manage", new { id = item.BookingID });
+}
 
-
+@foreach (var item in listbookingroom)
+{
+    if (item.BookingStatus == "OPEN")
+    {
+        Html.RenderAction("ChoseRoomForBooking", "Manage", new { id = item.BookingID, roomtypeid = item.RoomTypeID });
+    }
+}

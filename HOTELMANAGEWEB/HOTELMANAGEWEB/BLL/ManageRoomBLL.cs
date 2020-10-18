@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using HOTELMANAGEWEB.Models;
+using System.Data.Entity;
 
 namespace HOTELMANAGEWEB.BLL
 {
@@ -60,7 +61,22 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Rooms.FirstOrDefault(x => x.RoomID == id);
+                return db.Rooms
+                    .Include(x => x.RoomType)
+                    .FirstOrDefault(x => x.RoomID == id);
+            }
+        }
+
+
+        public BookingRoom GetBookingbyRoomID(int id)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db.BookingRooms
+                    .Include(x => x.Booking)
+                    .Include(x => x.Room)
+                    .Where(x => x.RoomID == id && x.IsBooking == 1)
+                    .FirstOrDefault();
             }
         }
     }

@@ -86,7 +86,7 @@
                                             <p class="hotel-box-name" style="@Html.Raw(color)">@rooms.RoomName</p>
                                         </button>
                                     </div>
-                                    @Html.Partial("RoomModal",rooms.RoomID)
+                                    Html.RenderAction("RoomModal", "Manage", new { id = rooms.RoomID });
                                 }
                                 }
                         </div>
