@@ -1,8 +1,28 @@
-﻿
-@{
-    ViewBag.Title = "ManageCategory";
+﻿@{
+    ViewBag.Title = "Quản lý danh mục";
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
 }
 
+@{
+    Html.RenderAction("Index", "AccountTypes");
+}
 
+@{
+    Html.RenderAction("Index", "ServicesTypes");
+}
 
+@{
+    Html.RenderAction("Index", "EquipmentTypes");
+}
+
+@{
+    Html.RenderAction("Index", "Promotions");
+}
+
+@{
+    Html.RenderAction("Index", "RoomTypes");
+}
+
+@{
+    Html.RenderAction("Index", "RequestTypes");
+}

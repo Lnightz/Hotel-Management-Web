@@ -1,0 +1,112 @@
+﻿@model IEnumerable<HOTELMANAGEWEB.Models.RoomType>
+
+@{
+    ViewBag.Title = "Quản lý loại phòng";
+    Layout = null;
+}
+
+<section class="content-header roboto-fonts">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 d-flex">
+                <h1 class="">Quản lý loại phòng</h1>
+                @{ if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary ml-3" })
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title roboto-fonts">Danh sách loại phòng</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RoomTypeName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RoomTypePrices)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RoomTypeDescription)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Disabled)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsPay)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsShowHomePage)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsShow)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RoomTypeImage)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomTypeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomTypePrices)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomTypeDescription)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Disabled)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsPay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsShowHomePage)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsShow)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomTypeImage)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.RoomTypeID }, new { @class = "btn btn-warning btn-sm" })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.RoomTypeID }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
