@@ -22,7 +22,17 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                string maxFloor = db.Database.SqlQuery<string>("SELECT SUBSTRING(MAX(RoomName),1,1) AS MaxFloor FROM dbo.Room").FirstOrDefault();
+                string maxFloor;
+                try
+                {
+                    maxFloor = db.Database.SqlQuery<string>("SELECT SUBSTRING(MAX(RoomName),1,1) AS MaxFloor FROM dbo.Room").FirstOrDefault();
+
+                }
+                catch (Exception)
+                {
+
+                    maxFloor = string.Empty;
+                }
 
                 return maxFloor;
             }
