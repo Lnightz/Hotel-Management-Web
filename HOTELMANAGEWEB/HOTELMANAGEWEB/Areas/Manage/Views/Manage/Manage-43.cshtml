@@ -1,0 +1,10 @@
+﻿@using System.Globalization;
+@{
+    ViewBag.Title = "Danh sách thiết bị";
+    Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+@{
+    Html.RenderAction("Index", "Equipments");
+}

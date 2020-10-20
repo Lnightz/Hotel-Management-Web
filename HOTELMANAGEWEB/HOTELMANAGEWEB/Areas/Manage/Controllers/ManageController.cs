@@ -17,6 +17,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         {
             return View();
         }
+
         [ActionName("Manage-19")]
         public ActionResult ManageRoom()
         {
@@ -24,6 +25,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
             return View();
         }
+
         [ChildActionOnly]
         public PartialViewResult RoomModal(int id)
         {
@@ -40,6 +42,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             }
             return PartialView("");
         }
+
         [ActionName("Manage-27")]
         public ActionResult ManageServices()
         {
@@ -114,6 +117,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             ViewBag.ListBookingRoom = BookingRoomBLL.Instance.GetListBooking();
             return View();
         }
+
         [ChildActionOnly]
         public PartialViewResult ChoseRoomForBooking(int id, int roomtypeid)
         {
@@ -122,6 +126,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             Session["BookingID"] = id;
             return PartialView();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BookRoomChose(Room room)
@@ -211,13 +216,27 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         {
             return View();
         }
+
         [ActionName("Manage-31")]
         public ActionResult ManageAccount()
         {
             return View();
         }
+
+        [ActionName("Manage-43")]
+        public ActionResult ManageEquipments()
+        {
+            return View();
+        }
+
         [ActionName("Manage-51")]
         public ActionResult ManageCategory()
+        {
+            return View();
+        }
+
+        [ActionName("Manage-55")]
+        public ActionResult ManagePromotions()
         {
             return View();
         }
