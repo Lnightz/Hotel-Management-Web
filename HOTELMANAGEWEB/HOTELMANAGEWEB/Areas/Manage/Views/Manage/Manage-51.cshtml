@@ -3,6 +3,7 @@
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 @{
     Html.RenderAction("Index", "AccountTypes");
 }
@@ -16,13 +17,10 @@
 }
 
 @{
-    Html.RenderAction("Index", "Promotions");
-}
-
-@{
     Html.RenderAction("Index", "RoomTypes");
 }
 
 @{
     Html.RenderAction("Index", "RequestTypes");
 }
+

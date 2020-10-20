@@ -39,7 +39,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             {
                 db.Promotions.Add(promotion);
                 db.SaveChanges();
-                return RedirectToAction("Manage-51", "Manage");
+                return RedirectToAction("Manage-55", "Manage");
             }
 
             ViewBag.CreatedUserID = new SelectList(db.Accounts, "AccountID", "UserName", promotion.CreatedUserID);
@@ -73,7 +73,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             {
                 db.Entry(promotion).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Manage-51", "Manage");
+                return RedirectToAction("Manage-55", "Manage");
             }
             ViewBag.CreatedUserID = new SelectList(db.Accounts, "AccountID", "UserName", promotion.CreatedUserID);
             return View(promotion);
@@ -85,7 +85,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             Promotion promotion = db.Promotions.Find(id);
             db.Promotions.Remove(promotion);
             db.SaveChanges();
-            return RedirectToAction("Manage-51", "Manage");
+            return RedirectToAction("Manage-55", "Manage");
         }
 
         protected override void Dispose(bool disposing)

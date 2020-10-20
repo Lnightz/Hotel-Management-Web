@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Manage\Controllers\AccountController.cs" />
     <Compile Include="Areas\Manage\Controllers\AccountTypesController.cs" />
+    <Compile Include="Areas\Manage\Controllers\EquipmentsController.cs" />
     <Compile Include="Areas\Manage\Controllers\EquipmentTypesController.cs" />
     <Compile Include="Areas\Manage\Controllers\ListModuleController.cs" />
     <Compile Include="Areas\Manage\Controllers\ManageController.cs" />
@@ -817,6 +818,11 @@
     <Content Include="Areas\Manage\Views\Promotions\Create.cshtml" />
     <Content Include="Areas\Manage\Views\Promotions\Edit.cshtml" />
     <Content Include="Areas\Manage\Views\Promotions\Index.cshtml" />
+    <Content Include="Areas\Manage\Views\Equipments\Create.cshtml" />
+    <Content Include="Areas\Manage\Views\Equipments\Edit.cshtml" />
+    <Content Include="Areas\Manage\Views\Equipments\Index.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-43.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-55.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
