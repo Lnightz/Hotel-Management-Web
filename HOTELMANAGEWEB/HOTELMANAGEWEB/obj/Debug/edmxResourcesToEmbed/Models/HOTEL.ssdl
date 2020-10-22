@@ -7,7 +7,7 @@
     <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Disabled" Type="tinyint" Nullable="false" />
+    <Property Name="Disabled" Type="bit" Nullable="false" />
     <Property Name="AccountTypeID" Type="int" Nullable="false" />
     <Property Name="Image" Type="nvarchar" MaxLength="250" />
   </EntityType>
@@ -282,12 +282,12 @@
     <Property Name="ModifyUserID" Type="int" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DateModify" Type="datetime" />
-    <Property Name="IsAvailable" Type="tinyint" />
-    <Property Name="IsPay" Type="tinyint" />
-    <Property Name="IsShowHomePage" Type="tinyint" />
-    <Property Name="IsShow" Type="tinyint" />
+    <Property Name="IsAvailable" Type="bit" />
+    <Property Name="IsPay" Type="bit" />
+    <Property Name="IsShowHomePage" Type="bit" />
+    <Property Name="IsShow" Type="bit" />
     <Property Name="Image" Type="nvarchar" MaxLength="250" />
-    <Property Name="IsBookWithRoom" Type="tinyint" />
+    <Property Name="IsBookWithRoom" Type="bit" />
     <Property Name="IsSelected" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ServicesType">

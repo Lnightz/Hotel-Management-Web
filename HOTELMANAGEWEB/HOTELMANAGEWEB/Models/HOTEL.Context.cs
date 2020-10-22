@@ -20,6 +20,7 @@ namespace HOTELMANAGEWEB.Models
         public QLKSWEBEntities()
             : base("name=QLKSWEBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,12 +28,11 @@ namespace HOTELMANAGEWEB.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountPermission> AccountPermissions { get; set; }
         public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
-        public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<BookingRoom> BookingRooms { get; set; }
         public virtual DbSet<BookingService> BookingServices { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
@@ -48,8 +48,9 @@ namespace HOTELMANAGEWEB.Models
         public virtual DbSet<RoomRequest> RoomRequests { get; set; }
         public virtual DbSet<RoomService> RoomServices { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<ServicesType> ServicesTypes { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
     
         public virtual int Find_AvailableRoom(Nullable<int> numPerson, Nullable<System.DateTime> checkinDate, Nullable<System.DateTime> checkoutDate)
         {

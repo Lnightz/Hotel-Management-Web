@@ -34,12 +34,12 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<int> ModifyUserID { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModify { get; set; }
-        public Nullable<byte> IsAvailable { get; set; }
-        public Nullable<byte> IsPay { get; set; }
-        public Nullable<byte> IsShowHomePage { get; set; }
-        public Nullable<byte> IsShow { get; set; }
+        public Nullable<bool> IsAvailable { get; set; }
+        public Nullable<bool> IsPay { get; set; }
+        public Nullable<bool> IsShowHomePage { get; set; }
+        public Nullable<bool> IsShow { get; set; }
         public string Image { get; set; }
-        public Nullable<byte> IsBookWithRoom { get; set; }
+        public Nullable<bool> IsBookWithRoom { get; set; }
         public bool IsSelected { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,7 +12,7 @@
           <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Disabled" Type="tinyint" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
           <Property Name="AccountTypeID" Type="int" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
         </EntityType>
@@ -287,12 +287,12 @@
           <Property Name="ModifyUserID" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="DateModify" Type="datetime" />
-          <Property Name="IsAvailable" Type="tinyint" />
-          <Property Name="IsPay" Type="tinyint" />
-          <Property Name="IsShowHomePage" Type="tinyint" />
-          <Property Name="IsShow" Type="tinyint" />
+          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="IsPay" Type="bit" />
+          <Property Name="IsShowHomePage" Type="bit" />
+          <Property Name="IsShow" Type="bit" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
-          <Property Name="IsBookWithRoom" Type="tinyint" />
+          <Property Name="IsBookWithRoom" Type="bit" />
           <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ServicesType">
@@ -800,22 +800,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLKSWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="AccountID" />
-          </Key>
-          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Disabled" Type="Byte" Nullable="false" />
-          <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AccountType" Relationship="Self.FK__Account__Image__15502E78" FromRole="Account" ToRole="AccountType" />
-          <NavigationProperty Name="AccountPermissions" Relationship="Self.FK__AccountPe__Accou__6FE99F9F" FromRole="Account" ToRole="AccountPermission" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__DateModify__5165187F" FromRole="Account" ToRole="Bill" />
-          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__DateMod__4BAC3F29" FromRole="Account" ToRole="Booking" />
-          <NavigationProperty Name="Promotions" Relationship="Self.FK__Promotion__DateM__1920BF5C" FromRole="Account" ToRole="Promotion" />
-        </EntityType>
         <EntityType Name="AccountPermission">
           <Key>
             <PropertyRef Name="AccPerID" />
@@ -824,8 +808,8 @@
           <Property Name="AccountID" Type="Int32" />
           <Property Name="ModuleID" Type="Int32" />
           <Property Name="Permission" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__AccountPe__Accou__6FE99F9F" FromRole="AccountPermission" ToRole="Account" />
           <NavigationProperty Name="ModuleList" Relationship="Self.FK__AccountPe__Modul__70DDC3D8" FromRole="AccountPermission" ToRole="ModuleList" />
+          <NavigationProperty Name="Account" Relationship="QLKSWEBModel.FK__AccountPe__Accou__70DDC3D8" FromRole="AccountPermission" ToRole="Account" />
         </EntityType>
         <EntityType Name="AccountType">
           <Key>
@@ -834,7 +818,7 @@
           <Property Name="AccountTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountTypeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Disabled" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK__Account__Image__15502E78" FromRole="AccountType" ToRole="Account" />
+          <NavigationProperty Name="Accounts" Relationship="QLKSWEBModel.FK__Account__Image__15502E78" FromRole="AccountType" ToRole="Account" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -852,8 +836,8 @@
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Bill__DateModify__5165187F" FromRole="Bill" ToRole="Account" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__BillI__5629CD9C" FromRole="Bill" ToRole="BillDetail" />
+          <NavigationProperty Name="Account" Relationship="QLKSWEBModel.FK__Bill__DateModify__52593CB8" FromRole="Bill" ToRole="Account" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -868,7 +852,7 @@
           <Property Name="BillID" Type="Int32" />
           <NavigationProperty Name="Bill" Relationship="Self.FK__BillDetai__BillI__5629CD9C" FromRole="BillDetail" ToRole="Bill" />
           <NavigationProperty Name="Room" Relationship="Self.FK__BillDetai__RoomI__5535A963" FromRole="BillDetail" ToRole="Room" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="BillDetail" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="QLKSWEBModel.FK__BillDetai__Servi__5535A963" FromRole="BillDetail" ToRole="Service" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -888,11 +872,11 @@
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Booking__DateMod__4BAC3F29" FromRole="Booking" ToRole="Account" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__Custome__4CA06362" FromRole="Booking" ToRole="Customer" />
           <NavigationProperty Name="RoomType" Relationship="Self.FK__Booking__RoomTyp__4D94879B" FromRole="Booking" ToRole="RoomType" />
           <NavigationProperty Name="BookingRooms" Relationship="Self.FK__BookingRo__IsBoo__59FA5E80" FromRole="Booking" ToRole="BookingRoom" />
           <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__IsBoo__5EBF139D" FromRole="Booking" ToRole="BookingServices" />
+          <NavigationProperty Name="Account" Relationship="QLKSWEBModel.FK__Booking__DateMod__4CA06362" FromRole="Booking" ToRole="Account" />
         </EntityType>
         <EntityType Name="BookingRoom">
           <Key>
@@ -915,7 +899,7 @@
           <Property Name="Quantity" Type="Int32" />
           <Property Name="IsBooking" Type="Byte" />
           <NavigationProperty Name="Booking" Relationship="Self.FK__BookingSe__IsBoo__5EBF139D" FromRole="BookingServices" ToRole="Booking" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__BookingSe__Servi__5FB337D6" FromRole="BookingServices" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="QLKSWEBModel.FK__BookingSe__Servi__60A75C0F" FromRole="BookingService" ToRole="Service" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -1017,7 +1001,7 @@
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Promotion__DateM__1920BF5C" FromRole="Promotion" ToRole="Account" />
+          <NavigationProperty Name="Account" Relationship="QLKSWEBModel.FK__Promotion__DateM__1920BF5C" FromRole="Promotion" ToRole="Account" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -1097,7 +1081,7 @@
           <Property Name="RoomID" Type="Int32" />
           <Property Name="ServicesID" Type="Int32" />
           <NavigationProperty Name="Room" Relationship="Self.FK__RoomServi__RoomI__628FA481" FromRole="RoomServices" ToRole="Room" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__RoomServi__Servi__6383C8BA" FromRole="RoomServices" ToRole="Services" />
+          <NavigationProperty Name="Service" Relationship="QLKSWEBModel.FK__RoomServi__Servi__6477ECF3" FromRole="RoomService" ToRole="Service" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -1119,34 +1103,6 @@
           <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__RoomTyp__4D94879B" FromRole="RoomType" ToRole="Booking" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__Image__31EC6D26" FromRole="RoomType" ToRole="Room" />
         </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="ServicesID" />
-          </Key>
-          <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServicesName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ServicesDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ServicesContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ServicesPrices" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Unit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ServicesDetail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ServicesTypeID" Type="Int32" Nullable="false" />
-          <Property Name="CreatedUserID" Type="Int32" />
-          <Property Name="ModifyUserID" Type="Int32" />
-          <Property Name="DateCreated" Type="DateTime" Precision="3" />
-          <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <Property Name="IsAvailable" Type="Byte" />
-          <Property Name="IsPay" Type="Byte" />
-          <Property Name="IsShowHomePage" Type="Byte" />
-          <Property Name="IsShow" Type="Byte" />
-          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsBookWithRoom" Type="Byte" />
-          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetai__Servi__5441852A" FromRole="Services" ToRole="BillDetail" />
-          <NavigationProperty Name="BookingServices" Relationship="Self.FK__BookingSe__Servi__5FB337D6" FromRole="Services" ToRole="BookingServices" />
-          <NavigationProperty Name="RoomServices" Relationship="Self.FK__RoomServi__Servi__6383C8BA" FromRole="Services" ToRole="RoomServices" />
-          <NavigationProperty Name="ServicesType" Relationship="Self.FK__Services__IsBook__3F466844" FromRole="Services" ToRole="ServicesType" />
-        </EntityType>
         <EntityType Name="ServicesType">
           <Key>
             <PropertyRef Name="ServicesTypeID" />
@@ -1158,68 +1114,8 @@
           <Property Name="ModifyUserID" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="DateModify" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Services" Relationship="Self.FK__Services__IsBook__3F466844" FromRole="ServicesType" ToRole="Services" />
+          <NavigationProperty Name="Services" Relationship="QLKSWEBModel.FK__Services__IsSele__403A8C7D" FromRole="ServicesType" ToRole="Service" />
         </EntityType>
-        <Association Name="FK__Account__Image__15502E78">
-          <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountType">
-              <PropertyRef Name="AccountTypeID" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="AccountTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AccountPe__Accou__6FE99F9F">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="AccountPermission">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Bill__DateModify__5165187F">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="CreatedUserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Booking__DateMod__4BAC3F29">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="CreatedUserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Promotion__DateM__1920BF5C">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="Promotion">
-              <PropertyRef Name="CreatedUserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__AccountPe__Modul__70DDC3D8">
           <End Role="ModuleList" Type="Self.ModuleList" Multiplicity="0..1" />
           <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
@@ -1253,18 +1149,6 @@
             </Principal>
             <Dependent Role="BillDetail">
               <PropertyRef Name="RoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BillDetai__Servi__5441852A">
-          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Services">
-              <PropertyRef Name="ServicesID" />
-            </Principal>
-            <Dependent Role="BillDetail">
-              <PropertyRef Name="ServicesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1325,18 +1209,6 @@
             </Principal>
             <Dependent Role="BookingRoom">
               <PropertyRef Name="RoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BookingSe__Servi__5FB337D6">
-          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="BookingServices" Type="Self.BookingService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Services">
-              <PropertyRef Name="ServicesID" />
-            </Principal>
-            <Dependent Role="BookingServices">
-              <PropertyRef Name="ServicesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1484,32 +1356,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomServi__Servi__6383C8BA">
-          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="RoomServices" Type="Self.RoomService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Services">
-              <PropertyRef Name="ServicesID" />
-            </Principal>
-            <Dependent Role="RoomServices">
-              <PropertyRef Name="ServicesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Services__IsBook__3F466844">
-          <End Role="ServicesType" Type="Self.ServicesType" Multiplicity="1" />
-          <End Role="Services" Type="Self.Service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServicesType">
-              <PropertyRef Name="ServicesTypeID" />
-            </Principal>
-            <Dependent Role="Services">
-              <PropertyRef Name="ServicesTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QLKSWEBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="AccountPermissions" EntityType="Self.AccountPermission" />
           <EntitySet Name="AccountTypes" EntityType="Self.AccountType" />
           <EntitySet Name="Bills" EntityType="Self.Bill" />
@@ -1530,28 +1377,7 @@
           <EntitySet Name="RoomRequests" EntityType="Self.RoomRequest" />
           <EntitySet Name="RoomServices" EntityType="Self.RoomService" />
           <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
-          <EntitySet Name="Services" EntityType="Self.Service" />
           <EntitySet Name="ServicesTypes" EntityType="Self.ServicesType" />
-          <AssociationSet Name="FK__Account__Image__15502E78" Association="Self.FK__Account__Image__15502E78">
-            <End Role="AccountType" EntitySet="AccountTypes" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AccountPe__Accou__6FE99F9F" Association="Self.FK__AccountPe__Accou__6FE99F9F">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="AccountPermission" EntitySet="AccountPermissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Bill__DateModify__5165187F" Association="Self.FK__Bill__DateModify__5165187F">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Booking__DateMod__4BAC3F29" Association="Self.FK__Booking__DateMod__4BAC3F29">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Promotion__DateM__1920BF5C" Association="Self.FK__Promotion__DateM__1920BF5C">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="Promotion" EntitySet="Promotions" />
-          </AssociationSet>
           <AssociationSet Name="FK__AccountPe__Modul__70DDC3D8" Association="Self.FK__AccountPe__Modul__70DDC3D8">
             <End Role="ModuleList" EntitySet="ModuleLists" />
             <End Role="AccountPermission" EntitySet="AccountPermissions" />
@@ -1562,10 +1388,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__BillDetai__RoomI__5535A963" Association="Self.FK__BillDetai__RoomI__5535A963">
             <End Role="Room" EntitySet="Rooms" />
-            <End Role="BillDetail" EntitySet="BillDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BillDetai__Servi__5441852A" Association="Self.FK__BillDetai__Servi__5441852A">
-            <End Role="Services" EntitySet="Services" />
             <End Role="BillDetail" EntitySet="BillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Booking__Custome__4CA06362" Association="Self.FK__Booking__Custome__4CA06362">
@@ -1587,10 +1409,6 @@
           <AssociationSet Name="FK__BookingRo__RoomI__5AEE82B9" Association="Self.FK__BookingRo__RoomI__5AEE82B9">
             <End Role="Room" EntitySet="Rooms" />
             <End Role="BookingRoom" EntitySet="BookingRooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BookingSe__Servi__5FB337D6" Association="Self.FK__BookingSe__Servi__5FB337D6">
-            <End Role="Services" EntitySet="Services" />
-            <End Role="BookingServices" EntitySet="BookingServices" />
           </AssociationSet>
           <AssociationSet Name="FK__Equipment__Image__36B12243" Association="Self.FK__Equipment__Image__36B12243">
             <End Role="EquipmentType" EntitySet="EquipmentTypes" />
@@ -1640,14 +1458,6 @@
             <End Role="Room" EntitySet="Rooms" />
             <End Role="RoomServices" EntitySet="RoomServices" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomServi__Servi__6383C8BA" Association="Self.FK__RoomServi__Servi__6383C8BA">
-            <End Role="Services" EntitySet="Services" />
-            <End Role="RoomServices" EntitySet="RoomServices" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Services__IsBook__3F466844" Association="Self.FK__Services__IsBook__3F466844">
-            <End Role="ServicesType" EntitySet="ServicesTypes" />
-            <End Role="Services" EntitySet="Services" />
-          </AssociationSet>
           <FunctionImport Name="Find_AvailableRoom">
             <Parameter Name="NumPerson" Mode="In" Type="Int32" />
             <Parameter Name="CheckinDate" Mode="In" Type="DateTime" />
@@ -1664,6 +1474,44 @@
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Accounts" EntityType="QLKSWEBModel.Account" />
+          <EntitySet Name="Services" EntityType="QLKSWEBModel.Service" />
+          <AssociationSet Name="FK__Account__Image__15502E78" Association="QLKSWEBModel.FK__Account__Image__15502E78">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AccountPe__Accou__70DDC3D8" Association="QLKSWEBModel.FK__AccountPe__Accou__70DDC3D8">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountPermission" EntitySet="AccountPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bill__DateModify__52593CB8" Association="QLKSWEBModel.FK__Bill__DateModify__52593CB8">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__DateMod__4CA06362" Association="QLKSWEBModel.FK__Booking__DateMod__4CA06362">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Promotion__DateM__1920BF5C" Association="QLKSWEBModel.FK__Promotion__DateM__1920BF5C">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Promotion" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillDetai__Servi__5535A963" Association="QLKSWEBModel.FK__BillDetai__Servi__5535A963">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingSe__Servi__60A75C0F" Association="QLKSWEBModel.FK__BookingSe__Servi__60A75C0F">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="BookingService" EntitySet="BookingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomServi__Servi__6477ECF3" Association="QLKSWEBModel.FK__RoomServi__Servi__6477ECF3">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="RoomService" EntitySet="RoomServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Services__IsSele__403A8C7D" Association="QLKSWEBModel.FK__Services__IsSele__403A8C7D">
+            <End Role="ServicesType" EntitySet="ServicesTypes" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="Get_Module_Result">
           <Property Type="Int32" Name="ModuleID" Nullable="false" />
@@ -1678,24 +1526,164 @@
           <Property Type="Int32" Name="AccountTypeID" Nullable="false" />
           <Property Type="String" Name="Image" Nullable="true" MaxLength="250" />
         </ComplexType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountType" Relationship="QLKSWEBModel.FK__Account__Image__15502E78" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="AccountPermissions" Relationship="QLKSWEBModel.FK__AccountPe__Accou__70DDC3D8" FromRole="Account" ToRole="AccountPermission" />
+          <NavigationProperty Name="Bills" Relationship="QLKSWEBModel.FK__Bill__DateModify__52593CB8" FromRole="Account" ToRole="Bill" />
+          <NavigationProperty Name="Bookings" Relationship="QLKSWEBModel.FK__Booking__DateMod__4CA06362" FromRole="Account" ToRole="Booking" />
+          <NavigationProperty Name="Promotions" Relationship="QLKSWEBModel.FK__Promotion__DateM__1920BF5C" FromRole="Account" ToRole="Promotion" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServicesID" />
+          </Key>
+          <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicesName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesPrices" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Unit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesDetail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUserID" Type="Int32" />
+          <Property Name="ModifyUserID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModify" Type="DateTime" Precision="3" />
+          <Property Name="IsAvailable" Type="Boolean" />
+          <Property Name="IsPay" Type="Boolean" />
+          <Property Name="IsShowHomePage" Type="Boolean" />
+          <Property Name="IsShow" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsBookWithRoom" Type="Boolean" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BillDetails" Relationship="QLKSWEBModel.FK__BillDetai__Servi__5535A963" FromRole="Service" ToRole="BillDetail" />
+          <NavigationProperty Name="BookingServices" Relationship="QLKSWEBModel.FK__BookingSe__Servi__60A75C0F" FromRole="Service" ToRole="BookingService" />
+          <NavigationProperty Name="RoomServices" Relationship="QLKSWEBModel.FK__RoomServi__Servi__6477ECF3" FromRole="Service" ToRole="RoomService" />
+          <NavigationProperty Name="ServicesType" Relationship="QLKSWEBModel.FK__Services__IsSele__403A8C7D" FromRole="Service" ToRole="ServicesType" />
+        </EntityType>
+        <Association Name="FK__Account__Image__15502E78">
+          <End Type="QLKSWEBModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="QLKSWEBModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="AccountTypeID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AccountPe__Accou__70DDC3D8">
+          <End Type="QLKSWEBModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.AccountPermission" Role="AccountPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="AccountPermission">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bill__DateModify__52593CB8">
+          <End Type="QLKSWEBModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="CreatedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__DateMod__4CA06362">
+          <End Type="QLKSWEBModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="CreatedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Promotion__DateM__1920BF5C">
+          <End Type="QLKSWEBModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.Promotion" Role="Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="CreatedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillDetai__Servi__5535A963">
+          <End Type="QLKSWEBModel.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.BillDetail" Role="BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServicesID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="ServicesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingSe__Servi__60A75C0F">
+          <End Type="QLKSWEBModel.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.BookingService" Role="BookingService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServicesID" />
+            </Principal>
+            <Dependent Role="BookingService">
+              <PropertyRef Name="ServicesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomServi__Servi__6477ECF3">
+          <End Type="QLKSWEBModel.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="QLKSWEBModel.RoomService" Role="RoomService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServicesID" />
+            </Principal>
+            <Dependent Role="RoomService">
+              <PropertyRef Name="ServicesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Services__IsSele__403A8C7D">
+          <End Type="QLKSWEBModel.ServicesType" Role="ServicesType" Multiplicity="1" />
+          <End Type="QLKSWEBModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesType">
+              <PropertyRef Name="ServicesTypeID" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="ServicesTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QLKSWEBModelStoreContainer" CdmEntityContainer="QLKSWEBEntities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="QLKSWEBModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
-                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AccountPermissions">
             <EntityTypeMapping TypeName="QLKSWEBModel.AccountPermission">
               <MappingFragment StoreEntitySet="AccountPermission">
@@ -1971,31 +1959,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="QLKSWEBModel.Service">
-              <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
-                <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
-                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
-                <ScalarProperty Name="ServicesContent" ColumnName="ServicesContent" />
-                <ScalarProperty Name="ServicesPrices" ColumnName="ServicesPrices" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="ServicesDetail" ColumnName="ServicesDetail" />
-                <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
-                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
-                <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="DateModify" ColumnName="DateModify" />
-                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
-                <ScalarProperty Name="IsPay" ColumnName="IsPay" />
-                <ScalarProperty Name="IsShowHomePage" ColumnName="IsShowHomePage" />
-                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
-                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ServicesTypes">
             <EntityTypeMapping TypeName="QLKSWEBModel.ServicesType">
               <MappingFragment StoreEntitySet="ServicesType">
@@ -2006,6 +1969,43 @@
                 <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateModify" ColumnName="DateModify" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="QLKSWEBModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="QLKSWEBModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsShowHomePage" ColumnName="IsShowHomePage" />
+                <ScalarProperty Name="IsPay" ColumnName="IsPay" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="DateModify" ColumnName="DateModify" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
+                <ScalarProperty Name="ServicesDetail" ColumnName="ServicesDetail" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ServicesPrices" ColumnName="ServicesPrices" />
+                <ScalarProperty Name="ServicesContent" ColumnName="ServicesContent" />
+                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
+                <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
+                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

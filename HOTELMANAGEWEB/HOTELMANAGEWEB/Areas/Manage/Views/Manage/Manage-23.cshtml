@@ -1,0 +1,82 @@
+﻿@{
+    var listBill = (List<HOTELMANAGEWEB.Models.Bill>)ViewBag.ListBill;
+}
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content-header roboto-fonts">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 d-flex">
+                <h1 class="">Danh sách hoá đơn</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title roboto-fonts">Danh sách hoá đơn</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Mã Bill
+                                    </th>
+                                    <th>
+                                        Ngày Check-IN/OUT
+                                    </th>
+                                    <th>
+                                        Trạng thái Bill
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in listBill)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BillID)
+                                        </td>
+                                        <td>
+                                            @Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @Convert.ToDateTime(item.CheckoutDate).ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BillStatus)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Chi tiết", "InvoiceDetail", new { id = item.BillID }, new { @class = "btn btn-warning btn-sm" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

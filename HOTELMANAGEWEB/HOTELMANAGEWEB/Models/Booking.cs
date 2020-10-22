@@ -36,12 +36,12 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModify { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingRoom> BookingRooms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingService> BookingServices { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

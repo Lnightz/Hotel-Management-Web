@@ -19,7 +19,7 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<int> ModuleID { get; set; }
         public Nullable<int> Permission { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual ModuleList ModuleList { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

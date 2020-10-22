@@ -41,7 +41,7 @@ namespace HOTELMANAGEWEB.BLL
             {
                 return db
                     .Services
-                    .Where(x => x.IsAvailable == 0 && x.IsBookWithRoom == 1)
+                    .Where(x => x.IsAvailable == false && x.IsBookWithRoom == true)
                     .ToList();
             }
         }

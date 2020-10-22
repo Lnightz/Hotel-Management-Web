@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLKSWEBModelStoreContainer" CdmEntityContainer="QLKSWEBEntities">
-    <EntitySetMapping Name="Accounts">
-      <EntityTypeMapping TypeName="QLKSWEBModel.Account">
-        <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Disabled" ColumnName="Disabled" />
-          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AccountPermissions">
       <EntityTypeMapping TypeName="QLKSWEBModel.AccountPermission">
         <MappingFragment StoreEntitySet="AccountPermission">
@@ -288,31 +276,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Services">
-      <EntityTypeMapping TypeName="QLKSWEBModel.Service">
-        <MappingFragment StoreEntitySet="Services">
-          <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
-          <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
-          <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
-          <ScalarProperty Name="ServicesContent" ColumnName="ServicesContent" />
-          <ScalarProperty Name="ServicesPrices" ColumnName="ServicesPrices" />
-          <ScalarProperty Name="Unit" ColumnName="Unit" />
-          <ScalarProperty Name="ServicesDetail" ColumnName="ServicesDetail" />
-          <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
-          <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
-          <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModify" ColumnName="DateModify" />
-          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
-          <ScalarProperty Name="IsPay" ColumnName="IsPay" />
-          <ScalarProperty Name="IsShowHomePage" ColumnName="IsShowHomePage" />
-          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
-          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ServicesTypes">
       <EntityTypeMapping TypeName="QLKSWEBModel.ServicesType">
         <MappingFragment StoreEntitySet="ServicesType">
@@ -323,6 +286,43 @@
           <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="DateModify" ColumnName="DateModify" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="QLKSWEBModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+          <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="QLKSWEBModel.Service">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="IsBookWithRoom" ColumnName="IsBookWithRoom" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsShowHomePage" ColumnName="IsShowHomePage" />
+          <ScalarProperty Name="IsPay" ColumnName="IsPay" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="DateModify" ColumnName="DateModify" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ModifyUserID" ColumnName="ModifyUserID" />
+          <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+          <ScalarProperty Name="ServicesTypeID" ColumnName="ServicesTypeID" />
+          <ScalarProperty Name="ServicesDetail" ColumnName="ServicesDetail" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="ServicesPrices" ColumnName="ServicesPrices" />
+          <ScalarProperty Name="ServicesContent" ColumnName="ServicesContent" />
+          <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
+          <ScalarProperty Name="ServicesName" ColumnName="ServicesName" />
+          <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

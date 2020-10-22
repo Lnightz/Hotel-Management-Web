@@ -144,6 +144,7 @@
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\BookingRoomBLL.cs" />
     <Compile Include="BLL\HomeBLL.cs" />
+    <Compile Include="BLL\InvoicesBLL.cs" />
     <Compile Include="BLL\ManageBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
     <Compile Include="BLL\ServicesBLL.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="DTO\AvailableRoomModel.cs" />
     <Compile Include="DTO\BookingRoomModel.cs" />
     <Compile Include="DTO\BookRoomWithServModel.cs" />
+    <Compile Include="DTO\ChangePassModel.cs" />
     <Compile Include="DTO\CheckAvailableRooms.cs" />
     <Compile Include="DTO\LoginModel.cs" />
     <Compile Include="DTO\RoomDetails.cs" />
@@ -823,6 +825,12 @@
     <Content Include="Areas\Manage\Views\Equipments\Index.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-43.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-55.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\Manage-23.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\InvoiceDetail.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\AddServToBill.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\AddPermission.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\CreateAccount.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\RemovePermission.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

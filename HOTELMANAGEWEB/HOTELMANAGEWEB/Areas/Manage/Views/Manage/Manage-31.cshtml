@@ -1,7 +1,107 @@
-﻿
+﻿@model IEnumerable<HOTELMANAGEWEB.Models.Account>
 @{
     ViewBag.Title = "Danh sách tài khoản";
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Danh sách tài khoản</h3>
+        @{ if (User.IsInRole("Admin"))
+            {
+                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modal-xl-createaccount--1">
+                    <i class="fas fa-plus"></i> Tạo tài khoản
+                </button>
+                Html.RenderAction("CreateAccount");
+            }
+        }
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên tài khoản</th>
+                    <th>Loại tài khoản</th>
+                    <th>Trạng thái</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var text = item.Disabled == false ? "Hoạt động" : "Bị khoá";
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.AccountType.AccountTypeName</td>
+                        <td>@text</td>
+                        <td class="text-center justify-content-lg-around d-flex">
+                            @{
+                                if (item.Disabled == false)
+                                {
+                                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="@string.Concat("#ModalCenter",item.AccountID)">
+                                        <i class="fas fa-lock"></i> Khóa
+                                    </a>
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("UnlockUser", "Manage", new { id = item.AccountID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken();
+                                        <button type="submit" class="btn btn-warning btn-sm">
+                                            <i class="fas fa-unlock"></i> Mở khóa
+                                        </button>
+                                    }
+                                }
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-xl-permission-@item.AccountID">
+                                    <i class="fas fa-plus"></i> Phân quyền
+                                </button>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-xl-deletepermission-@item.AccountID">
+                                    <i class="fas fa-plus"></i> Xoá phân quyền
+                                </button>
+                                Html.RenderAction("AddPermission", "Manage", new { id = item.AccountID });
+                                Html.RenderAction("RemovePermission", "Manage", new { id = item.AccountID });
+                                <a href="@Url.Action()" class="btn btn-warning btn-sm"> Đặt lại mật khẩu</a>
+                            }
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="@string.Concat("ModalCenter",item.AccountID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn khóa tài khoản "@item.UserName" không?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    @using (Html.BeginForm("LockUser", "Manage", new { id = item.AccountID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-lock"></i> Khóa
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tên tài khoản</th>
+                    <th>Loại tài khoản</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
 

@@ -143,5 +143,13 @@ namespace HOTELMANAGEWEB.BLL
                 else return -1;
             }
         }
+
+        public List<ModuleList> GetModulesList()
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db.ModuleLists.ToList();
+            }
+        }
     }
 }

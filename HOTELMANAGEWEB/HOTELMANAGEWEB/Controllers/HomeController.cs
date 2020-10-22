@@ -128,7 +128,7 @@ namespace HOTELMANAGEWEB.Controllers
             {
                 ListServ.Services = db
                     .Services
-                    .Where(x => x.IsBookWithRoom == 1 && x.IsAvailable == 0)
+                    .Where(x => x.IsBookWithRoom == true && x.IsAvailable == false)
                     .ToList<Service>();
             }
 
@@ -236,7 +236,7 @@ namespace HOTELMANAGEWEB.Controllers
                     CustomerID = cusinfo.CustomerID,
                     DateCreated = DateTime.Now,
                 };
-                db.Booking.Add(booking);
+                db.Bookings.Add(booking);
                 if (db.SaveChanges() > 0)
                 {
                     foreach (var item in listServ)

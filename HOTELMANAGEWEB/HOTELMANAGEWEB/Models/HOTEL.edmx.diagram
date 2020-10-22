@@ -4,8 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b848e19e590b4cf5bee2460227248382" Name="Diagram1" ZoomLevel="92">
-        <EntityTypeShape EntityType="QLKSWEBModel.Account" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+      <Diagram DiagramId="b848e19e590b4cf5bee2460227248382" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="QLKSWEBModel.AccountPermission" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.AccountType" Width="1.5" PointX="1.5" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.Bill" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
@@ -26,23 +25,15 @@
         <EntityTypeShape EntityType="QLKSWEBModel.RoomRequest" Width="1.5" PointX="15.75" PointY="20.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.RoomService" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.RoomType" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKSWEBModel.Service" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKSWEBModel.ServicesType" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="QLKSWEBModel.FK__Account__Image__15502E78" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__AccountPe__Accou__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__Bill__DateModify__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__Booking__DateMod__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__Promotion__DateM__1920BF5C" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__AccountPe__Modul__70DDC3D8" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__BillDetai__BillI__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__BillDetai__RoomI__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__BillDetai__Servi__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Booking__Custome__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Booking__RoomTyp__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__BookingRo__IsBoo__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__BookingSe__IsBoo__5EBF139D" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__BookingRo__RoomI__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__BookingSe__Servi__5FB337D6" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Equipment__Image__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__Equipment__RoomI__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__EquipRequ__Equip__6B24EA82" ManuallyRouted="false" />
@@ -55,9 +46,18 @@
         <AssociationConnector Association="QLKSWEBModel.FK__Room__Image__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__RoomReque__RoomI__6754599E" ManuallyRouted="false" />
         <AssociationConnector Association="QLKSWEBModel.FK__RoomServi__RoomI__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__RoomServi__Servi__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKSWEBModel.FK__Services__IsBook__3F466844" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="QLKSWEBModel.Account" Width="1.5" PointX="1.25" PointY="9.625" />
+        <EntityTypeShape EntityType="QLKSWEBModel.Service" Width="1.5" PointX="4.125" PointY="2.875" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Account__Image__15502E78" />
+        <AssociationConnector Association="QLKSWEBModel.FK__AccountPe__Accou__70DDC3D8" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Bill__DateModify__52593CB8" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Booking__DateMod__4CA06362" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Promotion__DateM__1920BF5C" />
+        <AssociationConnector Association="QLKSWEBModel.FK__BillDetai__Servi__5535A963" />
+        <AssociationConnector Association="QLKSWEBModel.FK__BookingSe__Servi__60A75C0F" />
+        <AssociationConnector Association="QLKSWEBModel.FK__RoomServi__Servi__6477ECF3" />
+        <AssociationConnector Association="QLKSWEBModel.FK__Services__IsSele__403A8C7D" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -25,7 +25,7 @@ namespace HOTELMANAGEWEB.BLL
             using (var db = new QLKSWEBEntities())
             {
                 return db
-                    .Booking
+                    .Bookings
                     .Include(x => x.Customer)
                     .Include(x => x.RoomType)
                     .ToList();
@@ -36,7 +36,7 @@ namespace HOTELMANAGEWEB.BLL
             using (var db = new QLKSWEBEntities())
             {
                 var bookinginfo = db
-                                    .Booking
+                                    .Bookings
                                     .Include(x => x.BookingRooms)
                                     .Include(x=>x.BookingServices)
                                     .Include(x=> x.RoomType)
