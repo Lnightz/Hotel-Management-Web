@@ -68,16 +68,19 @@
                                     @User.Identity.Name
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item hover-effect" href="#">Thay đổi mật khẩu</a>
+                                    @*<button class="dropdown-item hover-effect" data-toggle="modal" data-target="#modal-xl-changepass-1">Thay đổi mật khẩu</button>*@
+
                                     <a class="dropdown-item hover-effect" href="@Url.Action("Logout", "Account", new { area = "Manage" })">Đăng xuất</a>
                                 </div>
                             </li>
                         </ul>
+
                     </div>
                 </li>
 
             </ul>
         </nav>
+
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -94,7 +97,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+                    with font-awesome or any other icon font library -->
                         @{Html.RenderAction("ListModule", "ListModule"); }
                     </ul>
                 </nav>
@@ -165,6 +168,8 @@
     <script src="~/AdminAssets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
     <script src="~/AdminAssets/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/Assets/js/Chart.min.js"></script>
+    <script src="~/Assets/js/dashboard3.js"></script>
     <!-- DateTime Picker -->
     @*<script src="~/Assets/js/jquery.datetimepicker.full.js"></script>*@
     <!-- page script -->

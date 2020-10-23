@@ -38,8 +38,8 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
         <div class="container">
             <a href="../../index3.html" class="navbar-brand">
-                <img src="~/Assets/images/THMH_200x200.png" 
-                     alt="AdminLTE Logo" class="brand-image img-circle elevation-3" 
+                <img src="~/Assets/images/THMH_200x200.png"
+                     alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8;width:33px;height:33px">
                 <span class="brand-text font-weight-light">THMH</span>
             </a>
@@ -77,10 +77,11 @@
                             @User.Identity.Name
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item hover-effect" href="#">Thay đổi mật khẩu</a>
+                            <button class="dropdown-item hover-effect" data-toggle="modal" data-target="#modal-xl-changepass-1">Thay đổi mật khẩu</button>
                             <a class="dropdown-item hover-effect" href="@Url.Action("Logout","Account", new { area = "Manage" } )">Đăng xuất</a>
                         </div>
                     </li>
+
                 </ul>
             </div>
             <!-- Right navbar links -->
@@ -88,7 +89,7 @@
         </div>
     </nav>
     <!-- /.navbar -->
-
+    @{Html.RenderAction("ChangePass", "Manage");}
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -111,13 +112,12 @@
                 <div class="row">
                     @{ foreach (var module in Model)
                         {
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="module-list">
-                                    <a href="@Url.Action("Module", new { id = module.ModuleID})" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
-                                    <p class="module-list-caption">@module.ModuleName</p>
-                                </div>
-                            </div>
-                        } }
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="module-list">
+                    <a href="@Url.Action("Module", new { id = module.ModuleID})" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
+                    <p class="module-list-caption">@module.ModuleName</p>
+                </div>
+            </div> } }
                 </div>
             </div>
         </div>

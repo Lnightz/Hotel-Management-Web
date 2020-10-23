@@ -175,7 +175,7 @@ namespace HOTELMANAGEWEB.BLL
                 Account check = db.Accounts.Where(x => x.UserName == account.UserName).FirstOrDefault();
                 if ( check != null)
                 {
-                    return -1;
+                    return -2;
                 }
                 Account accounts = new Account()
                 {

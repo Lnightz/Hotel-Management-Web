@@ -1,8 +1,9 @@
-﻿
-@{
-    ViewBag.Title = "Room";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@using System.Globalization;
+
+@model IEnumerable<HOTELMANAGEWEB.Models.RoomType>
+
+@{ ViewBag.Title = "Room";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <section class="home-slider owl-carousel">
     <div class="slider-item" style="background-image: url('../../Assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -27,25 +28,28 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 ftco-animate">
-                <div class="room-wrap">
-                    <a href="#" class="room-img" style="background-image: url(../../Assets/images/room-1.jpg);"></a>
-                    <div class="text p-4">
-                        <div class="d-flex mb-1">
-                            <div class="one-third">
-                                <h3><a href="#">Luxury Room</a></h3>
-                            </div>
-                            <div class="one-forth text-center">
-                                <p class="price">$99 <br><span>/night</span></p>
-                            </div>
-                        </div>
-                        <p class="features">
-                            
-                        </p>
-                        <p><a href="#" class="btn btn-primary">More Details</a></p>
+            @{ foreach (var item in Model)
+                {
+    <div class="col-md-4 ftco-animate">
+        <div class="room-wrap">
+            <a href="#" class="room-img" style="background-image: url(../..@Html.Raw(item.RoomTypeImage));"></a>
+            <div class="text p-4">
+                <div class="d-flex mb-1">
+                    <div class="one-third">
+                        <h3><a href="#">@item.RoomTypeName</a></h3>
+                    </div>
+                    <div class="one-forth text-center">
+                        <p class="price">@Convert.ToDecimal(item.RoomTypePrices).ToString("C0", CultureInfo.CurrentCulture) <br><span>/night</span></p>
                     </div>
                 </div>
+                <p class="features">
+                    @item.RoomTypeDescription
+                </p>
+                <p><a href="#" class="btn btn-primary">More Details</a></p>
             </div>
+        </div>
+    </div> } }
+
         </div>
     </div>
 </section>

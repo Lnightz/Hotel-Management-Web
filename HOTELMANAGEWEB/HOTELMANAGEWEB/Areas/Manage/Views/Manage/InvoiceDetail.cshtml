@@ -1,12 +1,9 @@
 ﻿@using System.Globalization;
-@{
-    ViewBag.Title = "InvoiceDetail";
+@{ ViewBag.Title = "InvoiceDetail";
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
 
     var details = (HOTELMANAGEWEB.Models.BillDetail)ViewBag.Details;
-    var listserv = (List<HOTELMANAGEWEB.Models.BillDetail>)ViewBag.ListServ;
-
-}
+    var listserv = (List<HOTELMANAGEWEB.Models.BillDetail>)ViewBag.ListServ; }
 
 <section class="content-header">
     <div class="container-fluid">
@@ -67,12 +64,20 @@
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
                             <b>Invoice #@details.BillID</b><br>
+                            @{
+                                if (details.Bill.BillStatus != "PAID")
+                                {
+                                    <button class="btn btn-success float-right"
+                                            data-toggle="modal" data-target="#modal-xl-@details.BillID">
+                                        Thêm dịch vụ
+                                    </button>
+                                }
+                            }
                             <br>
                             <b>RoomName:</b> @details.Room.RoomName<br>
-                            <b>Prices:</b>@Convert.ToDecimal(details.Room.RoomType.RoomTypePrices).ToString("C0", CultureInfo.CurrentCulture) / night <br>
+                            <b>Prices:</b>@Convert.ToDecimal(details.Room.RoomType.RoomTypePrices).ToString("C0", CultureInfo.CurrentCulture) / night
                             <br />
-                            <button class="btn btn-success float-right" 
-                               data-toggle="modal" data-target="#modal-xl-@details.BillID">Thêm dịch vụ</button>
+                            <b>Check-IN:</b> @Convert.ToDateTime(details.Bill.CheckinDate).ToString("dd/MM/yyyy")
                         </div>
                         <!-- /.col -->
                     </div>
@@ -90,8 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{
-                                        foreach (var item in listserv)
+                                    @{ foreach (var item in listserv)
                                         {
                                             <tr>
                                                 <td>@item.Service.ServicesName</td>
@@ -99,8 +103,7 @@
                                                 <td>@item.Quantity</td>
                                                 <td>@Convert.ToDecimal(item.TotalSerivcesPrices).ToString("C0", CultureInfo.CurrentCulture)</td>
                                             </tr>
-                                        }
-                                    }
+ } }
                                 </tbody>
                             </table>
                         </div>
@@ -111,15 +114,10 @@
                         <!-- accepted payments column -->
                         <div class="col-6">
                             <p class="lead">Payment Methods:</p>
-                            <img src="../../dist/img/credit/visa.png" alt="Visa">
-                            <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                            <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                            <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-                            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                                plugg
-                                dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                            </p>
+                            <img src="~/Assets/images/visa.png" alt="Visa">
+                            <img src="~/Assets/images/mastercard.png" alt="Mastercard">
+                            <img src="~/Assets/images/american-express.png" alt="American Express">
+                            <img src="~/Assets/images/paypal2.png" alt="Paypal">
                         </div>
                         <!-- /.col -->
                         <div class="col-6">
@@ -127,22 +125,20 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
-                                        @{ 
-                                            TimeSpan totalday = DateTime.Now - Convert.ToDateTime(details.Bill.CheckinDate);
+                                        @{ TimeSpan totalday = DateTime.Now - Convert.ToDateTime(details.Bill.CheckinDate);
                                             var roomprices = details.Room.RoomType.RoomTypePrices * totalday.Days;
                                             var totalserv = ViewBag.TotalServ;
-                                            var subtotal = roomprices + totalserv;
-                                        }
+                                            var subtotal = roomprices + totalserv; }
                                         <th style="width:50%">Subtotal:</th>
                                         <td>@Convert.ToDecimal(subtotal).ToString("C0", CultureInfo.CurrentCulture)</td>
                                     </tr>
                                     <tr>
                                         <th>Tax (5%)</th>
-                                        <td>@Convert.ToDecimal(subtotal * Convert.ToDecimal(0.1)).ToString("C0", CultureInfo.CurrentCulture)</td>
+                                        <td>@Convert.ToDecimal(subtotal * Convert.ToDecimal(0.05)).ToString("C0", CultureInfo.CurrentCulture)</td>
                                     </tr>
                                     <tr>
                                         <th>Total:</th>
-                                        <td>@Convert.ToDecimal(subtotal * Convert.ToDecimal(0.9)).ToString("C0", CultureInfo.CurrentCulture)</td>
+                                        <td>@Convert.ToDecimal(subtotal * Convert.ToDecimal(0.95)).ToString("C0", CultureInfo.CurrentCulture)</td>
                                     </tr>
                                 </table>
                             </div>
@@ -151,15 +147,27 @@
                     </div>
                     <!-- /.row -->
                     <!-- this row will not appear when printing -->
-                    <div class="row no-print">
-                        <div class="col-12">
-                            <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                            <button type="button" class="btn btn-success float-right">
-                                <i class="far fa-credit-card"></i> Submit
-                                Payment
-                            </button>
-                        </div>
-                    </div>
+                    @{
+                        if (details.Bill.BillStatus != "PAID")
+                        {
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    @{ using (Html.BeginForm("Paid", "Manage", FormMethod.Post))
+                                        {
+                                            var total = subtotal * Convert.ToDecimal(0.9);
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" value="@total" name="Total" />
+                                            <input type="hidden" value="@details.BillID" name="BillID" />
+                                            <button type="submit" class="btn btn-success float-right">
+                                                <i class="far fa-credit-card"></i> Submit
+                                                Payment
+                                            </button>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
                 <!-- /.invoice -->
             </div><!-- /.col -->
@@ -168,5 +176,4 @@
 </section>
 <!-- /.content -->
 
-@{Html.RenderAction("AddServToBill", "Manage", new { id = details.BillID });
-}
+@{Html.RenderAction("AddServToBill", "Manage", new { id = details.BillID }); }

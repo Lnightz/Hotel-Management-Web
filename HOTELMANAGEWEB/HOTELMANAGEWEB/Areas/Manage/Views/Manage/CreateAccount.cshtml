@@ -1,58 +1,63 @@
 ﻿@model IEnumerable<HOTELMANAGEWEB.Models.AccountType>
 
-    <div class="modal fade" id="modal-xl-createaccount--1">
-        <div class="modal-dialog modal-lg">
-            @{
-                using (Html.BeginForm("CreateAccount", "Manage", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken();
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Chọn phòng</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="UserName">Tên tài khoản</label>
-                                            <input type="text" class="form-control" id="UserName" placeholder="User Name" name="UserName">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="password">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="password" placeholder="password" name="Password">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group" data-select2-id="48">
-                                            <label>Loại tài khoản</label>
-                                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" name="AccountTypeID">
-                                                @{
-                                                    foreach (var item in Model)
-                                                    {
-                                                        <option value="@item.AccountTypeID">@item.AccountTypeName</option>
-                                                    }
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-lg-end">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                }
-            }
 
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+@{ if (ViewBag.Message == "CREATEFAIL")
+    {
+<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+    Tài khoản tạo bị trùng
+</div> } }
+
+
+<div class="modal fade" id="modal-xl-createaccount--1">
+    <div class="modal-dialog modal-lg">
+        @{ using (Html.BeginForm("CreateAccount", "Manage", FormMethod.Post))
+            {
+@Html.AntiForgeryToken();
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Chọn phòng</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="UserName">Tên tài khoản</label>
+                        <input type="text" class="form-control" id="UserName" placeholder="User Name" name="UserName">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" placeholder="password" name="Password">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group" data-select2-id="48">
+                        <label>Loại tài khoản</label>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" name="AccountTypeID">
+                            @{ foreach (var item in Model)
+                                {
+                <option value="@item.AccountTypeID">@item.AccountTypeName</option>
+ } }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-lg-end">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</div> } }
+
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

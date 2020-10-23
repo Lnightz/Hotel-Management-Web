@@ -7,6 +7,7 @@ using HOTELMANAGEWEB.BLL;
 using HOTELMANAGEWEB.Models;
 using Microsoft.Ajax.Utilities;
 using System.Data.Entity;
+using HOTELMANAGEWEB.DTO;
 
 namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
@@ -41,6 +42,34 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 
             }
             return PartialView("");
+        }
+
+        public PartialViewResult CreateRoom()
+        {
+            return PartialView(ManageRoomBLL.Instance.GetRoomTypesList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRoom(Room model)
+        {
+            var user = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+            using (var db = new QLKSWEBEntities())
+            {
+                Room room = new Room()
+                {
+                    RoomName = model.RoomName,
+                    RoomStatus = "OPEN",
+                    MinQuantity = model.MinQuantity,
+                    MaxQuantity = model.MaxQuantity,
+                    RoomTypeID = model.RoomTypeID,
+                    DateCreated = DateTime.Now,
+                    CreatedUserID = user.AccountID
+                };
+                db.Rooms.Add(room);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Manage-19");
         }
 
         [ActionName("Manage-27")]
@@ -192,22 +221,27 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             return PartialView();
         }
 
-        public ActionResult RentRoom(int billid, int roomid)
+        public ActionResult RentRoom(int bookingid, int roomid)
         {
-            var bookinginfo = BookingRoomBLL.Instance.GetBookingbyID(billid);
-
+            var bookinginfo = BookingRoomBLL.Instance.GetBookingbyID(bookingid);
+            var user = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
             using (var db = new QLKSWEBEntities())
             {
                 Bill bill = new Bill()
                 {
                     CheckinDate = DateTime.Now,
                     BillStatus = "OPEN",
+                    CreatedUserID = user.AccountID,
+                    DateCreated = DateTime.Now
                 };
                 db.Bills.Add(bill);
                 if (db.SaveChanges() > 0)
                 {
                     var room = db.Rooms.Find(roomid);
                     room.RoomStatus = "RENTED";
+                    db.SaveChanges();
+                    var booking = db.Bookings.Find(bookingid);
+                    booking.BookingStatus = "DONE";
                     db.SaveChanges();
                     foreach (var item in bookinginfo.BookingServices)
                     {
@@ -255,7 +289,6 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddServtoBill(BillDetail detail)
         {
-            
             using (var db = new QLKSWEBEntities())
             {
                 var prices = db.Services.Where(x => x.ServicesID == detail.ServicesID).FirstOrDefault();
@@ -281,6 +314,10 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ActionName("Manage-31")]
         public ActionResult ManageAccount()
         {
+            if (TempData["CREATERESULT"] != null)
+            {
+                ViewBag.Message = TempData["CREATERESULT"].ToString();
+            }
             var listaccount = AccountBLL.Instance.GetListAccount();
             return View(listaccount);
         }
@@ -322,6 +359,11 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         public ActionResult CreateAccount(Account account)
         {
             var result = AccountBLL.Instance.CreateAccount(account);
+            if (result == -2)
+            {
+                TempData["CREATERESULT"] = "CREATEFAIL";
+                return RedirectToAction("Manage-31");
+            }
             return RedirectToAction("Manage-31");
         }
 
@@ -370,6 +412,28 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             TempData["ResetPass"] = "FAIL";
             return RedirectToAction("Manage-31");
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Paid(Bill model)
+        {
+            var account = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+            using (var db = new QLKSWEBEntities())
+            {
+                var details = db.BillDetails.Where(x => x.BillID == model.BillID).FirstOrDefault();
+                var room = db.Rooms.Where(x => x.RoomID == details.RoomID).FirstOrDefault();
+                room.RoomStatus = "OPEN";
+                db.SaveChanges();
+
+                Bill bill = db.Bills.Where(x => x.BillID == model.BillID).FirstOrDefault();
+                bill.BillStatus = "PAID";
+                bill.Total = model.Total;
+                bill.CheckoutDate = DateTime.Now;
+                bill.DateModify = DateTime.Now;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Manage-23");
+        }
+
 
         [ActionName("Manage-43")]
         public ActionResult ManageEquipments()
@@ -389,9 +453,36 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             return View();
         }
 
+        [ActionName("Manage-47")]
         public ActionResult ManageRequest()
         {
+            return View(RequestBLL.Instance.GetRequests());
+        }
+
+        public PartialViewResult ChangePass()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePass(ChangePassModel model)
+        {
+            var result = AccountBLL.Instance.ChangePassword(User.Identity.Name, model);
+            return RedirectToAction("Index", "ListModule");
+        }
+
+        [ActionName("Manage-59")]
+        public ActionResult Chart()
+        {
             return View();
+        }
+
+        public PartialViewResult CreateRequest()
+        {
+            ViewBag.ListType = RequestBLL.Instance.GetRequestTypes();
+            ViewBag.ListEquip = RequestBLL.Instance.GetEquipment();
+            return PartialView();
         }
     }
 }

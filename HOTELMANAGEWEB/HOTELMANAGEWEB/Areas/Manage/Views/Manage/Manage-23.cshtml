@@ -51,23 +51,23 @@
                                     <th>
                                         Action
                                     </th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in listBill)
                                 {
+                                    var checkout = item.CheckoutDate.HasValue ? Convert.ToDateTime(item.CheckoutDate).ToString("dd/MM/yyyy") : String.Empty;
                                     <tr>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.BillID)
                                         </td>
                                         <td>
-                                            @Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @Convert.ToDateTime(item.CheckoutDate).ToString("dd/MM/yyyy")
+                                            @Convert.ToDateTime(item.CheckinDate).ToString("dd/MM/yyyy") - @checkout
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.BillStatus)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.ActionLink("Chi tiết", "InvoiceDetail", new { id = item.BillID }, new { @class = "btn btn-warning btn-sm" })
                                         </td>
                                     </tr>

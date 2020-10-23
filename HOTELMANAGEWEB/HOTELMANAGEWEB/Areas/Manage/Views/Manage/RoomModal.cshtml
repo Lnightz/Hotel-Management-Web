@@ -68,7 +68,7 @@
                                     <input type="text"
                                            class="form-control"
                                            id="BirthDay"
-                                           value="@bookinfo.Customer.BirthDay" disabled="">
+                                           value="@Convert.ToDateTime(bookinfo.Customer.BirthDay).ToString("dd/MM/yyyy")" disabled="">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -92,33 +92,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="RoomName">Dịch vụ đi kèm khi đặt phòng</label>
-                                    <table class="table table-sm">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th><b>Tên dịch vụ</b></th>
-                                                <th><b>Loại dịch vụ</b></th>
-                                                <th><b>Giá tiền</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                foreach (var item in bookinfo.BookingServices)
-                                                {
-                                                    <tr>
-                                                        <td> @item.Service.ServicesName </td>
-                                                        <td> @item.Service.ServicesType.ServicesTypeName </td>
-                                                        <td> @Convert.ToDecimal(item.Service.ServicesPrices).ToString("C0", CultureInfo.CurrentCulture)</td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="RoomName">Dịch vụ khi sử dụng phòng</label>
+                                    <label for="RoomName">Dịch vụ sử dụng</label>
                                     <table class="table table-sm">
                                         <thead>
                                             <tr class="text-center">
@@ -135,7 +109,7 @@
                                                     <tr>
                                                         <td> @item.Service.ServicesName </td>
                                                         <td> @item.Service.ServicesType.ServicesTypeName </td>
-                                                        <td> @item.Service.ServicesType.ServicesTypeName </td>
+                                                        <td> @item.Quantity </td>
                                                         <td> @Convert.ToDecimal(item.Service.ServicesPrices).ToString("C0", CultureInfo.CurrentCulture)</td>
                                                     </tr>
                                                 }
@@ -149,21 +123,20 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-lg-end">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 @{
                     if (roominfo.RoomStatus == "BOOKING")
                     {
                         <a href="@Url.Action("RentRoom","Manage", new { billid = bookinfo.BookingID , roomid = roominfo.RoomID })" class="btn btn-primary">Nhận phòng</a>
                     }
                 }
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đổi phòng</button>
                 @{
                     if (roominfo.RoomStatus == "RENTED")
                     {
-                        <a href="@Url.Action()" class="btn btn-default" data-dismiss="modal">Thêm dịch vụ</a>
+                        <a href="@Url.Action("InvoiceDetail","Manage", new { id = bookinfo.BookingID })" class="btn btn-default" data-dismiss="modal">Thêm dịch vụ</a>
                     }
                 }
-                <button type="button" class="btn btn-primary">Thanh toán</button>
+                <a href="@Url.Action("InvoiceDetail","Manage")" type="button" class="btn btn-primary">Thanh toán</a>
             </div>
         </div>
         <!-- /.modal-content -->

@@ -30,7 +30,7 @@
                 {
                     <div class="col-md-4 ftco-animate">
                         <div class="room-wrap">
-                            <a href="#" class="room-img" style="background-image: url(../../Assets/images/room-1.jpg);"></a>
+                            <a href="#" class="room-img" style="background-image: url(../..@Html.Raw(item.RoomTypeImage));"></a>
                             <div class="text p-4">
                                 <div class="d-flex mb-1">
                                     <div class="one-third">
@@ -42,11 +42,7 @@
                                     </div>
                                 </div>
                                 <p class="features">
-                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Perfect for traveling couples</span>
-                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Breakfast included</span>
-                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Two double beds</span>
-                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Baby sitting facilities</span>
-                                    <span class="d-block mb-2"><i class="icon-check mr-2"></i> Free wifi</span>
+                                    @item.RoomTypeDescription
                                 </p>
                                 @{
                                     using (Html.BeginForm("BookingServWithRoom", "Home", FormMethod.Post))

@@ -48,9 +48,8 @@ namespace HOTELMANAGEWEB.Controllers
         }
         public ActionResult Room()
         {
-
             ViewBag.RoomActive = "active";
-            return View();
+            return View(ManageRoomBLL.Instance.GetRoomTypesList());
         }
         public ActionResult BlogDetail(int? id)
         {
@@ -245,6 +244,7 @@ namespace HOTELMANAGEWEB.Controllers
                         {
                             BookingID = booking.BookingID,
                             ServicesID = item.ServicesID,
+                            Quantity = 1
                         };
                         db.BookingServices.Add(bookserv);
                         if (db.SaveChanges() < 0)

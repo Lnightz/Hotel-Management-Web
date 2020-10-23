@@ -34,7 +34,7 @@ namespace HOTELMANAGEWEB.BLL
             using (var db = new QLKSWEBEntities())
             {
                 var temp1 = db.ServicesTypes.ToList();
-                return db.Services
+                return db.Services.Where(x => x.IsBookWithRoom == false)
                     .OrderBy(x => x.ServicesTypeID).ToList();
             }
         }

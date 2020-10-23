@@ -1,0 +1,95 @@
+﻿@model IEnumerable<HOTELMANAGEWEB.Models.Request>
+@{
+    ViewBag.Title = "ManageRequest";
+    Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content-header roboto-fonts">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 d-flex">
+                <h1 class="">Danh sách phiếu đề xuất</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title roboto-fonts">Danh sách phiếu đề xuất</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Người lập đề xuất
+                                    </th>
+                                    <th>
+                                        Loại đề xuất
+                                    </th>
+                                    <th>
+                                        Giá
+                                    </th>
+                                    <th>
+                                        Trạng thái
+                                    </th>
+                                    <th>
+                                        Mô tả
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @item.RequesterName
+                                    </td>
+                                    <td>
+                                        @Convert.ToDecimal(item.Prices).ToString("C0",System.Globalization.CultureInfo.CurrentCulture)
+                                    </td>
+                                    <td>
+                                        @item.RequestType.RequestTypeName
+                                    </td>
+                                    <td>
+                                        @item.RequestStatus
+                                    </td>
+                                    <td>
+                                        @item.RequestDescription
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm">
+                                            <i class="fas fa-check"></i> Duyệt
+                                        </a>
+                                        <a class="btn btn-danger btn-sm">
+                                            <i class="fas fa-times"></i> Từ chối
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

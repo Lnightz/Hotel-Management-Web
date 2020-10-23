@@ -26,8 +26,8 @@ namespace HOTELMANAGEWEB.Models
         public Nullable<decimal> Prices { get; set; }
         public string RequestDescription { get; set; }
         public int RequestTypeID { get; set; }
-        public int EquipmentID { get; set; }
-        public int RoomID { get; set; }
+        public Nullable<int> EquipmentID { get; set; }
+        public Nullable<int> RoomID { get; set; }
         public string RequestStatus { get; set; }
         public Nullable<int> CreatedUserID { get; set; }
         public Nullable<int> ModifyUserID { get; set; }

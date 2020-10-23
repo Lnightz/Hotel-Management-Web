@@ -17,11 +17,12 @@
                 @{
                     if (User.IsInRole("Admin"))
                     {
-                        <a href="@Url.Action("Create","Classes")" class="btn btn-primary ml-3">
+                        <button data-toggle="modal" data-target="#modal-xl-createroom-1" class="btn btn-primary ml-3">
                             <span>
                                 <i class="fas fa-plus"></i>
                             </span> Thêm Phòng
-                        </a>
+                        </button>
+                        Html.RenderAction("CreateRoom");
                     }
                 }
             </div>

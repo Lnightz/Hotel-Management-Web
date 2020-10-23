@@ -14,6 +14,12 @@
                         @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary ml-3" })
                     }
                 }
+                <button data-toggle="modal" data-target="#modal-xl-createrequest-1" class="btn btn-primary ml-3">
+                    <span>
+                        <i class="fas fa-plus"></i>
+                    </span> Tạo phiếu đề xuất
+                </button>
+                @{Html.RenderAction("CreateRequest","Manage"); }
             </div>
         </div>
     </div>
