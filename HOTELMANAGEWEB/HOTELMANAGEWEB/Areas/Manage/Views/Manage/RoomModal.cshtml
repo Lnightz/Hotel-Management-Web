@@ -4,7 +4,7 @@
     var roominfo = (HOTELMANAGEWEB.Models.Room)ViewBag.Roominfo;
 
     Booking bookinfo = (HOTELMANAGEWEB.Models.Booking)ViewBag.BookingInfo;
-
+    var billID = (int)ViewBag.billID;
 }
 
 <div class="modal fade" id="modal-xl-@roominfo.RoomID">
@@ -27,8 +27,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Hình ảnh</label>
-                                <input type="text" class="form-control" id="" name="">
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -73,7 +72,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="Check-inout">Ngày Check-IN/Out</label>
+                                    <label for="Check-inout">Ngày Check-IN/Out Dự kiến</label>
                                     <input type="text"
                                            class="form-control"
                                            id="Check-inout"
@@ -127,16 +126,18 @@
                 @{
                     if (roominfo.RoomStatus == "BOOKING")
                     {
-                        <a href="@Url.Action("RentRoom","Manage", new { billid = bookinfo.BookingID , roomid = roominfo.RoomID })" class="btn btn-primary">Nhận phòng</a>
+                        <a href="@Url.Action("CancelBooking","Manage", new { bookingid = bookinfo.BookingID })" class="btn btn-danger">Huỷ đặt phòng</a>
+                        <a href="@Url.Action("RentRoom","Manage", new { bookingid = bookinfo.BookingID , roomid = roominfo.RoomID })" class="btn btn-primary">Nhận phòng</a>
+
                     }
                 }
                 @{
                     if (roominfo.RoomStatus == "RENTED")
                     {
-                        <a href="@Url.Action("InvoiceDetail","Manage", new { id = bookinfo.BookingID })" class="btn btn-default" data-dismiss="modal">Thêm dịch vụ</a>
+                        <a href="@Url.Action("InvoiceDetail","Manage", new { id = billID })" class="btn btn-info">Thêm dịch vụ</a>
+                        <a href="@Url.Action("InvoiceDetail","Manage",  new { id = billID })" type="button" class="btn btn-primary">Thanh toán</a>
                     }
                 }
-                <a href="@Url.Action("InvoiceDetail","Manage")" type="button" class="btn btn-primary">Thanh toán</a>
             </div>
         </div>
         <!-- /.modal-content -->

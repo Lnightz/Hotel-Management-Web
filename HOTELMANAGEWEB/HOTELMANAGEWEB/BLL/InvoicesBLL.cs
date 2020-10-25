@@ -43,7 +43,7 @@ namespace HOTELMANAGEWEB.BLL
             using (var db = new QLKSWEBEntities())
             {
                 return db.BillDetails.Include(x => x.Service)
-                        .Include(x => x.Service.ServicesType)
+                        .Include(x => x.Service.ServicesType).Where(x=>x.BillID == id)
                         .ToList();
             }
         }
@@ -54,6 +54,23 @@ namespace HOTELMANAGEWEB.BLL
             {
                 var total = db.BillDetails.Where(x=>x.BillID == id).Sum(x => x.TotalSerivcesPrices);
                 return Convert.ToDecimal(total);
+            }
+        }
+
+        public int GetBillIDByRoomID(int roomid)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var bill = db.BillDetails
+                            .Include(x => x.Bill)
+                            .Include(x => x.Room)
+                            .Where(x => x.RoomID == roomid && x.Bill.BillStatus == "OPEN")
+                            .FirstOrDefault();
+                if (bill != null)
+                {
+                    return Convert.ToInt32(bill.BillID);
+                }
+                else return -1;
             }
         }
     }

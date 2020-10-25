@@ -66,7 +66,7 @@
                         <!-- /.card-header -->
                         <div class="card-body p-0">
                             <table class="table table-sm">
-                                <thead>
+                                <thead style="color:black;font-weight:700">
                                     <tr class="text-center">
                                         <th><b>Services Name</b></th>
                                         <th><b>Prices</b></th>
@@ -76,7 +76,7 @@
                                     @{
                                         foreach (var item in listserv)
                                         {
-                                            <tr>
+                                            <tr style="color:darkblue; padding-left:15px">
                                                 <td>@item.ServicesName</td>
                                                 <td>@Convert.ToDecimal(item.ServicesPrices).ToString("C0", CultureInfo.CurrentCulture)</td>
                                             </tr>
@@ -105,7 +105,7 @@
                 using (Html.BeginForm("BookingRoom", "Home", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken();
-                    <div class="col-md-12 ftco-animate makereservation p-5 bg-light">
+                    <div class="col-md-12 ftco-animate makereservation p-2 bg-light">
                         <form action="#">
                             <h2 class="mb-4">Contact Details</h2>
                             <div class="row mb-5">
@@ -141,47 +141,52 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-5">
-                                <div class="col-md-12">
-                                    <h2 class="mb-4">Payment Details</h2>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="">Card Type</label>
-                                        <div class="select-wrap one-third">
-                                            <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                            <select name="CardType" id="" class="form-control">
-                                                <option value="Visa">Visa</option>
-                                                <option value="Master Card">Master Card</option>
-                                                <option value="Credit Card">Credit Card</option>
-                                            </select>
+                            @{
+                                if (roomtype.IsPay == 1)
+                                {
+                                    <div class="row mb-5">
+                                        <div class="col-md-12">
+                                            <h2 class="mb-4">Payment Details</h2>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="">Card Type</label>
+                                                <div class="select-wrap one-third">
+                                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                                    <select name="CardType" id="" class="form-control">
+                                                        <option value="Visa">Visa</option>
+                                                        <option value="Master Card">Master Card</option>
+                                                        <option value="Credit Card">Credit Card</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Card No</label>
+                                                <input type="text" class="form-control" placeholder="" name="CardNo">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Name on Card</label>
+                                                <input type="text" class="form-control" placeholder="" name="NameOnCard">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mr-4">
+                                                <label for="">Expiration Date</label>
+                                                <input type="text" class="form-control" id="expiration_date" placeholder="" name="ExpirationDate">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="name">Card No</label>
-                                        <input type="text" class="form-control" placeholder="" name="CardNo">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="name">Name on Card</label>
-                                        <input type="text" class="form-control" placeholder="" name="NameOnCard">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mr-4">
-                                        <label for="">Expiration Date</label>
-                                        <input type="text" class="form-control" id="expiration_date" placeholder="" name="ExpirationDate">
-                                    </div>
-                                </div>
-                            </div>
+                                }
+                            }
                         </form>
                         <div class="col-md-12">
-                            <div class="float-right d-flex justify-content-end">
-                                <p><a href="@Url.Action("CancelBooking")" class="btn btn-danger">Cancel</a></p>
-                                <p><button type="submit" class="btn btn-primary">Book</button></p>
+                            <div class="float-right d-flex justify-content-end m-5 p-5">
+                                <p><a href="@Url.Action("CancelBooking")" class="btn btn-primary" style="background-color:darkred;border-color:darkred">Cancel Booking</a></p>
+                                <p><button type="submit" class="btn btn-primary" style="background-color:dodgerblue;margin-left:10px;border-color:dodgerblue">Book</button></p>
                             </div>
                         </div>
                     </div>

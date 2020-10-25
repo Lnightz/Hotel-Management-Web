@@ -33,6 +33,8 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             var roominfo = ManageRoomBLL.Instance.GetRoomByID(id);
             ViewBag.Roominfo = roominfo;
 
+            ViewBag.billID = InvoicesBLL.Instance.GetBillIDByRoomID(id);
+
             if (roominfo.RoomStatus == "BOOKING" || roominfo.RoomStatus == "RENTED")
             {
                 var bookingid = ManageRoomBLL.Instance.GetBookingbyRoomID(id);
@@ -250,6 +252,8 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
                             BillID = bill.BillID,
                             ServicesID = item.ServicesID,
                             RoomID  = roomid,
+                            Quantity = 1,
+                            TotalSerivcesPrices = item.Service.ServicesPrices
                         };
                         db.BillDetails.Add(billDetail);
                         db.SaveChanges();
@@ -292,7 +296,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             using (var db = new QLKSWEBEntities())
             {
                 var prices = db.Services.Where(x => x.ServicesID == detail.ServicesID).FirstOrDefault();
-                var room = db.BillDetails.Where(x => x.BillDetailID == detail.BillID).FirstOrDefault();
+                var room = db.BillDetails.Where(x => x.BillID == detail.BillID).FirstOrDefault();
                 BillDetail billDetail = new BillDetail()
                 {
                     ServicesID = detail.ServicesID,
@@ -483,6 +487,21 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             ViewBag.ListType = RequestBLL.Instance.GetRequestTypes();
             ViewBag.ListEquip = RequestBLL.Instance.GetEquipment();
             return PartialView();
+        }
+
+        public ActionResult CancelBooking(int bookingid)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var booking = BookingRoomBLL.Instance.GetBookingbyID(bookingid);
+                booking.BookingStatus = "CANCEL";
+                db.SaveChanges();
+                var roomid = ManageRoomBLL.Instance.GetRoomIDByBookingID(bookingid);
+                var room = ManageRoomBLL.Instance.GetRoomByID(roomid);
+                room.RoomStatus = "OPEN";
+                db.SaveChanges();
+            }
+            return View("Manage-19");
         }
     }
 }

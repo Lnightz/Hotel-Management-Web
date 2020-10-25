@@ -102,10 +102,10 @@ namespace HOTELMANAGEWEB.Controllers
                 return View("Index");
             }
 
-            if (availablerooms == null)
+            if (availablerooms.Count() == 0)
             {
-                ViewBag.Message = "FAIL";
-                return View();
+                TempData["BookingResult"] = "NOAVAILABLE";
+                return View("BookingRoom");
             }
             else
             {

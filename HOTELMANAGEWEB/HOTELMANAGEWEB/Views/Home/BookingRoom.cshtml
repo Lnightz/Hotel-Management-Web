@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <section class="home-slider owl-carousel">
     <div class="slider-item" style="background-image: url('../../Assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
@@ -21,25 +22,59 @@
 @{
     if (TempData["BookingResult"].ToString() == "SUCCESS")
     {
-        <div class="container m-4 p-4">
+        <div class="container-fluid my-4 py-4">
             <div class="row justify-content-center">
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-check"></i> Thông báo!</h5>
-                    Đặt phòng thành công
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="callout callout-success">
+                        <h5 style="font-weight:800" ><i class="icon fas fa-check"></i> Thông báo!</h5>
+                        <p>
+                            Đặt phòng thành công! Hân hạnh được quý khách tin tưởng và lựa chọn. 
+                            Chúc quý khách một ngày vui vẻ.
+                        </p>
+                        <br />
+                        <p>Bấm vào <a href="@Url.Action("Index")">ĐÂY</a> để quay lại trang chủ</p>
+                    </div>
                 </div>
+                <div class="col-lg-4"></div>
             </div>
         </div>
     }
     else if (TempData["BookingResult"].ToString() == "FAIL")
     {
-        <div class="container m-4 p-4">
+        <div class="container-fluid my-4 py-4">
             <div class="row justify-content-center">
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-ban"></i>Thông báo!</h5>
-                    Có lỗi xảy ra trong quá trình đặt phòng
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="callout callout-danger">
+                        <h5 style="font-weight:800"><i class="icon fas fa-ban"></i> Thông báo!</h5>
+                        <p>
+                            Có lỗi xảy ra trong quá trình đặt phòng! Vui lòng thử lại sau.
+                        </p>
+                        <br />
+                        <p>Bấm vào <a href="@Url.Action("Index")">ĐÂY</a> để quay lại trang chủ</p>
+                    </div>
                 </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    }
+    else if (TempData["BookingResult"].ToString() == "NOAVAILABLE")
+    {
+        <div class="container-fluid my-4 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="callout callout-danger">
+                        <h5 style="font-weight:800"><i class="icon fas fa-ban"></i> Thông báo!</h5>
+                        <p>
+                            Không còn phòng trống phù hợp với yêu cầu của bạn!!
+                        </p>
+                        <br />
+                        <p>Bấm vào <a href="@Url.Action("Index")">ĐÂY</a> để quay lại trang chủ</p>
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
             </div>
         </div>
     }
