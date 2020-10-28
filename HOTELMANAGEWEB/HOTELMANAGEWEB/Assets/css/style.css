@@ -12904,3 +12904,13 @@ textarea.form-control {
     font-weight:500;
     color: rgb(31, 28, 28);
 }
+
+.features-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: #454545;
+}
