@@ -473,6 +473,12 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         public ActionResult ChangePass(ChangePassModel model)
         {
             var result = AccountBLL.Instance.ChangePassword(User.Identity.Name, model);
+            if (result != null)
+            {
+                TempData["ChangePass"] = "SUCCESS";
+                return RedirectToAction("Index", "ListModule");
+            }
+            TempData["ChangePass"] = "FAIL";
             return RedirectToAction("Index", "ListModule");
         }
 
@@ -503,5 +509,7 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             }
             return View("Manage-19");
         }
+
+        
     }
 }
