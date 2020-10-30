@@ -9,6 +9,27 @@
 
 }
 
+
+@{
+    if (ViewBag.Message == "CHANGESUCCESS")
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-check"></i> Thông báo!</h5>
+            Đổi phòng thành công!
+        </div>
+    }
+    else if (ViewBag.Message == "CHANGEFAIL")
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-ban"></i> Thông báo!</h5>
+            Có lỗi xảy ra. Không đổi phòng thành công.
+        </div>
+    }
+}
+
+
 <section class="content-header roboto-fonts">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -82,14 +103,14 @@
                                         case "MAINTENANCE": status = "background-color:purple"; break;
                                     }
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                        
+
                                         <button class="hotel-box" style="@Html.Raw(status)" data-toggle="modal" data-target="#modal-xl-@rooms.RoomID">
                                             <p class="hotel-box-name" style="@Html.Raw(color)">@rooms.RoomName</p>
                                         </button>
                                     </div>
                                     Html.RenderAction("RoomModal", "Manage", new { id = rooms.RoomID });
                                 }
-                                }
+                            }
                         </div>
                     </div>
                 </div>

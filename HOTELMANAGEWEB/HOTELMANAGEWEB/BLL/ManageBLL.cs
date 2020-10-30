@@ -151,5 +151,19 @@ namespace HOTELMANAGEWEB.BLL
                 return db.ModuleLists.ToList();
             }
         }
+
+        public Equipment FinishMaintenance(int equiID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var equip = db.Equipments.Find(equiID);
+                equip.EquipStatus = 0;
+                if (db.SaveChanges() > 0)
+                {
+                    return equip;
+                }
+                return null;
+            }
+        }
     }
 }

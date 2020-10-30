@@ -16,7 +16,7 @@ namespace HOTELMANAGEWEB.Models
         public int AccountID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public byte Disabled { get; set; }
+        public bool Disabled { get; set; }
         public int AccountTypeID { get; set; }
         public string Image { get; set; }
     }

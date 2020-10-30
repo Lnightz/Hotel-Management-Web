@@ -90,7 +90,7 @@ namespace HOTELMANAGEWEB.BLL
             }
         }
 
-        public int GetRoomIDByBookingID(int bookingid)
+        public int GetRoomIDByBookingID(int? bookingid)
         {
             using (var db = new QLKSWEBEntities())
             {
@@ -103,6 +103,58 @@ namespace HOTELMANAGEWEB.BLL
                     return Convert.ToInt32(room.RoomID);
                 }
                 return -1;
+            }
+        }
+
+        public int ChangeRoom(int? BillID, int RoomID, int ChangeRoomID, int? BookingID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db
+                    .Database
+                    .SqlQuery<int>("EXEC ChangeRoom @BillID, @RoomID, @ChangeRoomID, @BookingID",
+                    new SqlParameter("@BillID", BillID),
+                    new SqlParameter("@RoomID", RoomID),
+                    new SqlParameter("@ChangeRoomID", ChangeRoomID),
+                    new SqlParameter("@BookingID", BookingID)).FirstOrDefault();
+            }
+        }
+
+        public List<Room> GetListOpenRoom()
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                return db.Rooms
+                        .Include(x => x.RoomType)
+                        .Where(x => x.RoomStatus == "OPEN")
+                        .ToList();
+            }
+        }
+
+        public Room GetRoomByRequestID(int requestid)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var request = db.Requests
+                            .Include(x => x.Equipment)
+                            .Where(x => x.RequestID == requestid)
+                            .FirstOrDefault();
+                var room = db.Rooms.Find(request.Equipment.RoomID);
+                return room;
+            }
+        }
+
+        public Room RoomFinishMaintenance(int roomID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var room = db.Rooms.Find(roomID);
+                room.RoomStatus = "OPEN";
+                if (db.SaveChanges() > 0)
+                {
+                    return room;
+                }
+                return null;
             }
         }
     }

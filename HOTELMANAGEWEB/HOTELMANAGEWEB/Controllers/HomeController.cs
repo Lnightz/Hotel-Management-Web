@@ -182,6 +182,7 @@ namespace HOTELMANAGEWEB.Controllers
                         CardNo = customer.CardNo,
                         NameOnCard = customer.NameOnCard,
                         ExpirationDate = customer.ExpirationDate,
+                        DateCreated = DateTime.Now
                     };
                     db.Customers.Add(cus);
                     if (db.SaveChanges() < 0)

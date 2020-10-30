@@ -73,5 +73,16 @@ namespace HOTELMANAGEWEB.BLL
                 else return -1;
             }
         }
+
+        public int GetRoomIDByBillID(int? BillID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var bill = db.BillDetails
+                        .Where(x => x.BillID == BillID).FirstOrDefault();
+                return (int)bill.RoomID;
+            }
+        }
+
     }
 }

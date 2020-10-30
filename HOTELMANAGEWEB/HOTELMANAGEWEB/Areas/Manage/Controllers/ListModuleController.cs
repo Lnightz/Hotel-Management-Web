@@ -15,6 +15,12 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         // GET: Manage/ListModule
         public ActionResult Index()
         {
+
+            if (TempData["ChangePass"] != null)
+            {
+                ViewBag.Message = TempData["ChangePass"].ToString();
+            }
+
             var infor = ManageBLL.Instance.GetModules(User.Identity.Name);
 
             return View(infor);

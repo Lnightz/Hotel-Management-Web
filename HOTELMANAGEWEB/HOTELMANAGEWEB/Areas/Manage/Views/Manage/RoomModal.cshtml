@@ -127,6 +127,7 @@
                     if (roominfo.RoomStatus == "BOOKING")
                     {
                         <a href="@Url.Action("CancelBooking","Manage", new { bookingid = bookinfo.BookingID })" class="btn btn-danger">Huỷ đặt phòng</a>
+                        <a href="@Url.Action("ChangeRoom","Manage", new { BookingID = bookinfo.BookingID })" class="btn btn-warning">Đổi phòng</a>
                         <a href="@Url.Action("RentRoom","Manage", new { bookingid = bookinfo.BookingID , roomid = roominfo.RoomID })" class="btn btn-primary">Nhận phòng</a>
 
                     }
@@ -135,7 +136,14 @@
                     if (roominfo.RoomStatus == "RENTED")
                     {
                         <a href="@Url.Action("InvoiceDetail","Manage", new { id = billID })" class="btn btn-info">Thêm dịch vụ</a>
+                        <a href="@Url.Action("ChangeRoom","Manage", new { BillID = billID })" class="btn btn-warning">Đổi phòng</a>
                         <a href="@Url.Action("InvoiceDetail","Manage",  new { id = billID })" type="button" class="btn btn-primary">Thanh toán</a>
+                    }
+                }
+                @{
+                    if (roominfo.RoomStatus == "MAINTENANCE")
+                    {
+                        <a href="@Url.Action("RoomFinishMantenace","Manage",  new { id = roominfo.RoomID })" type="button" class="btn btn-primary">Thanh toán</a>
                     }
                 }
             </div>

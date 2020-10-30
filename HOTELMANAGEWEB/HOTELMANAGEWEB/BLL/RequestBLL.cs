@@ -39,5 +39,50 @@ namespace HOTELMANAGEWEB.BLL
                 return db.Equipments.Where(x=>x.EquipStatus == 0).ToList();
             }
         }
+
+        public Request DenyRequest(int RequestID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var request = db.Requests.Find(RequestID);
+                request.RequestStatus = "DENIED";
+                if (db.SaveChanges() > 0)
+                {
+                    return request;
+                }
+                return null;
+            }
+        }
+
+        public Request ApproveRequest(int RequestID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var request = db.Requests.Find(RequestID);
+                request.RequestStatus = "APPROVED";
+                if (db.SaveChanges() > 0)
+                {
+                    return request;
+                }
+                return null;
+            }
+        }
+
+        public bool CheckRoomIsUsed(int RequestID)
+        {
+            using (var db = new QLKSWEBEntities())
+            {
+                var request = db.Requests
+                             .Include(x => x.Equipment)
+                             .Where(x => x.RequestID == RequestID)
+                             .FirstOrDefault();
+                var room = db.Rooms.Find(request.Equipment.RoomID);
+                if (room.RoomStatus == "OPEN")
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

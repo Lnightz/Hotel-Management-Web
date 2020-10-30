@@ -1,0 +1,80 @@
+﻿@{
+    var mode = ViewBag.Mode;
+    var requestID = ViewBag.RequestID;
+}
+
+@{
+    if (mode == 0) //Phòng trống
+    {
+        <div class="modal fade" id="modal-sm-@mode">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông báo!</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có muốn tiến hành bảo trì phòng cùng với thiết bị hay không?</p>
+                    </div>
+                    <div class="modal-footer justify-content-around">
+                        @{
+                            using (Html.BeginForm("ApproveRequest", "Manage", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" name="mode" value="1" />
+                                <input type="hidden" name="RequestID" value="@requestID" />
+                                <button type="submit" class="btn btn-primary">Có</button>
+                            }
+                            using (Html.BeginForm("ApproveRequest", "Manage", FormMethod.Post))
+                            {
+                                <input type="hidden" name="mode" value="0" />
+                                <input type="hidden" name="RequestID" value="@requestID" />
+                                @Html.AntiForgeryToken();
+                                <button type="submit" class="btn btn-default">Không</button>
+                            }
+                        }
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    }
+    else if (mode == 1)// Phòng đang sử dụng.
+    {
+        <div class="modal fade" id="modal-sm-@mode">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông báo!</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Phòng đang được sử dụng. Bạn có muốn chuyển phòng trước khi thực hiện bảo trì? <br />
+                        Nếu không chuyển phòng, thì phòng sẽ không chuyển sang trạng thái bảo trì!!</p>
+                    </div>
+                    <div class="modal-footer justify-content-around">
+                        @{
+                            using (Html.BeginForm("ApproveRequest", "Manage", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken();
+                                <input type="hidden" name="mode" value="0" />
+                                <input type="hidden" name="RequestID" value="@requestID" />
+                                <button type="submit" class="btn btn-primary">Không</button>
+                            }
+                        }
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Có</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    }
+}

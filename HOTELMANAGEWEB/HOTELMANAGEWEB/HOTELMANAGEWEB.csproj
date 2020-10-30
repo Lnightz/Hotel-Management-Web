@@ -147,6 +147,7 @@
     <Compile Include="BLL\InvoicesBLL.cs" />
     <Compile Include="BLL\ManageBLL.cs" />
     <Compile Include="BLL\ManageRoomBLL.cs" />
+    <Compile Include="BLL\ReportBLL.cs" />
     <Compile Include="BLL\RequestBLL.cs" />
     <Compile Include="BLL\ServicesBLL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -801,13 +802,6 @@
     <Content Include="Areas\Manage\Views\Manage\Manage-35.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-31.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-51.cshtml" />
-    <EntityDeploy Include="Models\HOTEL.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HOTEL.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\HOTEL.edmx.diagram">
-      <DependentUpon>HOTEL.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Manage\Views\Manage\ChoseRoomForBooking.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\AddEditBooking.cshtml" />
     <Content Include="Areas\Manage\Views\ListModule\ListModule.cshtml" />
@@ -846,6 +840,15 @@
     <Content Include="Areas\Manage\Views\Manage\ChangePass.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\Manage-59.cshtml" />
     <Content Include="Areas\Manage\Views\Manage\CreateRequest.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\ChangeRoom.cshtml" />
+    <Content Include="Areas\Manage\Views\Manage\CheckRoomIsUsed.cshtml" />
+    <EntityDeploy Include="Models\HOTEL.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HOTEL.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HOTEL.edmx.diagram">
+      <DependentUpon>HOTEL.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

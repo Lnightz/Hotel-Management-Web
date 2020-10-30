@@ -22,6 +22,11 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ActionName("Manage-19")]
         public ActionResult ManageRoom()
         {
+            if (TempData["ChangeRoom"] != null)
+            {
+                ViewBag.Message = TempData["ChangeRoom"].ToString();
+            }
+
             ViewBag.maxFloor = ManageRoomBLL.Instance.GetMaxFloor();
 
             return View();
@@ -510,6 +515,109 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             return View("Manage-19");
         }
 
-        
+        [HttpGet]
+        public ActionResult ChangeRoom(int? BillID, int? BookingID)
+        {
+            if (BillID != null)
+            {
+                var roomid = InvoicesBLL.Instance.GetRoomIDByBillID(BillID);
+                ViewBag.RoomID = roomid;
+            }
+            if (BookingID != null)
+            {
+                var roomid = ManageRoomBLL.Instance.GetRoomIDByBookingID(BookingID);
+                ViewBag.RoomID = roomid;
+            }
+            ViewBag.BillID = BillID;
+            ViewBag.BookingID = BookingID;
+            ViewBag.ListOpenRoom = ManageRoomBLL.Instance.GetListOpenRoom();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeRoom(int? BillID, int RoomID, int RoomChangeID, int? BookingID)
+        {
+            int result = ManageRoomBLL.Instance.ChangeRoom(BillID, RoomID, RoomChangeID, BookingID);
+            if (result == 1)
+            {
+                TempData["ChangeRoom"] = "CHANGESUCCESS";
+                return RedirectToAction("Manage-19");
+            }
+            TempData["ChangeRoom"] = "CHANGEFAIL";
+            return RedirectToAction("Manage-19");
+        }
+
+        public PartialViewResult CheckRoomIsUsed(int RequestID)
+        {
+            var result = RequestBLL.Instance.CheckRoomIsUsed(RequestID);
+            ViewBag.RequestID = RequestID;
+            if (result == true)
+            {
+                ViewBag.Mode = 1; //Phòng đang được sử dụng
+                return PartialView();
+            }
+            ViewBag.Mode = 0; // Phòng đang trống
+            return PartialView();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ApproveRequest(int RequestID, int mode)
+        {
+            var room = ManageRoomBLL.Instance.GetRoomByRequestID(RequestID);
+            using (var db = new QLKSWEBEntities())
+            {
+                var request = db.Requests.Find(RequestID);
+                var result = RequestBLL.Instance.ApproveRequest(RequestID);
+                if (result != null)
+                {
+                    var equip = db.Equipments.Find(request.EquipmentID);
+                    equip.EquipStatus = 1;
+                    if (mode == 1) // Bảo trì phòng cùng thiết bị
+                    {
+                        room.RoomStatus = "MAINTENANCE";
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Manage-47");
+                }
+                return RedirectToAction("Manage-47");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DenyRequest(int RequestID)
+        {
+            var result = RequestBLL.Instance.DenyRequest(RequestID);
+            if (result != null)
+            {
+                TempData["Request"] = "DENIEDSUCCESS";
+                return RedirectToAction("Manage-47");
+            }
+            TempData["Request"] = "DENIEDFAIL";
+            return RedirectToAction("Manage-47");
+        }
+
+        public ActionResult EquipFinishMantenance(int id)
+        {
+            var result = ManageBLL.Instance.FinishMaintenance(id);
+            if (result != null)
+            {
+                return View("Manage-43");
+            }
+            return View("Manage-43");
+        }
+
+        public ActionResult RoomFinishMantenace(int id)
+        {
+            var result = ManageRoomBLL.Instance.RoomFinishMaintenance(id);
+            if (result != null)
+            {
+                return View("Manage-19");
+            }
+            return View("Manage-19");
+        }
     }
 }

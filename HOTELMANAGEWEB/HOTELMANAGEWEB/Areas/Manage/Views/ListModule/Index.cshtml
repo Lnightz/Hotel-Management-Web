@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<HOTELMANAGEWEB.Models.ModuleList>
 @{
+    /**/
+
 
     if (!User.Identity.IsAuthenticated)
     {
@@ -110,14 +112,32 @@
         <div class="content">
             <div class="container">
                 <div class="row">
+                    @{
+                        if (ViewBag.Message == "SUCCESS")
+                        {
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="icon fas fa-check"></i> Thông báo!</h5>
+                               Đổi mật khẩu thành công.
+                            </div>
+                        }
+                        else if (ViewBag.Message == "FAIL")
+                        {
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="icon fas fa-ban"></i> Thông báo!</h5>
+                                Có lỗi xảy ra. Đổi mật khẩu không thành công. Vui lòng thử lại.
+                            </div>
+                        }
+                    }
                     @{ foreach (var module in Model)
                         {
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="module-list">
-                    <a href="@Url.Action("Module", new { id = module.ModuleID})" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
-                    <p class="module-list-caption">@module.ModuleName</p>
-                </div>
-            </div> } }
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="module-list">
+                                    <a href="@Url.Action("Module", new { id = module.ModuleID})" class="module-list-icon">@Html.Raw(module.ModuleIcon)</a>
+                                    <p class="module-list-caption">@module.ModuleName</p>
+                                </div>
+                            </div> } }
                 </div>
             </div>
         </div>

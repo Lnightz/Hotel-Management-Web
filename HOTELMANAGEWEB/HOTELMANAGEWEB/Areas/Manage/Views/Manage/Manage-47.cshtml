@@ -1,4 +1,5 @@
-﻿@model IEnumerable<HOTELMANAGEWEB.Models.Request>
+﻿@using HOTELMANAGEWEB.BLL;
+@model IEnumerable<HOTELMANAGEWEB.Models.Request>
 @{
     ViewBag.Title = "ManageRequest";
     Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
@@ -59,31 +60,49 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @item.RequesterName
-                                    </td>
-                                    <td>
-                                        @Convert.ToDecimal(item.Prices).ToString("C0",System.Globalization.CultureInfo.CurrentCulture)
-                                    </td>
-                                    <td>
-                                        @item.RequestType.RequestTypeName
-                                    </td>
-                                    <td>
-                                        @item.RequestStatus
-                                    </td>
-                                    <td>
-                                        @item.RequestDescription
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm">
-                                            <i class="fas fa-check"></i> Duyệt
-                                        </a>
-                                        <a class="btn btn-danger btn-sm">
-                                            <i class="fas fa-times"></i> Từ chối
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            @item.RequesterName
+                                        </td>
+                                        <td>
+                                            @Convert.ToDecimal(item.Prices).ToString("C0", System.Globalization.CultureInfo.CurrentCulture)
+                                        </td>
+                                        <td>
+                                            @item.RequestType.RequestTypeName
+                                        </td>
+                                        <td>
+                                            @item.RequestStatus
+                                        </td>
+                                        <td>
+                                            @item.RequestDescription
+                                        </td>
+                                        <td class="d-flex justify-content-around">
+                                            @{
+                                                if (item.RequestStatus == "OPEN")
+                                                {
+                                                    int mode = 1;
+                                                    var result = RequestBLL.Instance.CheckRoomIsUsed(item.RequestID);
+                                                    if (result == false)
+                                                    {
+                                                        mode = 0;
+                                                    }
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-sm-@mode">
+                                                        <i class="fas fa-check"></i> Duyệt
+                                                    </button>
+                                                    Html.RenderAction("CheckRoomIsUsed", "Manage", new { RequestID = item.RequestID });
+
+                                                    using (Html.BeginForm("DenyRequest", "Manage", FormMethod.Post))
+                                                    {
+                                                        @Html.AntiForgeryToken();
+                                                        <input type="hidden" name="RequestID" value="@item.RequestID" />
+                                                        <a class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-times"></i> Từ chối
+                                                        </a>
+                                                    }
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

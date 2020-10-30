@@ -1,0 +1,90 @@
+﻿@using System.Globalization;
+@{
+    ViewBag.Title = "ChangeRoom";
+    Layout = "~/Areas/Manage/Views/Shared/_AdminLayout.cshtml";
+    var roomID = ViewBag.RoomID;
+    var billID = ViewBag.BillID;
+    var bookingID = ViewBag.BookingID;
+    var listOpenRoom = (List<HOTELMANAGEWEB.Models.Room>)ViewBag.ListOpenRoom;
+}
+
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title roboto-fonts">Đổi phòng</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Tên phòng
+                                    </th>
+                                    <th>
+                                        Loại phòng
+                                    </th>
+                                    <th>
+                                        Số tiền
+                                    </th>
+                                    <th>
+                                        Sức chứa
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in listOpenRoom)
+                                {
+                                    <tr>
+                                        <th>
+                                            @item.RoomName
+                                        </th>
+                                        <th>
+                                            @item.RoomType.RoomTypeName
+                                        </th>
+                                        <th>
+                                            @Convert.ToDecimal(item.RoomType.RoomTypePrices).ToString("C0", CultureInfo.CurrentCulture)
+                                        </th>
+                                        <th>
+                                            @item.MinQuantity - @item.MaxQuantity
+                                        </th>
+                                        <th>
+                                            @{
+                                                using (Html.BeginForm("ChangeRoom", "Manage", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" value="@item.RoomID" name="RoomChangeID" />
+                                                    <input type="hidden" value="@roomID" name="RoomID" />
+                                                    <input type="hidden" value="@billID" name="BillID" />
+                                                    <input type="hidden" value="@bookingID" name="BookingID" />
+                                                    <button class="btn btn-primary btn-sm" type="submit">
+                                                        <i class="fas fa-door-open"></i> Chọn phòng
+                                                    </button>
+                                                }
+                                            }
+                                        </th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+

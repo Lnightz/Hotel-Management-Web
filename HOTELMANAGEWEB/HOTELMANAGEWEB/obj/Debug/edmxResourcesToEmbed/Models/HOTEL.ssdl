@@ -194,8 +194,8 @@
     <Property Name="Prices" Type="decimal" Precision="19" Scale="4" />
     <Property Name="RequestDescription" Type="nvarchar" MaxLength="500" />
     <Property Name="RequestTypeID" Type="int" Nullable="false" />
-    <Property Name="EquipmentID" Type="int" Nullable="false" />
-    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="EquipmentID" Type="int" />
+    <Property Name="RoomID" Type="int" />
     <Property Name="RequestStatus" Type="nvarchar" MaxLength="100" />
     <Property Name="CreatedUserID" Type="int" />
     <Property Name="ModifyUserID" Type="int" />
@@ -261,9 +261,9 @@
     <Property Name="ModifyUserID" Type="int" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DateModify" Type="datetime" />
-    <Property Name="IsPay" Type="tinyint" />
-    <Property Name="IsShowHomePage" Type="tinyint" />
-    <Property Name="IsShow" Type="tinyint" />
+    <Property Name="IsPay" Type="bit" />
+    <Property Name="IsShowHomePage" Type="bit" />
+    <Property Name="IsShow" Type="bit" />
     <Property Name="RoomTypeImage" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="Services">
@@ -326,7 +326,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__AccountPe__Modul__71D1E811">
+  <Association Name="FK__AccountPe__Modul__59063A47">
     <End Role="ModuleList" Type="Self.ModuleList" Multiplicity="0..1" />
     <End Role="AccountPermission" Type="Self.AccountPermission" Multiplicity="*" />
     <ReferentialConstraint>
@@ -350,7 +350,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__BillI__571DF1D5">
+  <Association Name="FK__BillDetai__BillI__5AEE82B9">
     <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -362,7 +362,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillDetai__RoomI__5629CD9C">
+  <Association Name="FK__BillDetai__RoomI__5BE2A6F2">
     <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
     <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -386,7 +386,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Booking__Custome__4D94879B">
+  <Association Name="FK__Booking__Custome__5DCAEF64">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -410,7 +410,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Booking__RoomTyp__4E88ABD4">
+  <Association Name="FK__Booking__RoomTyp__5FB337D6">
     <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -422,7 +422,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BookingRo__IsBoo__5AEE82B9">
+  <Association Name="FK__BookingRo__Booki__60A75C0F">
     <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
     <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
     <ReferentialConstraint>
@@ -434,7 +434,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BookingRo__RoomI__5BE2A6F2">
+  <Association Name="FK__BookingRo__RoomI__619B8048">
     <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
     <End Role="BookingRoom" Type="Self.BookingRoom" Multiplicity="*" />
     <ReferentialConstraint>
@@ -446,7 +446,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BookingSe__IsBoo__5FB337D6">
+  <Association Name="FK__BookingSe__Booki__628FA481">
     <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
     <End Role="BookingServices" Type="Self.BookingServices" Multiplicity="*" />
     <ReferentialConstraint>
@@ -470,7 +470,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Equipment__Image__36B12243">
+  <Association Name="FK__Equipment__Equip__6477ECF3">
     <End Role="EquipmentType" Type="Self.EquipmentType" Multiplicity="1" />
     <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -482,7 +482,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Equipment__RoomI__37A5467C">
+  <Association Name="FK__Equipment__RoomI__656C112C">
     <End Role="Room" Type="Self.Room" Multiplicity="1" />
     <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -494,7 +494,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__EquipRequ__Equip__6C190EBB">
+  <Association Name="FK__EquipRequ__Equip__66603565">
     <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
     <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
     <ReferentialConstraint>
@@ -506,7 +506,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__EquipRequ__Quant__6B24EA82">
+  <Association Name="FK__EquipRequ__Reque__6754599E">
     <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
     <End Role="EquipRequest" Type="Self.EquipRequest" Multiplicity="*" />
     <ReferentialConstraint>
@@ -518,7 +518,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Maintenan__Equip__4316F928">
+  <Association Name="FK__Maintenan__Equip__68487DD7">
     <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
     <End Role="MaintenanceHistory" Type="Self.MaintenanceHistory" Multiplicity="*" />
     <ReferentialConstraint>
@@ -542,7 +542,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Request__DateMod__46E78A0C">
+  <Association Name="FK__Request__Equipme__6A30C649">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="EquipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__Request__6B24EA82">
     <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
     <ReferentialConstraint>
@@ -554,20 +566,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Request__Equipme__48CFD27E">
-    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Equipment">
-        <PropertyRef Name="EquipmentID" />
-      </Principal>
-      <Dependent Role="Request">
-        <PropertyRef Name="EquipmentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Request__RoomID__47DBAE45">
-    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+  <Association Name="FK__Request__RoomID__6C190EBB">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Room">
@@ -578,7 +578,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Room__Image__31EC6D26">
+  <Association Name="FK__Room__RoomTypeID__6D0D32F4">
     <End Role="RoomType" Type="Self.RoomType" Multiplicity="1" />
     <End Role="Room" Type="Self.Room" Multiplicity="*" />
     <ReferentialConstraint>
@@ -590,7 +590,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__RoomReque__Reque__6754599E">
+  <Association Name="FK__RoomReque__Reque__6E01572D">
     <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
     <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
     <ReferentialConstraint>
@@ -602,7 +602,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__RoomReque__RoomI__68487DD7">
+  <Association Name="FK__RoomReque__RoomI__6EF57B66">
     <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
     <End Role="RoomRequest" Type="Self.RoomRequest" Multiplicity="*" />
     <ReferentialConstraint>
@@ -614,7 +614,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__RoomServi__RoomI__6383C8BA">
+  <Association Name="FK__RoomServi__RoomI__6FE99F9F">
     <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
     <End Role="RoomServices" Type="Self.RoomServices" Multiplicity="*" />
     <ReferentialConstraint>
@@ -650,6 +650,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ChangeRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillID" Type="int" Mode="In" />
+    <Parameter Name="RoomID" Type="int" Mode="In" />
+    <Parameter Name="ChangeRoomID" Type="int" Mode="In" />
+    <Parameter Name="BookingID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Find_AvailableRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NumPerson" Type="int" Mode="In" />
+    <Parameter Name="CheckinDate" Type="datetime" Mode="In" />
+    <Parameter Name="CheckoutDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Find_AvailableServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ServicesID" Type="int" Mode="In" />
+    <Parameter Name="DateBook" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Get_Module" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Store_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="QLKSWEBModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccountPermission" EntityType="Self.AccountPermission" Schema="dbo" store:Type="Tables" />
@@ -682,7 +704,7 @@
       <End Role="Account" EntitySet="Account" />
       <End Role="AccountPermission" EntitySet="AccountPermission" />
     </AssociationSet>
-    <AssociationSet Name="FK__AccountPe__Modul__71D1E811" Association="Self.FK__AccountPe__Modul__71D1E811">
+    <AssociationSet Name="FK__AccountPe__Modul__59063A47" Association="Self.FK__AccountPe__Modul__59063A47">
       <End Role="ModuleList" EntitySet="ModuleList" />
       <End Role="AccountPermission" EntitySet="AccountPermission" />
     </AssociationSet>
@@ -690,11 +712,11 @@
       <End Role="Account" EntitySet="Account" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__BillI__571DF1D5" Association="Self.FK__BillDetai__BillI__571DF1D5">
+    <AssociationSet Name="FK__BillDetai__BillI__5AEE82B9" Association="Self.FK__BillDetai__BillI__5AEE82B9">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillDetai__RoomI__5629CD9C" Association="Self.FK__BillDetai__RoomI__5629CD9C">
+    <AssociationSet Name="FK__BillDetai__RoomI__5BE2A6F2" Association="Self.FK__BillDetai__RoomI__5BE2A6F2">
       <End Role="Room" EntitySet="Room" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
@@ -702,7 +724,7 @@
       <End Role="Services" EntitySet="Services" />
       <End Role="BillDetail" EntitySet="BillDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__Booking__Custome__4D94879B" Association="Self.FK__Booking__Custome__4D94879B">
+    <AssociationSet Name="FK__Booking__Custome__5DCAEF64" Association="Self.FK__Booking__Custome__5DCAEF64">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
@@ -710,19 +732,19 @@
       <End Role="Account" EntitySet="Account" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
-    <AssociationSet Name="FK__Booking__RoomTyp__4E88ABD4" Association="Self.FK__Booking__RoomTyp__4E88ABD4">
+    <AssociationSet Name="FK__Booking__RoomTyp__5FB337D6" Association="Self.FK__Booking__RoomTyp__5FB337D6">
       <End Role="RoomType" EntitySet="RoomType" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
-    <AssociationSet Name="FK__BookingRo__IsBoo__5AEE82B9" Association="Self.FK__BookingRo__IsBoo__5AEE82B9">
+    <AssociationSet Name="FK__BookingRo__Booki__60A75C0F" Association="Self.FK__BookingRo__Booki__60A75C0F">
       <End Role="Booking" EntitySet="Booking" />
       <End Role="BookingRoom" EntitySet="BookingRoom" />
     </AssociationSet>
-    <AssociationSet Name="FK__BookingRo__RoomI__5BE2A6F2" Association="Self.FK__BookingRo__RoomI__5BE2A6F2">
+    <AssociationSet Name="FK__BookingRo__RoomI__619B8048" Association="Self.FK__BookingRo__RoomI__619B8048">
       <End Role="Room" EntitySet="Room" />
       <End Role="BookingRoom" EntitySet="BookingRoom" />
     </AssociationSet>
-    <AssociationSet Name="FK__BookingSe__IsBoo__5FB337D6" Association="Self.FK__BookingSe__IsBoo__5FB337D6">
+    <AssociationSet Name="FK__BookingSe__Booki__628FA481" Association="Self.FK__BookingSe__Booki__628FA481">
       <End Role="Booking" EntitySet="Booking" />
       <End Role="BookingServices" EntitySet="BookingServices" />
     </AssociationSet>
@@ -730,23 +752,23 @@
       <End Role="Services" EntitySet="Services" />
       <End Role="BookingServices" EntitySet="BookingServices" />
     </AssociationSet>
-    <AssociationSet Name="FK__Equipment__Image__36B12243" Association="Self.FK__Equipment__Image__36B12243">
+    <AssociationSet Name="FK__Equipment__Equip__6477ECF3" Association="Self.FK__Equipment__Equip__6477ECF3">
       <End Role="EquipmentType" EntitySet="EquipmentType" />
       <End Role="Equipment" EntitySet="Equipment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Equipment__RoomI__37A5467C" Association="Self.FK__Equipment__RoomI__37A5467C">
+    <AssociationSet Name="FK__Equipment__RoomI__656C112C" Association="Self.FK__Equipment__RoomI__656C112C">
       <End Role="Room" EntitySet="Room" />
       <End Role="Equipment" EntitySet="Equipment" />
     </AssociationSet>
-    <AssociationSet Name="FK__EquipRequ__Equip__6C190EBB" Association="Self.FK__EquipRequ__Equip__6C190EBB">
+    <AssociationSet Name="FK__EquipRequ__Equip__66603565" Association="Self.FK__EquipRequ__Equip__66603565">
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="EquipRequest" EntitySet="EquipRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK__EquipRequ__Quant__6B24EA82" Association="Self.FK__EquipRequ__Quant__6B24EA82">
+    <AssociationSet Name="FK__EquipRequ__Reque__6754599E" Association="Self.FK__EquipRequ__Reque__6754599E">
       <End Role="Request" EntitySet="Request" />
       <End Role="EquipRequest" EntitySet="EquipRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK__Maintenan__Equip__4316F928" Association="Self.FK__Maintenan__Equip__4316F928">
+    <AssociationSet Name="FK__Maintenan__Equip__68487DD7" Association="Self.FK__Maintenan__Equip__68487DD7">
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="MaintenanceHistory" EntitySet="MaintenanceHistory" />
     </AssociationSet>
@@ -754,31 +776,31 @@
       <End Role="Account" EntitySet="Account" />
       <End Role="Promotion" EntitySet="Promotion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Request__DateMod__46E78A0C" Association="Self.FK__Request__DateMod__46E78A0C">
-      <End Role="RequestType" EntitySet="RequestType" />
-      <End Role="Request" EntitySet="Request" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Request__Equipme__48CFD27E" Association="Self.FK__Request__Equipme__48CFD27E">
+    <AssociationSet Name="FK__Request__Equipme__6A30C649" Association="Self.FK__Request__Equipme__6A30C649">
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="Request" EntitySet="Request" />
     </AssociationSet>
-    <AssociationSet Name="FK__Request__RoomID__47DBAE45" Association="Self.FK__Request__RoomID__47DBAE45">
+    <AssociationSet Name="FK__Request__Request__6B24EA82" Association="Self.FK__Request__Request__6B24EA82">
+      <End Role="RequestType" EntitySet="RequestType" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__RoomID__6C190EBB" Association="Self.FK__Request__RoomID__6C190EBB">
       <End Role="Room" EntitySet="Room" />
       <End Role="Request" EntitySet="Request" />
     </AssociationSet>
-    <AssociationSet Name="FK__Room__Image__31EC6D26" Association="Self.FK__Room__Image__31EC6D26">
+    <AssociationSet Name="FK__Room__RoomTypeID__6D0D32F4" Association="Self.FK__Room__RoomTypeID__6D0D32F4">
       <End Role="RoomType" EntitySet="RoomType" />
       <End Role="Room" EntitySet="Room" />
     </AssociationSet>
-    <AssociationSet Name="FK__RoomReque__Reque__6754599E" Association="Self.FK__RoomReque__Reque__6754599E">
+    <AssociationSet Name="FK__RoomReque__Reque__6E01572D" Association="Self.FK__RoomReque__Reque__6E01572D">
       <End Role="Request" EntitySet="Request" />
       <End Role="RoomRequest" EntitySet="RoomRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK__RoomReque__RoomI__68487DD7" Association="Self.FK__RoomReque__RoomI__68487DD7">
+    <AssociationSet Name="FK__RoomReque__RoomI__6EF57B66" Association="Self.FK__RoomReque__RoomI__6EF57B66">
       <End Role="Room" EntitySet="Room" />
       <End Role="RoomRequest" EntitySet="RoomRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK__RoomServi__RoomI__6383C8BA" Association="Self.FK__RoomServi__RoomI__6383C8BA">
+    <AssociationSet Name="FK__RoomServi__RoomI__6FE99F9F" Association="Self.FK__RoomServi__RoomI__6FE99F9F">
       <End Role="Room" EntitySet="Room" />
       <End Role="RoomServices" EntitySet="RoomServices" />
     </AssociationSet>

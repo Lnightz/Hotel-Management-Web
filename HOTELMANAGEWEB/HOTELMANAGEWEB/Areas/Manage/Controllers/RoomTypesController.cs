@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HOTELMANAGEWEB.Models;
+using HOTELMANAGEWEB.BLL;
 
 namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
@@ -35,6 +36,8 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+                roomType.CreatedUserID = user.AccountID;
                 db.RoomTypes.Add(roomType);
                 db.SaveChanges();
                 return RedirectToAction("Manage-51", "Manage");
@@ -67,6 +70,8 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = ManageBLL.Instance.GetUserByUserName(User.Identity.Name);
+                roomType.ModifyUserID = user.AccountID;
                 db.Entry(roomType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Manage-51", "Manage");

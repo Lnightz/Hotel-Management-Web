@@ -20,7 +20,6 @@ namespace HOTELMANAGEWEB.Models
         public QLKSWEBEntities()
             : base("name=QLKSWEBEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,6 +27,7 @@ namespace HOTELMANAGEWEB.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountPermission> AccountPermissions { get; set; }
         public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
@@ -48,9 +48,29 @@ namespace HOTELMANAGEWEB.Models
         public virtual DbSet<RoomRequest> RoomRequests { get; set; }
         public virtual DbSet<RoomService> RoomServices { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<ServicesType> ServicesTypes { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServicesType> ServicesTypes { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> ChangeRoom(Nullable<int> billID, Nullable<int> roomID, Nullable<int> changeRoomID, Nullable<int> bookingID)
+        {
+            var billIDParameter = billID.HasValue ?
+                new ObjectParameter("BillID", billID) :
+                new ObjectParameter("BillID", typeof(int));
+    
+            var roomIDParameter = roomID.HasValue ?
+                new ObjectParameter("RoomID", roomID) :
+                new ObjectParameter("RoomID", typeof(int));
+    
+            var changeRoomIDParameter = changeRoomID.HasValue ?
+                new ObjectParameter("ChangeRoomID", changeRoomID) :
+                new ObjectParameter("ChangeRoomID", typeof(int));
+    
+            var bookingIDParameter = bookingID.HasValue ?
+                new ObjectParameter("BookingID", bookingID) :
+                new ObjectParameter("BookingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ChangeRoom", billIDParameter, roomIDParameter, changeRoomIDParameter, bookingIDParameter);
+        }
     
         public virtual int Find_AvailableRoom(Nullable<int> numPerson, Nullable<System.DateTime> checkinDate, Nullable<System.DateTime> checkoutDate)
         {
