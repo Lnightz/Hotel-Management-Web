@@ -490,6 +490,21 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
         [ActionName("Manage-59")]
         public ActionResult Chart()
         {
+            ViewBag.NewCus = ReportBLL.Instance.GetNewCustomer();
+            ViewBag.MaintenanceRoom = ReportBLL.Instance.GetMaintenaceRoom();
+            ViewBag.RentRoom = ReportBLL.Instance.GetRentedRoom();
+            ViewBag.Total = ReportBLL.Instance.GetTotal();
+            ViewBag.Booking = ReportBLL.Instance.TotalBooking();
+            ViewBag.CancelBooking = ReportBLL.Instance.TotalCancelBooking();
+            ViewBag.TotalServices = ReportBLL.Instance.GetTotalServices();
+            ViewBag.TotalRoom = ReportBLL.Instance.GetTotalRoom();
+
+            int month = DateTime.Now.Month;
+            int year = DateTime.Now.Year;
+
+            ViewBag.PieChart = ReportBLL.Instance.pieChartModels(month, year);
+            ViewBag.SalesChart = ReportBLL.Instance.salesChartModels(month, year);
+
             return View();
         }
 
