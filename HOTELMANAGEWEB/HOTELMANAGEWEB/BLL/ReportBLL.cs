@@ -5,6 +5,7 @@ using System.Web;
 using HOTELMANAGEWEB.Models;
 using HOTELMANAGEWEB.DTO;
 using System.Data.SqlClient;
+using Microsoft.Ajax.Utilities;
 
 namespace HOTELMANAGEWEB.BLL
 {
@@ -71,9 +72,14 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Database
-                    .SqlQuery<decimal>("SELECT SUM(Total) FROM Bill WHERE MONTH(DateCreated) = MONTH(GETDATE()) AND BillStatus = 'PAID'")
+                var result =  db.Database
+                    .SqlQuery<decimal?>("SELECT SUM(Total) FROM Bill WHERE MONTH(DateCreated) = MONTH(GETDATE()) AND BillStatus = 'PAID'")
                     .FirstOrDefault();
+                if (result != null)
+                {
+                    return (decimal)result;
+                }
+                return 0;
             }
         }
 
@@ -81,9 +87,14 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Database
-                    .SqlQuery<decimal>("SELECT SUM(T1.TotalSerivcesPrices) FROM BillDetail T1 INNER JOIN BIll T2 ON T2.BillID = T1.BillID WHERE T2.BillStatus = 'PAID'")
+                var result =  db.Database
+                    .SqlQuery<decimal?>("SELECT SUM(T1.TotalSerivcesPrices) FROM BillDetail T1 INNER JOIN BIll T2 ON T2.BillID = T1.BillID WHERE T2.BillStatus = 'PAID'")
                     .FirstOrDefault();
+                if (result != null)
+                {
+                    return (decimal)result;
+                }
+                return 0;
             }
         }
 
@@ -91,9 +102,14 @@ namespace HOTELMANAGEWEB.BLL
         {
             using (var db = new QLKSWEBEntities())
             {
-                return db.Database
-                    .SqlQuery<decimal>("EXEC dbo.TotalRoomRevenue")
+                var result =  db.Database
+                    .SqlQuery<decimal?>("EXEC dbo.TotalRoomRevenue")
                     .FirstOrDefault();
+                if (result != null)
+                {
+                    return (decimal)result;
+                }
+                return 0;
             }
         }
 

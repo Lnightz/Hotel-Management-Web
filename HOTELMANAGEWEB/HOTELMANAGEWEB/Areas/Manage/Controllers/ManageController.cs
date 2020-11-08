@@ -8,6 +8,7 @@ using HOTELMANAGEWEB.Models;
 using Microsoft.Ajax.Utilities;
 using System.Data.Entity;
 using HOTELMANAGEWEB.DTO;
+using System.Security.Cryptography;
 
 namespace HOTELMANAGEWEB.Areas.Manage.Controllers
 {
@@ -502,8 +503,21 @@ namespace HOTELMANAGEWEB.Areas.Manage.Controllers
             int month = DateTime.Now.Month;
             int year = DateTime.Now.Year;
 
-            ViewBag.PieChart = ReportBLL.Instance.pieChartModels(month, year);
-            ViewBag.SalesChart = ReportBLL.Instance.salesChartModels(month, year);
+            var PieChart = ReportBLL.Instance.pieChartModels(month, year);
+
+            ViewBag.PieChartRoomTypeName = (from temp in PieChart select temp.RoomTypeName).ToList();
+            ViewBag.PieChartQuantity = (from temp in PieChart select temp.Quantity).ToList();
+
+            var SalesChart = ReportBLL.Instance.salesChartModels(month, year);
+
+            var SalesChartDay = (from temp in SalesChart select temp.Day.ToString("yyyy-MM-dd")).ToList();
+
+            string SalesChartDay_temp = string.Join(" , ", SalesChartDay);
+
+            ViewBag.SalesChartDay = SalesChartDay_temp.Trim();
+
+            ViewBag.SalesChartRevenue = (from temp in SalesChart select temp.TotalRoomRevenue).ToList();
+
 
             return View();
         }

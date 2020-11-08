@@ -1,9 +1,7 @@
-﻿@{
-    if (!User.Identity.IsAuthenticated)
+﻿@{ if (!User.Identity.IsAuthenticated)
     {
         Response.Redirect("~/Manage/Account/Login");
-    }
-}
+    } }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +24,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link rel="stylesheet" href="~/AdminAssets/dist/css/thmh.css">
+
+    
 
 </head>
 <body class="sidebar-mini sidebar-collapse">
@@ -97,7 +97,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         @{Html.RenderAction("ListModule", "ListModule"); }
                     </ul>
                 </nav>
@@ -168,32 +168,38 @@
     <script src="~/AdminAssets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
     <script src="~/AdminAssets/plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="~/Assets/js/Chart.min.js"></script>
+    @*<script src="~/Assets/js/Chart.min.js"></script>*@
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Assets/js/dashboard3.js"></script>
     <!-- DateTime Picker -->
     @*<script src="~/Assets/js/jquery.datetimepicker.full.js"></script>*@
     <!-- page script -->
     <script>
-            $(function () {
-                $("#example1").DataTable({
-                    "responsive": true,
-                    "autoWidth": false,
-                });
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
-            });
+        //$(function () {
+        //    $("#example1").DataTable({
+        //        "responsive": true,
+        //        "autoWidth": false,
+        //    });
+        //    $('#example2').DataTable({
+        //        "paging": true,
+        //        "lengthChange": false,
+        //        "searching": false,
+        //        "ordering": true,
+        //        "info": true,
+        //        "autoWidth": false,
+        //        "responsive": true,
+        //    });
+        //});
 
-            $(function () {
-                //Add text editor
-                $('#compose-textarea').summernote()
-            })
-        </script>
+        //$(function () {
+        //    //Add text editor
+        //    $('#compose-textarea').summernote()
+        //})
+    </script>
+
+    @if (IsSectionDefined("AddToHead"))
+    {
+@RenderSection("AddToHead", required: false)}
 </body>
 </html>

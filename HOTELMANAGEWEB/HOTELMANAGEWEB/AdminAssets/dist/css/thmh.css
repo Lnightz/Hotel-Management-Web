@@ -125,3 +125,13 @@ body .dropdown-item:hover {
     padding: 1rem;
 }
 
+#roomtype-piechart{
+    width:auto;
+    height:400px;
+}
+
+
+#roomrevenue-linechart {
+    width: auto;
+    height: 400px;
+}
